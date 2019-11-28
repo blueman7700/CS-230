@@ -17,8 +17,8 @@ public class Manager {
 	Image player;
 	Image dirt;
 	// X and Y coordinate of player
-	int playerX = 0;
-	int playerY = 0;
+	int playerX = 1;
+	int playerY = 1;
 	
 	@FXML
 	private Canvas gameCanvas;
@@ -43,14 +43,14 @@ public class Manager {
 		GraphicsContext gc = gameCanvas.getGraphicsContext2D();
 		
 		// Clear canvas
-		gc.clearRect(0, 0, gameCanvas.getWidth(), gameCanvas.getHeight());
+		gc.fillRect(0, 0, gameCanvas.getWidth(), gameCanvas.getHeight());
 
 		// Draw row of dirt images
 		// We multiply by the cell width and height to turn a coordinate in our grid into a pixel coordinate.
 		// We draw the row at y value 2.
 		
-		for (int x = 0; x < 5; x++) {
-			for (int y = 0; y < 5; y++) {
+		for (int x = 0; x < 10; x++) {
+			for (int y = 0; y < 10; y++) {
 				gc.drawImage(dirt, x * GRID_CELL_WIDTH, y * GRID_CELL_HEIGHT);	
 			}
 		}
@@ -59,13 +59,30 @@ public class Manager {
 		gc.drawImage(player, playerX * GRID_CELL_WIDTH, playerY * GRID_CELL_HEIGHT);
 	}
 	
+	/**
+	 * Called when a key is pressed, moves player according to WASD key pressed.
+	 * Use WASD to move.
+	 * @param event the action of a key press
+	 */
 	public void processKeyEvent(KeyEvent event) {
 		switch (event.getCode()) {
 			
-		    case RIGHT:
+		    case D:
 		    	// Right key was pressed. So move the player right by one cell.
 	        	playerX = playerX + 1;
-	        	break;		        
+	        	break;
+		    case A:
+		    	//Left key was pressed. So move the player left by one cell.
+		    	playerX = playerX -1;
+		    	break;
+		    case W:
+		    	//Up key was pressed so move the player up by one cell.
+		    	playerY = playerY -1;
+		    	break;
+		    case S:
+		    	//Down key was pressed so move the player down by one cell.
+		    	playerY = playerY +1;
+		    	break;
 	        default:
 	        	// Do nothing
 	        	break;
