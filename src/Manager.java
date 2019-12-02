@@ -94,4 +94,16 @@ public class Manager {
 		// Consume the event. This means we mark it as dealt with. This stops other GUI nodes (buttons etc) responding to it.
 		event.consume();
 	}
+
+	/**
+	 * get the game map.
+	 *
+	 * @return game map.
+	 */
+
+	public Map getMap() {
+
+		//todo: implement getMap().
+		return null;
+	}
 }
