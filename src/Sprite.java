@@ -7,4 +7,8 @@ public class Sprite {
         this.filePath = filePath;
     }
 
+    public String getPath() {
+
+        return this.filePath;
+    }
 }
