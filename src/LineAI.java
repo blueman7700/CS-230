@@ -19,12 +19,13 @@ public class LineAI extends Entity{
     private int loopCount = 0;
 
     /**
-         * create a new instance of a Smart AI.
-         *
-         * @param filePath file path of the object sprite.
-         * @param x        x coordinate of the entity.
-         * @param y        y coordinate of the entity.
-         */
+     * create a new instance of a Line AI.
+     *
+     * @param filePath file path of the object sprite.
+     * @param x        x coordinate of the entity.
+     * @param y        y coordinate of the entity.
+     * @param direction direction the ai will move.
+     */
 
     public LineAI(String filePath, int x, int y, Manager gm, MoveType direction) {
 
@@ -113,7 +114,8 @@ public class LineAI extends Entity{
     }
 
     /**
-     * invert the direction of the entity
+     * invert the direction of the entity.
+     *
      * @return new direction.
      */
 
