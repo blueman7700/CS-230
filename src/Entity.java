@@ -62,24 +62,14 @@ public abstract class Entity extends Sprite {
     }
 
     /**
-     * set the x coordinate
-     *
+     * set the position of the entity
      * @param x x coordinate
-     */
-
-    public void setxPos(int x) {
-
-        this.xPos = x;
-    }
-
-    /**
-     * set the y coordinate
-     *
      * @param y y coordinate
      */
 
-    public void setyPos(int y) {
+    public void setPosition(int x, int y) {
 
+        this.xPos = x;
         this.yPos = y;
     }
 
