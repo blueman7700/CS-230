@@ -1,9 +1,12 @@
+
 public class Floor extends Tile {
-
-    //TODO: implement floor class
-
-    public Item getContent() {
-
-        return null;
-    }
+	Item contents;
+	
+	public Item getContent() {
+		return contents;
+	}
+	
+	public void setContent(Item i) {
+		contents = i;
+	}
 }
