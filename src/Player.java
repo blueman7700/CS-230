@@ -24,7 +24,7 @@ import java.util.NoSuchElementException;
 
 public class Player extends Entity {
 
-    private Controller ctrl;
+    private Manager gm;
 
     private int numTokens;
     private boolean alive;
@@ -38,13 +38,13 @@ public class Player extends Entity {
      * @param y        y coordinate of the player.
      */
 
-    public Player(String filePath, int x, int y, Controller ctrl) {
+    public Player(String filePath, int x, int y, Manager gm) {
 
         super(filePath, x, y);
         inventory = new LinkedList<>();
         numTokens = 0;
         alive = true;
-        this.ctrl = ctrl;
+        this.gm = gm;
     }
 
     /**
@@ -70,7 +70,7 @@ public class Player extends Entity {
 
         //TODO: implement all move conditions
 
-        Tile nextTile = null;
+        Tile nextTile;
         int newX = 0;
         int newY = 0;
 
@@ -97,16 +97,16 @@ public class Player extends Entity {
                 break;
         }
 
-        nextTile = ctrl.getMap.getTile(newX, newY);
+        nextTile = gm.getMap().getTile(newX, newY);
 
         //check if the next tile is walkable
-        if (nextTile.walkable) {
+        if (nextTile.getWalkable()) {
             //check if the tile is an instance of floor
             if (nextTile instanceof Floor) {
-                if (((Floor) nextTile).hasContent) {
+                if (((Floor) nextTile).getContent() == null) {
                     addItemToInv(((Floor) nextTile).getContent());
                 }
-                this.updatePosition(newX, newY);
+                this.setPosition(newX, newY);
 
             //check if the tile is an instance of interactable
             }else if (nextTile instanceof Interactable) {
@@ -184,16 +184,4 @@ public class Player extends Entity {
         return alive;
     }
 
-    /**
-     * update the position of the entity.
-     *
-     * @param x new x coordinate.
-     * @param y new y coordinate.
-     */
-
-    public void updatePosition(int x, int y) {
-
-        this.setxPos(x);
-        this.setyPos(y);
-    }
 }
