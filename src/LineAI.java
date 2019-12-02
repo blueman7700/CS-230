@@ -136,7 +136,7 @@ public class LineAI extends Entity{
                 break;
             default:
             }
-            return direction;
-        }
+        return direction;
     }
+}
 
