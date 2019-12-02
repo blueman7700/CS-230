@@ -26,7 +26,7 @@ import java.util.Queue;
 
 public class SmartAI extends Entity {
 
-    private Controller ctrl;
+    private Manager gm;
 
     /**
      * create a new instance of a Smart AI.
@@ -36,14 +36,14 @@ public class SmartAI extends Entity {
      * @param y        y coordinate of the entity.
      */
 
-    public SmartAI(String filePath, int x, int y, Controller ctrl) {
+    public SmartAI(String filePath, int x, int y, Manager gm) {
 
         super(filePath, x, y);
-        this.ctrl = ctrl;
+        this.gm = gm;
     }
 
     /**
-     * move the AI.
+     * move the AI towards the player.
      *
      * @param type move type of the entity.
      */
@@ -51,41 +51,13 @@ public class SmartAI extends Entity {
     @Override
     public void move(MoveType type) {
 
-        //TODO implement BFS pathfinding
-
-        int playerX;
-        int playerY;
-
-        //get the current tile that the entity is on
-        Tile currTile = ctrl.getMap.getTile(this.getxPos(), this.getyPos());
-
-        Queue<Tile> toVisit = new LinkedList<Tile>();
-        LinkedList<Tile> visited = new LinkedList<>();
-
-        toVisit.add(currTile);
-        boolean found = false;
-
-        while (found = false) {
-
-            currTile = toVisit.peek();
-            visited.add(currTile);
-            //toVisit.add(getValidNeighbors(currTile));
-        }
-
-        if (type != type.AUTO) {
-
-            System.out.println("AI movement should be set to AUTO!");
-        }
-
-        //playerX = GameManager.getPlayerPosX
-        //playerY = GameManager.getPlayerPosX
-
+        //TODO implement A* pathfinding
 
     }
 
-    private List<Tile> getValidNeighbors(Tile currTile) {
+    private List<Tile> getValidNeighbours(Tile currTile) {
 
-        List<Tile> neighbors = new ArrayList<Tile>();
+        List<Tile> neighbours = new ArrayList<>();
         //int currX = currTile.getxPos;
         //int currY = currTile.getyPos;
 
@@ -97,7 +69,7 @@ public class SmartAI extends Entity {
 
 		 */
 
-        return neighbors;
+        return neighbours;
     }
 
     /**
