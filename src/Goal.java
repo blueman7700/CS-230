@@ -1,8 +1,8 @@
 /**
  * <b> Name: </b> Goal.java
- * <p>Player object.</p>
+ * <p>goal object.</p>
  * <br><b>Created:</b> 26/11/2019
- * <br><b>Last Modified:</b> 26/11/2019
+ * <br><b>Last Modified:</b> 02/12/2019
  * @author Negrusa Sergiu
  * @version 1.0
  * <br><b>History:</b>
@@ -10,7 +10,7 @@
  * </ul>
  */
 
-public class Goal {
+public class Goal extends Interactable{
     private int xPos;
     private int yPos;
 
@@ -27,10 +27,9 @@ public class Goal {
     /**
      * method that checks if the player reaches the goal
      * @param player we need player in order to check his position
-     * @param goal we need goal's position to check the player
      */
-    public void victory(Player player, Goal goal){
-        if(player.getxPos() == goal.getxPos() && player.getyPos() == goal.getyPos()){
+    public void interact(Player player){
+        if(player.getxPos() == this.getxPos() && player.getyPos() == this.getyPos()){
             System.out.println("You WIN!");
         }
     }
@@ -50,6 +49,12 @@ public class Goal {
     public int getyPos() {
         return yPos;
     }
+
+    /**
+     * convert goal object to string.
+     *
+     * @return goal as string.
+     */
 
     @Override
     public String toString() {
