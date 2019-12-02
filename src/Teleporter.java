@@ -1,17 +1,17 @@
 /**
  * <b>Name: </b>Teleporter.java
  * <p>
- * a Simple Registration Form using Java Swing
+ * Teleporter tile
  * </p>
  * <br><b>Created:</b> 26/11/2019
- * <br><b>Last Modified:</b> 26/11/2019
+ * <br><b>Last Modified:</b> 02/12/2019
  * @author Negrusa Sergiu
  * @version 1.0
  * <br><b>History:</b>
  * 	<li>Version 1.0 (26/11/2019)</li>
  * </ul>
  */
-public class Teleporter{
+public class Teleporter extends Tile{
     private int xPos;
     private int yPos;
     private Teleporter partner;
@@ -22,26 +22,32 @@ public class Teleporter{
      * @param xPos x position of the teleporter
      * @param yPos y position of the teleporter
      */
-    public Teleporter(Teleporter partner, int xPos, int yPos){
+    public Teleporter(Teleporter partner, int xPos, int yPos, boolean walkable){
+        //TODO: add superclass constructor
         setPartner(partner);
-        setxPos(xPos);
-        setyPos(yPos);
+        setPos(xPos, yPos);
     }
 
-    /**
+
+    /*
      * method that teleports the Player to the other teleporter
-     * @param currentTeleporter we need this in order to check player's position and to teleport
      * @param currentPlayer we need this to check if the player is on teleporter's position
      * @return the teleporter on which the player is now
      */
-    public Teleporter teleporting(Teleporter currentTeleporter, Player currentPlayer){
-        if(currentTeleporter.getxPos() == currentPlayer.getxPos() &&
-                currentTeleporter.getyPos() == currentPlayer.getyPos()){
+
+    /*
+    Do we really need this method?
+
+    public Teleporter teleport(Player currentPlayer){
+        if(this.getxPos() == currentPlayer.getxPos() &&
+                this.getyPos() == currentPlayer.getyPos()){
+
             currentPlayer.setxPos(currentTeleporter.getPartner().getxPos());
             currentPlayer.setyPos(currentTeleporter.getPartner().getyPos());
         }
-        return currentTeleporter.getPartner();
+        return this.getPartner();
     }
+    */
 
     public int getxPos() {
         return xPos;
@@ -51,11 +57,15 @@ public class Teleporter{
         return yPos;
     }
 
-    private void setxPos(int xPos) {
-        this.xPos = xPos;
-    }
+    /**
+     * set the position of the teleporter.
+     *
+     * @param xPos x coordinate.
+     * @param yPos y coordinate.
+     */
 
-    private void setyPos(int yPos) {
+    private void setPos(int xPos, int yPos) {
+        this.xPos = xPos;
         this.yPos = yPos;
     }
 
@@ -67,8 +77,14 @@ public class Teleporter{
         return partner;
     }
 
+    /**
+     * convert teleporter tile into a string
+     *
+     * @return teleporter as string
+     */
+
     @Override
     public String toString() {
-        return String.format("Teleporter is at %d, %d.\n Teleporter's partner:\n%s", getxPos(), getyPos(), getPartner());
+        return String.format("Teleporter is at %d, %d.\n Teleporter pair location: %d %d\n", getxPos(), getyPos(), getPartner().getxPos(), getPartner().getyPos());
     }
 }
