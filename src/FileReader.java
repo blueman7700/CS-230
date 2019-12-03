@@ -54,6 +54,21 @@ public class FileReader {
 	}
 	
 	/**
+	 * File to string for Users and Leaderboard
+	 * @return string value of the read file
+	 */
+	public String readFile() {
+		String leaderboard = "";
+		Scanner in = readDataFile();
+		
+		while(in.hasNextLine() && in.hasNext()) {
+			leaderboard = leaderboard + in.nextLine() + "\n";
+		}
+		
+		return leaderboard;
+	}
+	
+	/**
 	 * Takes filename as an input, and returns the map height - found at the top of the file
 	 * @param filename is the directory 
 	 * @return the height of the map
