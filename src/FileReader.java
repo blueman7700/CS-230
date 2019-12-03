@@ -148,13 +148,13 @@ public class FileReader {
 	 * @param input one detail (one line from the file)
 	 */
 	public Tile[][] addDetails(String input, Tile[][] level) {
-		String type = "";//the type of AI/Door
+		String type = "";//the type of AI
 		String extra = "";//extra info. e.g. key colour
 		int count = 0;//count of tokens for a door
 		
 		if(input.contains("START")) {//if its START
-			 setStartX(coodsFromString(input.substring(7))[0]);//remove 'START, ' from the string leaving just the coods
-			 setStartY(coodsFromString(input.substring(7))[1]);
+			startX = coodsFromString(input.substring(7))[0];//remove 'START, ' from the string leaving just the coods
+			startY = coodsFromString(input.substring(7))[1];
 		} else if (input.contains("AI")) {//if AI
 			input = input.substring(4);
 			if(input.contains("DUMB")) {
@@ -212,10 +212,10 @@ public class FileReader {
 			input = input.substring(6);
 			if(input.contains("FLIP")) {
 				input = input.substring(6);
-				((Floor) level[coodsFromString(input)[1]][coodsFromString(input)[0]]).setContent(new Flippers("FLIP"));
+				((Floor) level[coodsFromString(input)[1]][coodsFromString(input)[0]]).setContent(new Flippers("Flip"));
 			} else {
 				input = input.substring(6);
-				((Floor) level[coodsFromString(input)[1]][coodsFromString(input)[0]]).setContent(new FireBoots("BOOT"));
+				((Floor) level[coodsFromString(input)[1]][coodsFromString(input)[0]]).setContent(new FireBoots("Boot"));
 			}
 			 
 		} else if(input.substring(0, 3).contains("KEY")) { //have to use a substring as some doors have 'KEY' in their line
@@ -226,11 +226,11 @@ public class FileReader {
 				count++;
 			}
 			input = input.substring(count+2);
-			((Floor) level[coodsFromString(input)[1]][coodsFromString(input)[0]]).setContent(new Key("KEY", extra));
+			((Floor) level[coodsFromString(input)[1]][coodsFromString(input)[0]]).setContent(new Key("Key", extra));
 			 
 		} else if (input.substring(0, 5).contains("TOKEN")) {
 			input = input.substring(7);
-			((Floor) level[coodsFromString(input)[1]][coodsFromString(input)[0]]).setContent(new Token("TOKEN"));
+			((Floor) level[coodsFromString(input)[1]][coodsFromString(input)[0]]).setContent(new Token("Token"));
 			 
 		} else if (input.contains("TELE")) {
 			input = input.substring(6);

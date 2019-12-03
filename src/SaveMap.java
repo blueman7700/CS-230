@@ -8,10 +8,21 @@ import java.io.IOException;
  */
 public class SaveMap {
 	
+	/**
+	 * Takes in a map and a playername, then calls strToFile, passing levelToString to save the map
+	 * @param m the current map
+	 * @param name player name
+	 */
 	public SaveMap(Map m, String name) {
 		strToFile(levelToString(m), name);
+		//TODO: SAVE AI
 	}
 	
+	/**
+	 * Takes in a map, draws an ASCII version. Then calls detailsToString to get the map details
+	 * @param m the current map
+	 * @return String format of the current map
+	 */
 	public String levelToString(Map m) {
 		String save = "";
 		for(int y = 0; y < m.getHeight(); y++) {
@@ -30,23 +41,93 @@ public class SaveMap {
 						save = save + "g";
 						break;
 					case("Teleporter"):
-						save = save + "T";
+						save = save + "t";
 						break;
 					case("KeyDoor"):
-						save = save + "D";
+						save = save + "d";
 						break;
 					case("TokenDoor"):
-						save = save + "T";
+						save = save + "d";
 						break;
 					default:
 						save = save + "_";
 						break;	
 				}
 			}
+			save = save + "\n";
 		}
+		
+		save = detailsToString(m, save);
+		
 		return save;
 	}
 	
+	/**
+	 * Takes in the current map and finds any items/doors/teleporters and adds the specific details
+	 * @param m current map
+	 * @param inSave the String passed from levelToString, to update
+	 * @return the updated string from levelToString, including map details
+	 */
+	public String detailsToString(Map m, String inSave) {
+		String save = inSave;//save value
+		Boolean teleporter = false;//there's two teleporters in the map, only need one to be read
+		int startx = m.getStartX() + 1;
+		int starty = m.getStartY() + 1;
+		
+		
+		save = save + "START, "+startx+", "+starty+"\n";
+		
+		for(int y = 0; y < m.getHeight(); y++) {	
+			for(int x = 0; x < m.getWidth(); x++) {
+				
+				switch(m.getTile(x, y).getClass().getName()) {
+					case("Floor"):
+						if(((Floor) m.getTile(x, y)).getContent() == null)  {
+							
+						} else {
+							switch(((Floor) m.getTile(x, y)).getContent().getName()) {
+								case("Key"):
+									save = save +"KEY, "+((Key) ((Floor) m.getTile(x, y)).getContent()).getColour()
+												+", "+(x+1)+", "+(y+1)+"\n";
+									break;
+								case("Token"):
+									save = save + "TOKEN, "+(x+1)+", "+(y+1)+"\n";
+									break;
+								case("Flippers"):
+									save = save + "ITEM, FLIP, "+(x+1)+", "+(y+1)+"\n";
+									break;
+								case("FireBoots"):
+									save = save + "ITEM, BOOT, "+(x+1)+", "+(y+1)+"\n";
+									break;
+							}
+						}
+						break;
+					
+					case("KeyDoor"):
+						save = save + "DOOR, KEY, "+((KeyDoor) m.getTile(x, y)).getColour()+", "+(x+1)+", "+(y+1)+"\n";
+						break;
+					case("TokenDoor"):
+						save = save + "DOOR, TOKEN, "+((TokenDoor) m.getTile(x, y)).getNum()+", "+(x+1)+", "+(y+1)+"\n";
+						break;
+					case("Teleporter"):
+						if(teleporter == false) {
+							Teleporter t = ((Teleporter) m.getTile(x, y)).getPartner();
+							save = save + "TELE, "+(x+1)+", "+(y+1)+", "+(t.getxPos()+1)+", "+(t.getyPos()+1)+"\n";
+						}
+						break;
+				}
+			}
+		}
+		
+		
+		return save;
+	}
+	
+	/**
+	 * Creates a new file, as the player's name
+	 * @param data the map in String form
+	 * @param name the player's name
+	 */
 	public void strToFile(String data, String name) {
         File file = new File("src/"+name+".txt");
         FileWriter fr = null;
