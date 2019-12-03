@@ -28,7 +28,7 @@ public class Manager {
 	@FXML
 	public void initialize() {
 		//load filereader
-		fr = new FileReader("levelfile.txt");
+		fr = new FileReader("src/ExampleFile.txt");
 		//loads the map and sets the tiles
 		map = new Map(fr.getHeight(), fr.getWidth(), fr.fileToArray(), fr.getStartX(), fr.getStartY());
 		//load the player
@@ -58,8 +58,8 @@ public class Manager {
 		// We multiply by the cell width and height to turn a coordinate in our grid into a pixel coordinate.
 		// We draw the row at y value 2.
 		
-		for (int x = 0; x < 10; x++) {
-			for (int y = 0; y < 10; y++) {
+		for (int x = 0; map.getWidth() < 10; x++) {
+			for (int y = 0; map.getHeight() < 10; y++) {
 				gc.drawImage(dirt, x * GRID_CELL_WIDTH, y * GRID_CELL_HEIGHT);	
 			}
 		}

@@ -136,8 +136,9 @@ public class FileReader {
 				return new Fire();
 			case 'w':	
 				return new Water();
-			case 'g':		
-				return new Goal();
+			case 'g':
+				return new Wall();
+				//return new Goal();
 			default:
 				return new Floor();
 		}
@@ -229,11 +230,11 @@ public class FileReader {
 			((Floor) level[coodsFromString(input)[1]][coodsFromString(input)[0]]).setContent(new Key("Key", extra));
 			 
 		} else if (input.substring(0, 5).contains("TOKEN")) {
-			input = input.substring(7);
-			((Floor) level[coodsFromString(input)[1]][coodsFromString(input)[0]]).setContent(new Token("Token"));
+			/*input = input.substring(7);
+			((Floor) level[coodsFromString(input)[1]][coodsFromString(input)[0]]).setContent(new Token("Token"));*/
 			 
 		} else if (input.contains("TELE")) {
-			input = input.substring(6);
+			/*input = input.substring(6);
 			int[] xy1 = coodsFromString(input.substring(0, 4));
 			input = input.substring(6);
 			int[] xy2 = coodsFromString(input);
@@ -242,7 +243,7 @@ public class FileReader {
 			t1.setPartner(t2);
 			t2.setPartner(t1);
 			level[xy1[1]][xy1[0]] = t1;
-			level[xy2[1]][xy2[0]] = t2;
+			level[xy2[1]][xy2[0]] = t2;*/
 		}
 		
 		return level;
