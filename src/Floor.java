@@ -12,7 +12,7 @@ public class Floor extends Tile {
 		contents = i;
 	}
 
-	private static String getSprite() {
+	public String getSprite() {
 		return sprite;
 	}
 }

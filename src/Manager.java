@@ -11,9 +11,9 @@ import views.*;
 public class Manager {
 
 	// The size of each cell
-	private static int GRID_CELL_WIDTH = 50;
-	private static int GRID_CELL_HEIGHT = 50;
-	// Loaded images
+	private static int GRID_CELL_SIZE = 50;
+	// Load an image
+	Image tile;
 	Image playerImg;
 	Image dirt;
 	//the player
@@ -37,6 +37,9 @@ public class Manager {
 		playerImg = new Image("sprites/player.png");
 		dirt = new Image("sprites/dirt.png");
 		
+		gameCanvas.setWidth(map.getWidth() * GRID_CELL_SIZE);
+		gameCanvas.setHeight(map.getHeight() * GRID_CELL_SIZE);
+		
 		drawGame();
 	}
 	
@@ -58,14 +61,15 @@ public class Manager {
 		// We multiply by the cell width and height to turn a coordinate in our grid into a pixel coordinate.
 		// We draw the row at y value 2.
 		
-		for (int x = 0; map.getWidth() < 10; x++) {
-			for (int y = 0; map.getHeight() < 10; y++) {
-				gc.drawImage(dirt, x * GRID_CELL_WIDTH, y * GRID_CELL_HEIGHT);	
+		for (int x = 0; x < map.getWidth(); x++) {
+			for (int y = 0; y < map.getHeight(); y++) {
+				tile = new Image(map.getTile(x, y).getSprite());
+				gc.drawImage(tile, x * GRID_CELL_SIZE, y * GRID_CELL_SIZE);	
 			}
 		}
 		
 		// Draw player at current location
-		gc.drawImage(playerImg, player.getxPos() * GRID_CELL_WIDTH, player.getyPos() * GRID_CELL_HEIGHT);
+		gc.drawImage(playerImg, player.getxPos() * GRID_CELL_SIZE, player.getyPos() * GRID_CELL_SIZE);
 	}
 	
 	/**
@@ -86,11 +90,11 @@ public class Manager {
 		    	break;
 		    case W:
 		    	//Up key was pressed so move the player up by one cell.
-		    	player.move(MoveType.UP);
+		    	player.move(MoveType.DOWN);
 		    	break;
 		    case S:
 		    	//Down key was pressed so move the player down by one cell.
-		    	player.move(MoveType.DOWN);
+		    	player.move(MoveType.UP);
 		    	break;
 	        default:
 	        	// Do nothing
@@ -111,8 +115,6 @@ public class Manager {
 	 */
 
 	public Map getMap() {
-
-		//todo: implement getMap().
-		return null;
+		return map;
 	}
 }
