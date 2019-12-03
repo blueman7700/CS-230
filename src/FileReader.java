@@ -54,6 +54,21 @@ public class FileReader {
 	}
 	
 	/**
+	 * File to string for Users and Leaderboard
+	 * @return string value of the read file
+	 */
+	public String readFile() {
+		String leaderboard = "";
+		Scanner in = readDataFile();
+		
+		while(in.hasNextLine() && in.hasNext()) {
+			leaderboard = leaderboard + in.nextLine() + "\n";
+		}
+		
+		return leaderboard;
+	}
+	
+	/**
 	 * Takes filename as an input, and returns the map height - found at the top of the file
 	 * @param filename is the directory 
 	 * @return the height of the map
@@ -136,9 +151,8 @@ public class FileReader {
 				return new Fire();
 			case 'w':	
 				return new Water();
-			case 'g':
-				return new Wall();
-				//return new Goal();
+			case 'g':		
+				return new Goal();
 			default:
 				return new Floor();
 		}
@@ -230,11 +244,11 @@ public class FileReader {
 			((Floor) level[coodsFromString(input)[1]][coodsFromString(input)[0]]).setContent(new Key("Key", extra));
 			 
 		} else if (input.substring(0, 5).contains("TOKEN")) {
-			/*input = input.substring(7);
-			((Floor) level[coodsFromString(input)[1]][coodsFromString(input)[0]]).setContent(new Token("Token"));*/
+			input = input.substring(7);
+			((Floor) level[coodsFromString(input)[1]][coodsFromString(input)[0]]).setContent(new Token("Token"));
 			 
 		} else if (input.contains("TELE")) {
-			/*input = input.substring(6);
+			input = input.substring(6);
 			int[] xy1 = coodsFromString(input.substring(0, 4));
 			input = input.substring(6);
 			int[] xy2 = coodsFromString(input);
@@ -243,7 +257,7 @@ public class FileReader {
 			t1.setPartner(t2);
 			t2.setPartner(t1);
 			level[xy1[1]][xy1[0]] = t1;
-			level[xy2[1]][xy2[0]] = t2;*/
+			level[xy2[1]][xy2[0]] = t2;
 		}
 		
 		return level;
