@@ -65,7 +65,7 @@ public class Manager {
 		}
 		
 		// Draw player at current location
-		gc.drawImage(playerImg, playerX * GRID_CELL_WIDTH, playerY * GRID_CELL_HEIGHT);
+		gc.drawImage(playerImg, player.getxPos() * GRID_CELL_WIDTH, player.getyPos() * GRID_CELL_HEIGHT);
 	}
 	
 	/**
