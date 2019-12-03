@@ -14,20 +14,29 @@ public class Manager {
 	private static int GRID_CELL_WIDTH = 50;
 	private static int GRID_CELL_HEIGHT = 50;
 	// Loaded images
-	Image player;
+	Image playerImg;
 	Image dirt;
-	// X and Y coordinate of player
-	int playerX = 1;
-	int playerY = 1;
+	//the player
+	Player player;
+	//the map
+	Map map;
+	//File reader
+	FileReader fr;
 	
 	@FXML
 	private Canvas gameCanvas;
 	@FXML
 	public void initialize() {
+		//load filereader
+		fr = new FileReader("src/ExampleFile.txt");
+		//loads the map and sets the tiles
+		map = new Map(fr.getHeight(), fr.getWidth(), fr.fileToArray(), fr.getStartX(), fr.getStartY());
+		//load the player
+		player = new Player("sprites/player.png", fr.getStartX(), fr.getStartY(), this);
 		// Load images
-		player = new Image("sprites/player.png");
+		playerImg = new Image("sprites/player.png");
 		dirt = new Image("sprites/dirt.png");
-		//gameCanvas.getScene().addEventFilter(KeyEvent.KEY_PRESSED, event -> processKeyEvent(event));
+		
 		drawGame();
 	}
 	
@@ -49,14 +58,14 @@ public class Manager {
 		// We multiply by the cell width and height to turn a coordinate in our grid into a pixel coordinate.
 		// We draw the row at y value 2.
 		
-		for (int x = 0; x < 10; x++) {
-			for (int y = 0; y < 10; y++) {
+		for (int x = 0; map.getWidth() < 10; x++) {
+			for (int y = 0; map.getHeight() < 10; y++) {
 				gc.drawImage(dirt, x * GRID_CELL_WIDTH, y * GRID_CELL_HEIGHT);	
 			}
 		}
 		
 		// Draw player at current location
-		gc.drawImage(player, playerX * GRID_CELL_WIDTH, playerY * GRID_CELL_HEIGHT);
+		gc.drawImage(playerImg, player.getxPos() * GRID_CELL_WIDTH, player.getyPos() * GRID_CELL_HEIGHT);
 	}
 	
 	/**
@@ -69,19 +78,19 @@ public class Manager {
 			
 		    case D:
 		    	// Right key was pressed. So move the player right by one cell.
-	        	playerX = playerX + 1;
+	        	player.move(MoveType.RIGHT);
 	        	break;
 		    case A:
 		    	//Left key was pressed. So move the player left by one cell.
-		    	playerX = playerX -1;
+		    	player.move(MoveType.LEFT);
 		    	break;
 		    case W:
 		    	//Up key was pressed so move the player up by one cell.
-		    	playerY = playerY -1;
+		    	player.move(MoveType.UP);
 		    	break;
 		    case S:
 		    	//Down key was pressed so move the player down by one cell.
-		    	playerY = playerY +1;
+		    	player.move(MoveType.DOWN);
 		    	break;
 	        default:
 	        	// Do nothing
