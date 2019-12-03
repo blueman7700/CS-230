@@ -14,18 +14,21 @@ public class Manager {
 	private static int GRID_CELL_WIDTH = 50;
 	private static int GRID_CELL_HEIGHT = 50;
 	// Loaded images
-	Image player;
+	Image playerImg;
 	Image dirt;
-	// X and Y coordinate of player
-	int playerX = 1;
-	int playerY = 1;
+	//the player
+	Player player;
+	//the map
+	Map map;
+	//File reader
+	FileReader fr;
 	
 	@FXML
 	private Canvas gameCanvas;
 	@FXML
 	public void initialize() {
 		// Load images
-		player = new Image("sprites/player.png");
+		playerImg = new Image("sprites/player.png");
 		dirt = new Image("sprites/dirt.png");
 		//gameCanvas.getScene().addEventFilter(KeyEvent.KEY_PRESSED, event -> processKeyEvent(event));
 		drawGame();
@@ -56,7 +59,7 @@ public class Manager {
 		}
 		
 		// Draw player at current location
-		gc.drawImage(player, playerX * GRID_CELL_WIDTH, playerY * GRID_CELL_HEIGHT);
+		gc.drawImage(playerImg, playerX * GRID_CELL_WIDTH, playerY * GRID_CELL_HEIGHT);
 	}
 	
 	/**
