@@ -16,10 +16,8 @@ public class Goal extends Interactable{
 
     /**
      * create an instance of Goal
-     * @param xPos x coordonate of the goal
-     * @param yPos y coodonate of the goal
      */
-    public Goal(int xPos, int yPos){
+    public Goal(){
         setxPos(xPos);
         setyPos(yPos);
     }
