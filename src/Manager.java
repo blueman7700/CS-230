@@ -27,10 +27,16 @@ public class Manager {
 	private Canvas gameCanvas;
 	@FXML
 	public void initialize() {
+		//load filereader
+		fr = new FileReader("levelfile.txt");
+		//loads the map and sets the tiles
+		map = new Map(fr.getHeight(), fr.getWidth(), fr.fileToArray(), fr.getStartX(), fr.getStartY());
+		//load the player
+		player = new Player("sprites/player.png", fr.getStartX(), fr.getStartY(), this);
 		// Load images
 		playerImg = new Image("sprites/player.png");
 		dirt = new Image("sprites/dirt.png");
-		//gameCanvas.getScene().addEventFilter(KeyEvent.KEY_PRESSED, event -> processKeyEvent(event));
+		
 		drawGame();
 	}
 	
@@ -72,19 +78,19 @@ public class Manager {
 			
 		    case D:
 		    	// Right key was pressed. So move the player right by one cell.
-	        	playerX = playerX + 1;
+	        	player.move(MoveType.RIGHT);
 	        	break;
 		    case A:
 		    	//Left key was pressed. So move the player left by one cell.
-		    	playerX = playerX -1;
+		    	player.move(MoveType.LEFT);
 		    	break;
 		    case W:
 		    	//Up key was pressed so move the player up by one cell.
-		    	playerY = playerY -1;
+		    	player.move(MoveType.UP);
 		    	break;
 		    case S:
 		    	//Down key was pressed so move the player down by one cell.
-		    	playerY = playerY +1;
+		    	player.move(MoveType.DOWN);
 		    	break;
 	        default:
 	        	// Do nothing
