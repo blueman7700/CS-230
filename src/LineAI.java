@@ -8,11 +8,12 @@
  * <br><b>Last Modified:</b> 02/12/2019
  * <br> - no copyright
  * <hr>
+ *
  * @author Oliver Morris
  * @version 1
  */
 
-public class LineAI extends Entity{
+public class LineAI extends Entity {
 
     private Manager gm;
     private MoveType direction;
@@ -21,15 +22,16 @@ public class LineAI extends Entity{
     /**
      * create a new instance of a Line AI.
      *
-     * @param filePath file path of the object sprite.
-     * @param x        x coordinate of the entity.
-     * @param y        y coordinate of the entity.
+     * @param filePath  file path of the object sprite.
+     * @param x         x coordinate of the entity.
+     * @param y         y coordinate of the entity.
      * @param direction direction the ai will move.
      */
 
     public LineAI(String filePath, int x, int y, Manager gm, MoveType direction) {
 
-        super(filePath, x, y);
+        super(x, y);
+        this.filePath = "sprites/lineAI.png";
         this.gm = gm;
         this.direction = direction;
     }
@@ -41,20 +43,20 @@ public class LineAI extends Entity{
      */
 
     @Override
-    public void move(MoveType type){
+    public void move(MoveType type) {
 
         int newX;
         int newY;
 
         if (type != MoveType.AUTO) {
             System.out.println("Entity move type must be set to AUTO!");
-        }else {
+        } else {
             //get new position
             switch (direction) {
                 case UP:
-                newX = this.getxPos();
-                newY = this.getyPos() + 1;
-                break;
+                    newX = this.getxPos();
+                    newY = this.getyPos() + 1;
+                    break;
                 case DOWN:
                     newX = this.getxPos();
                     newY = this.getyPos() - 1;
@@ -80,7 +82,7 @@ public class LineAI extends Entity{
 
             //check if the tile is floor and has not content
             if (nextTile instanceof Floor) {
-                if (((Floor)nextTile).getContent() == null) {
+                if (((Floor) nextTile).getContent() == null) {
                     canMove = true;
                 }
             }
@@ -88,7 +90,7 @@ public class LineAI extends Entity{
             //check if the next tile can be moved to
             if (canMove) {
                 this.setPosition(newX, newY);
-            }else {
+            } else {
                 //increment the loop counter by one
                 loopCount++;
 
@@ -135,7 +137,7 @@ public class LineAI extends Entity{
                 direction = MoveType.LEFT;
                 break;
             default:
-            }
+        }
         return direction;
     }
 }

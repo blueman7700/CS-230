@@ -33,14 +33,14 @@ public class Player extends Entity {
     /**
      * creates a new instance of Player.
      *
-     * @param filePath path to image asset.
      * @param x        x coordinate of the player.
      * @param y        y coordinate of the player.
      */
 
-    public Player(String filePath, int x, int y, Manager gm) {
+    public Player(int x, int y, Manager gm) {
 
-        super(filePath, x, y);
+        super(x, y);
+        this.filePath = "sprites/player.png";
         inventory = new LinkedList<>();
         numTokens = 0;
         alive = true;
@@ -108,8 +108,8 @@ public class Player extends Entity {
                 }
                 this.setPosition(newX, newY);
 
-            //check if the tile is an instance of interactable
-            }else if (nextTile instanceof Interactable) {
+                //check if the tile is an instance of interactable
+            } else if (nextTile instanceof Interactable) {
 
                 //interact with the tile
                 ((Interactable) nextTile).interact(this);
@@ -136,7 +136,7 @@ public class Player extends Entity {
      * @throws NoSuchElementException thrown if the specified item does not exist.
      */
 
-    public void removeFromInv(Item item) {
+    public Item removeFromInv(Item item) {
 
         boolean found = false;
         int index = 0;
@@ -156,11 +156,12 @@ public class Player extends Entity {
         if (!found) {
 
             //if item has not been found throw exception
-            throw new NoSuchElementException("Specified Item Does No Exist!");
+            return null;
         } else {
 
             //remove item from inventory
             inventory.remove(index);
+            return item;
         }
     }
 
