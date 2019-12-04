@@ -3,31 +3,36 @@
  * <p>goal object.</p>
  * <br><b>Created:</b> 26/11/2019
  * <br><b>Last Modified:</b> 02/12/2019
+ *
  * @author Negrusa Sergiu
  * @version 1.0
  * <br><b>History:</b>
- * 	<li>Version 1.0 (26/11/2019)</li>
+ * <li>Version 1.0 (26/11/2019)</li>
  * </ul>
  */
 
-public class Goal{
+public class Goal extends Interactable {
     private int xPos;
     private int yPos;
 
     /**
      * create an instance of Goal
+     *
+     * @param xPos x coordonate of the goal
+     * @param yPos y coodonate of the goal
      */
-    public Goal(){
+    public Goal(int xPos, int yPos) {
         setxPos(xPos);
         setyPos(yPos);
     }
 
     /**
      * method that checks if the player reaches the goal
+     *
      * @param player we need player in order to check his position
      */
-    public void interact(Player player){
-        if(player.getxPos() == this.getxPos() && player.getyPos() == this.getyPos()){
+    public void interact(Player player) {
+        if (player.getxPos() == this.getxPos() && player.getyPos() == this.getyPos()) {
             System.out.println("You WIN!");
         }
     }

@@ -39,7 +39,8 @@ public class Player extends Entity {
 
     public Player(int x, int y, Manager gm) {
 
-        super(x, y);
+        this.xPos = x;
+        this.yPos = y;
         this.filePath = "sprites/player.png";
         inventory = new LinkedList<>();
         numTokens = 0;
@@ -103,8 +104,8 @@ public class Player extends Entity {
         if (nextTile.getWalkable()) {
             //check if the tile is an instance of floor
             if (nextTile instanceof Floor) {
-                if (((Floor) nextTile).getContent() == null) {
-                    addItemToInv(((Floor) nextTile).getContent());
+                if (((Floor) nextTile).getContents() == null) {
+                    addItemToInv(((Floor) nextTile).getContents());
                 }
                 this.setPosition(newX, newY);
 

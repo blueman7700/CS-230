@@ -8,7 +8,7 @@ public class Floor extends Tile {
 	    contents =  null;
 	}
 
-	public Item getContents() {
+	public Item getContent() {
 
 		return this.contents;
 	}

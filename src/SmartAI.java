@@ -38,7 +38,8 @@ public class SmartAI extends Entity {
 
     public SmartAI(String filePath, int x, int y, Manager gm) {
 
-        super(filePath, x, y);
+        super(x, y);
+        this.filePath = "sprites/smartAI.png";
         this.gm = gm;
     }
 

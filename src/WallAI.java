@@ -30,7 +30,8 @@ public class WallAI extends Entity {
 
     public WallAI(String filePath, int x, int y, Manager gm) {
 
-        super(x, y);
+        this.xPos = x;
+        this.yPos = y;
         this.filePath = "sprites/wallAI.png";
         this.gm = gm;
         this.prevDirection = getStartDirection();
