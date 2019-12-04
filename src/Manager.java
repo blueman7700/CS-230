@@ -28,7 +28,7 @@ public class Manager {
 	@FXML
 	public void initialize() {
 		//load filereader
-		fr = new FileReader("src/ExampleFile.txt");
+		fr = new FileReader("src/Files/Level1.txt");
 		//loads the map and sets the tiles
 		map = new Map(fr.getHeight(), fr.getWidth(), fr.fileToArray(), fr.getStartX(), fr.getStartY());
 		//load the player
@@ -64,7 +64,13 @@ public class Manager {
 		for (int x = 0; x < map.getWidth(); x++) {
 			for (int y = 0; y < map.getHeight(); y++) {
 				tile = new Image(map.getTile(x, y).getSprite());
-				gc.drawImage(tile, x * GRID_CELL_SIZE, y * GRID_CELL_SIZE);	
+				gc.drawImage(tile, x * GRID_CELL_SIZE, y * GRID_CELL_SIZE);
+				if (map.getTile(x, y).doesContain()) {
+					System.out.println(map.getTile(x, y).getSprite());
+					System.out.println(map.getTile(x, y).getContent().getFilePath());
+					tile = new Image(map.getTile(x, y).getContent().getFilePath());
+					gc.drawImage(tile, x * GRID_CELL_SIZE, y * GRID_CELL_SIZE);
+				}
 			}
 		}
 		
