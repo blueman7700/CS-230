@@ -10,7 +10,7 @@
  * </ul>
  */
 
-public class Goal extends Interactable{
+public class Goal{
     private int xPos;
     private int yPos;
 

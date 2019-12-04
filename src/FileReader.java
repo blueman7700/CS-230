@@ -5,13 +5,14 @@ import java.util.ArrayList;
 /**
  * This class will take a text file and create a 2D array
  * @author Nathan Preston
- * @version 1.0
+ * @version 1.1
  */
 public class FileReader {
 	
 	private static String filename;//filepath/filename 
 	private int startX;//player's starting X cood
 	private int startY;//player's starting Y cood
+	private ArrayList<String> enemies = new ArrayList<String>();
 	
 	public FileReader(String filename) {
 		this.filename = filename;
@@ -173,35 +174,52 @@ public class FileReader {
 		} else if (input.contains("AI")) {//if AI
 			input = input.substring(4);
 			if(input.contains("DUMB")) {
-				type = "d";
+				type = "DUMB";
 				input = input.substring(6);
+				
+				if(input.contains("NORTH")) {//get the way the AI its facing
+					extra = "UP";
+					input = input.substring(7);
+				} else if(input.contains("SOUTH")) {
+					extra = "DOWN";
+					input = input.substring(7);
+				} else if(input.contains("EAST")) {
+					extra = "LEFT";
+					input = input.substring(6);
+				} else {
+					extra = "RIGHT";
+					input = input.substring(6);
+				}
+				
+				addEnemy(type+" "+extra+" "+String.valueOf(coodsFromString(input)[0])+" "+String.valueOf(coodsFromString(input)[1]));
 			} else if (input.contains("LINE")) {
-				type = "l";
+				type = "LINE";			
 				input = input.substring(6);
+				
+				if(input.contains("NORTH")) {//get the way the AI its facing
+					extra = "UP";
+					input = input.substring(7);
+				} else if(input.contains("SOUTH")) {
+					extra = "DOWN";
+					input = input.substring(7);
+				} else if(input.contains("EAST")) {
+					extra = "LEFT";
+					input = input.substring(6);
+				} else {
+					extra = "RIGHT";
+					input = input.substring(6);
+				}
+				
+				addEnemy(type+" "+extra+" "+String.valueOf(coodsFromString(input)[0])+" "+String.valueOf(coodsFromString(input)[1]));
 			} else if (input.contains("WALL")) {//checking for the type of AI
-				type = "w";
+				type = "WALL";
 				input = input.substring(6);
+				addEnemy(type+" "+String.valueOf(coodsFromString(input)[0])+" "+String.valueOf(coodsFromString(input)[1]));
 			} else {
-				type = "s";
+				type = "SMART";
 				input = input.substring(7);//constantly removing unneeded parts of the input
+				addEnemy(type+" "+String.valueOf(coodsFromString(input)[0])+" "+String.valueOf(coodsFromString(input)[1]));
 			}
-			
-			if(input.contains("NORTH")) {//get the way the AI its facing
-				extra = "north";
-				input = input.substring(7);
-			} else if(input.contains("SOUTH")) {
-				extra = "south";
-				input = input.substring(7);
-			} else if(input.contains("EAST")) {
-				extra = "east";
-				input = input.substring(6);
-			} else {
-				extra = "west";
-				input = input.substring(6);
-			}
-			
-			//TODO: ADD AI MOVEMENT
-			 
 		} else if(input.contains("DOOR")) { //if door
 			input = input.substring(6);
 			if(input.contains("KEY")) {
@@ -220,8 +238,6 @@ public class FileReader {
 				input = input.substring(3);
 				level[coodsFromString(input)[1]][coodsFromString(input)[0]] = (new TokenDoor(count));
 			}
-			
-			/* CREATE AND PUT IN DOOR TO MAP */
 			 			
 		} else if(input.contains("ITEM")) {//type of misc item
 			input = input.substring(6);
@@ -288,12 +304,21 @@ public class FileReader {
 	}
 	
 	/**
-	 * Sets the current filename, allows reuse of object
-	 * @param filename new filename/file path
+	 * Add new enemy found in file to enemy ArrayList
+	 * @param String of enemy details
 	 */
-	public void setFileName(String filename) {
-		this.filename = filename;
+	public void addEnemy(String enemy) {
+		enemies.add(enemy);
 	}
+	
+	/**
+	 * Gets the ArrayList of enemies
+	 * @return list of String details about the enemies 
+	 */
+	public ArrayList<String> getEnemies(){
+		return enemies;
+	}
+	
 	
 	/**
 	 * gets the current filename
@@ -317,6 +342,14 @@ public class FileReader {
 	 */
 	public int getStartY() {
 		return startY;
+	}
+	
+	/**
+	 * Sets the current filename, allows reuse of object
+	 * @param filename new filename/file path
+	 */
+	public void setFileName(String filename) {
+		this.filename = filename;
 	}
 	
 	/**

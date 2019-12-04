@@ -1,13 +1,16 @@
+import java.util.ArrayList;
+
 /**
  * This class constructs and holds all elements within the game
  * @author Nathan Preston
- * @version 1.0
+ * @version 1.1
  */
 public class Map {
 
 	private Tile[][] level;//2d array of the map
 	private int height;//map height
 	private int width;//map width
+	private String[] enemies;
 	private int startX;//player's starting X cood
 	private int startY;//player's starting Y cood
 	
@@ -17,14 +20,17 @@ public class Map {
 	 * @param width of the map
 	 * @param strTiles a string of all tiles
 	 */
-	public Map(int height, int width, Tile[][] level, int startX, int startY){
+	public Map(int height, int width, Tile[][] level, int startX, int startY, ArrayList<String> enemiesList){
 		this.height = height;
 		this.width = width;
 		this.level = level;	
 		this.startX = startX;
 		this.startY = startY;
+		enemies = new String[enemiesList.size()];
+		for(int x = 0; x < enemiesList.size(); x++) {
+			enemies[x] = enemiesList.get(x);
+		}
 	}
-	
 	
 	/**
 	 * Checks for the type of door, then searches player's inventory for whether they have the necessary item(s)
@@ -61,6 +67,14 @@ public class Map {
 		}
 		
 		return coods;
+	}
+	
+	/**
+	 * returns the list of all enemies
+	 * @return String list of enemies' details
+	 */
+	public String[] getEnemies() {
+		return enemies;
 	}
 	
 	/**
