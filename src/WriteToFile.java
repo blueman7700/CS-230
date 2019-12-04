@@ -4,7 +4,7 @@ import java.io.IOException;
 /**
  * This takes a map, and player name and saves the current state of the map saved as PlayerName.txt
  * @author Nathan Preston
- * @version 1.0
+ * @version 1.1
  */
 public class WriteToFile {
 	/**
@@ -12,9 +12,10 @@ public class WriteToFile {
 	 * @param m the current map
 	 * @param name player name
 	 */
-	public void saveMap(Map m, String name) {
+	public void saveMap(Map m, String name/*, Entity[] AI*/) {
+		
+		//strToFile(addAI(levelToString(m), AI), name, false); TODO: IMPLEMENT AI
 		strToFile(levelToString(m), name, false);
-		//TODO: SAVE AI
 	}
 	
 	/**
@@ -24,6 +25,7 @@ public class WriteToFile {
 	 */
 	public String levelToString(Map m) {
 		String save = "";
+		save = save + m.getHeight()+", "+m.getWidth()+"\n";
 		for(int y = 0; y < m.getHeight(); y++) {
 			for(int x = 0; x < m.getWidth(); x++) {
 				switch(m.getTile(x, y).getClass().getName()) {
@@ -121,6 +123,32 @@ public class WriteToFile {
 		
 		
 		return save;
+	}
+	
+	/**
+	 * Adds AI to the save file
+	 * @param s already made save file
+	 * @param enemies list of enemies
+	 * @return the updated save file
+	 */
+	public String addAI(String s, Entity[] enemies) {
+		String save = s;
+		int x;
+		int y;
+		for(Entity en : enemies) {
+			x = en.getxPos() + 1;
+			y = en.getyPos() + 1;
+			if(en.getClass().getName() == "DumbAI") {
+				save = save + "DUMB, "+x+", "+y+"\n";;
+			} else if (en.getClass().getName() == "SmartAI") {
+				save = save + "SMART, "+x+", "+y+"\n";
+			} else if (en.getClass().getName() == "WallAI") {
+				// = s + "WALL, "+en.getDirection()+", "+x+", "+y+"\n";;
+			} else {
+				//s = s + "LINE, "+en.getDirection()+", "+x+", "+y+"\n";;
+			}
+		}
+		return s;
 	}
 	
 	/**
