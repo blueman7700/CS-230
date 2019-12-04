@@ -21,28 +21,14 @@
 
 public abstract class Entity extends Sprite {
 
-    private int xPos;
-    private int yPos;
-
-    /**
-     * create a new entity
-     *
-     * @param x        x coordinate
-     * @param y        y coordinate
-     */
-
-    public Entity(int x, int y) {
-
-        this.xPos = x;
-        this.yPos = y;
-    }
+    protected int xPos;
+    protected int yPos;
 
     /**
      * get the current x coordinate
      *
      * @return x coordinate
      */
-
     public int getxPos() {
 
         return this.xPos;
@@ -53,7 +39,6 @@ public abstract class Entity extends Sprite {
      *
      * @return y coordinate
      */
-
     public int getyPos() {
 
         return this.yPos;
@@ -64,7 +49,6 @@ public abstract class Entity extends Sprite {
      * @param x x coordinate
      * @param y y coordinate
      */
-
     public void setPosition(int x, int y) {
 
         this.xPos = x;
@@ -76,6 +60,5 @@ public abstract class Entity extends Sprite {
      *
      * @param type movement type
      */
-
     public abstract void move(MoveType type);
 }
