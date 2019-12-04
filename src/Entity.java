@@ -19,7 +19,7 @@
  * </ul>
  */
 
-public abstract class Entity extends Sprite {
+public abstract class Entity /*extends Sprite*/ {
 
     protected int xPos;
     protected int yPos;

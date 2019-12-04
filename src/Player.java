@@ -29,6 +29,7 @@ public class Player extends Entity {
     private int numTokens;
     private boolean alive;
     private LinkedList<Item> inventory;
+    private static String filePath = "sprites/player.png";
 
     /**
      * creates a new instance of Player.
@@ -39,8 +40,8 @@ public class Player extends Entity {
 
     public Player(int x, int y, Manager gm) {
 
-        super(x, y);
-        this.filePath = "sprites/player.png";
+        super.xPos = x;
+        super.yPos = y;
         inventory = new LinkedList<>();
         numTokens = 0;
         alive = true;
@@ -103,18 +104,18 @@ public class Player extends Entity {
         if (nextTile.getWalkable()) {
             //check if the tile is an instance of floor
             if (nextTile instanceof Floor) {
-                if (((Floor) nextTile).getContent() == null) {
-                    addItemToInv(((Floor) nextTile).getContent());
+                if (((Floor) nextTile).getContents() == null) {
+                    addItemToInv(((Floor) nextTile).getContents());
                 }
                 this.setPosition(newX, newY);
 
                 //check if the tile is an instance of interactable
-            } else if (nextTile instanceof Interactable) {
-
+            } /*else if (nextTile instanceof Interactable) {
+				//TODO: Interactable is not a class anymore so this must change
                 //interact with the tile
                 ((Interactable) nextTile).interact(this);
 
-            }
+            }*/
         }
     }
 

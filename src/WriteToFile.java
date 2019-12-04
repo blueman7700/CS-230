@@ -83,12 +83,12 @@ public class WriteToFile {
 				
 				switch(m.getTile(x, y).getClass().getName()) {
 					case("Floor"):
-						if(((Floor) m.getTile(x, y)).getContent() == null)  {
+						if(((Floor) m.getTile(x, y)).getContents() == null)  {
 							
 						} else {
-							switch(((Floor) m.getTile(x, y)).getContent().getName()) {
+							switch(((Floor) m.getTile(x, y)).getContents().getName()) {
 								case("Key"):
-									save = save +"KEY, "+((Key) ((Floor) m.getTile(x, y)).getContent()).getColour()
+									save = save +"KEY, "+((Key) ((Floor) m.getTile(x, y)).getContents()).getColour()
 												+", "+(x+1)+", "+(y+1)+"\n";
 									break;
 								case("Token"):

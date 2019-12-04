@@ -3,7 +3,7 @@ public class Tile {
 	
 	
 	protected boolean walkable;
-	private static String filePath;
+	private static String filePath = "sprites/wall.png";
 	
 	public boolean getWalkable() {
 		return this.walkable;

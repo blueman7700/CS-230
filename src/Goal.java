@@ -10,9 +10,11 @@
  * </ul>
  */
 
-public class Goal{
+public class Goal extends Tile{
+	
     private int xPos;
     private int yPos;
+    private static String filePath = "sprites/goal.png";
 
     /**
      * create an instance of Goal
@@ -46,6 +48,10 @@ public class Goal{
 
     public int getyPos() {
         return yPos;
+    }
+    
+    public String getFilePath() {
+    	return filePath;
     }
 
     /**

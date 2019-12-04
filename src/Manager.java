@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -18,6 +20,8 @@ public class Manager {
 	Image dirt;
 	//the player
 	Player player;
+	//all the enemies
+	ArrayList<String> enemiesList = new ArrayList();
 	//the map
 	Map map;
 	//File reader
@@ -29,8 +33,10 @@ public class Manager {
 	public void initialize() {
 		//load filereader
 		fr = new FileReader("src/Files/Level1.txt");
+		//loads the enemies
+		
 		//loads the map and sets the tiles
-		map = new Map(fr.getHeight(), fr.getWidth(), fr.fileToArray(), fr.getStartX(), fr.getStartY());
+		map = new Map(fr.getHeight(), fr.getWidth(), fr.fileToArray(), fr.getStartX(), fr.getStartY(), enemiesList);
 		//load the player
 		player = new Player(fr.getStartX(), fr.getStartY(), this);
 		// Load images
