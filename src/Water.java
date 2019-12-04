@@ -1,10 +1,10 @@
 
 public class Water extends Tile{
 
-	private static String sprite = "sprites/water.png";
+	private static String filePath = "sprites/water.png";
 
-	public String getSprite() {
-		return sprite;
+	public String getFilePath() {
+		return filePath;
 	}
 	
 }

@@ -12,4 +12,8 @@ public class Tile {
 	public String getFilePath() {
 		return filePath;
 	}
+	
+	public Item getContents() {
+		return null;
+	}
 }

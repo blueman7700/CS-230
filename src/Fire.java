@@ -1,10 +1,10 @@
 
 public class Fire extends Tile {
 
-	private static String sprite = "sprites/fire.png";
+	private static String filePath = "sprites/fire.png";
 
-	public String getSprite() {
-		return sprite;
+	public String getFilePath() {
+		return filePath;
 	}
 	
 }

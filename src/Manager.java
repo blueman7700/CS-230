@@ -32,7 +32,7 @@ public class Manager {
 		//loads the map and sets the tiles
 		map = new Map(fr.getHeight(), fr.getWidth(), fr.fileToArray(), fr.getStartX(), fr.getStartY());
 		//load the player
-		player = new Player("sprites/player.png", fr.getStartX(), fr.getStartY(), this);
+		player = new Player(fr.getStartX(), fr.getStartY(), this);
 		// Load images
 		playerImg = new Image("sprites/player.png");
 		dirt = new Image("sprites/dirt.png");
@@ -63,12 +63,12 @@ public class Manager {
 		
 		for (int x = 0; x < map.getWidth(); x++) {
 			for (int y = 0; y < map.getHeight(); y++) {
-				tile = new Image(map.getTile(x, y).getSprite());
+				tile = new Image(map.getTile(x, y).getFilePath());
 				gc.drawImage(tile, x * GRID_CELL_SIZE, y * GRID_CELL_SIZE);
-				if (map.getTile(x, y).doesContain()) {
-					System.out.println(map.getTile(x, y).getSprite());
-					System.out.println(map.getTile(x, y).getContent().getFilePath());
-					tile = new Image(map.getTile(x, y).getContent().getFilePath());
+				if (map.getTile(x, y).getContents() != null) {
+					System.out.println(map.getTile(x, y).getFilePath());
+					System.out.println(map.getTile(x, y).getContents().getFilePath());
+					tile = new Image(map.getTile(x, y).getContents().getFilePath());
 					gc.drawImage(tile, x * GRID_CELL_SIZE, y * GRID_CELL_SIZE);
 				}
 			}

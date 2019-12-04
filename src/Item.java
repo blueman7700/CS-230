@@ -26,4 +26,8 @@ public class Item {
         this.name = name;
     }
 
+    public String getFilePath() {
+    	return "sprites/token.png";
+    }
+    
 }
