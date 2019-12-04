@@ -1,6 +1,7 @@
 public class Floor extends Tile {
 
 	private Item contents;
+	private static String filePath = "sprites/floor.png";
 
 	public Floor() {
 
@@ -32,5 +33,9 @@ public class Floor extends Tile {
 	public boolean getWalkable() {
 
 		return (this.contents == null);
+	}
+
+	public String getFilePath() {
+		return filePath;
 	}
 }
