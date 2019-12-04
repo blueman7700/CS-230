@@ -27,14 +27,12 @@ public abstract class Entity extends Sprite {
     /**
      * create a new entity
      *
-     * @param filePath path to the entity sprite
      * @param x        x coordinate
      * @param y        y coordinate
      */
 
-    public Entity(String filePath, int x, int y) {
+    public Entity(int x, int y) {
 
-        super(filePath);
         this.xPos = x;
         this.yPos = y;
     }
