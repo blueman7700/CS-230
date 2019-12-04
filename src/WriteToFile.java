@@ -6,15 +6,14 @@ import java.io.IOException;
  * @author Nathan Preston
  * @version 1.0
  */
-public class SaveMap {
-	
+public class WriteToFile {
 	/**
 	 * Takes in a map and a playername, then calls strToFile, passing levelToString to save the map
 	 * @param m the current map
 	 * @param name player name
 	 */
-	public SaveMap(Map m, String name) {
-		strToFile(levelToString(m), name);
+	public void saveMap(Map m, String name) {
+		strToFile(levelToString(m), name, false);
 		//TODO: SAVE AI
 	}
 	
@@ -113,6 +112,7 @@ public class SaveMap {
 						if(teleporter == false) {
 							Teleporter t = ((Teleporter) m.getTile(x, y)).getPartner();
 							save = save + "TELE, "+(x+1)+", "+(y+1)+", "+(t.getxPos()+1)+", "+(t.getyPos()+1)+"\n";
+							teleporter = true;
 						}
 						break;
 				}
@@ -128,11 +128,11 @@ public class SaveMap {
 	 * @param data the map in String form
 	 * @param name the player's name
 	 */
-	public void strToFile(String data, String name) {
-        File file = new File("src/"+name+".txt");
+	public void strToFile(String data, String name, Boolean b) {
+        File file = new File("src/Files/"+name+".txt");
         FileWriter fr = null;
         try {
-            fr = new FileWriter(file);
+            fr = new FileWriter(file, b);
             fr.write(data);
         } catch (IOException e) {
             e.printStackTrace();
@@ -145,4 +145,24 @@ public class SaveMap {
             }
         }
     }
+	
+	/**
+	 * Saves the top 10 players: their username and score
+	 * @param input string value of the leaderboard
+	 */
+	public void saveLeaderboard(String input) {
+		String leaderboard = input + "\n";
+		
+		strToFile(leaderboard, "Leaderboard", false);
+	}	
+	
+	/**
+	 * Adds a new name to the list of players
+	 * @param input the String value of the new name
+	 */
+	public void savePlayer(String input) {
+		String name = input + "\n";;
+		
+		strToFile(name, "Users", true);
+	}
 }

@@ -1,14 +1,15 @@
-
 public class Floor extends Tile {
-	Item contents;
 
-	public Floor () {
+	private Item contents;
 
-		contents = null;
+	public Floor() {
+
+	    contents =  null;
 	}
-	
-	public Item getContent() {
-		return contents;
+
+	public Item getContents() {
+
+		return this.contents;
 	}
 
 	/**
