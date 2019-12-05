@@ -5,6 +5,7 @@
  */
 public class TokenDoor extends Tile {
 	private int num;//number of tokens needed to open this door
+	private static String filePath = "sprites/DoorTOKEN.png";
 	
 	/**
 	 * sets the number of tokens needed to open the door
@@ -28,6 +29,10 @@ public class TokenDoor extends Tile {
 	 */
 	public void setNum(int num) {
 		this.num = num;
+	}
+	
+	public String getFilePath() {
+		return filePath;
 	}
 	
 }

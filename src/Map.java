@@ -54,10 +54,11 @@ public class Map {
 			if(d instanceof KeyDoor && k.getColour().equals(((KeyDoor) d).getColour())) {
 				coods = getTileCoods(d);
 				level[coods[1]][coods[0]] = new Floor();
-			} else if (d instanceof TokenDoor && n == ((TokenDoor) d).getNum()) {
-				coods = getTileCoods(d);
-				level[coods[1]][coods[0]] = new Floor();
 			}
+		}
+		if (d instanceof TokenDoor && n == ((TokenDoor) d).getNum()) {
+			coods = getTileCoods(d);
+			level[coods[1]][coods[0]] = new Floor();
 		}
 
 	}

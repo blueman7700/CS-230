@@ -1,13 +1,10 @@
 import java.util.ArrayList;
-
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
-import sprites.*;
-import views.*;
 
 //The manager class
 public class Manager {
@@ -43,7 +40,7 @@ public class Manager {
 		player = new Player(fr.getStartX(), fr.getStartY(), this);
 		// Load images
 		playerImg = new Image("sprites/player.png");
-		dirt = new Image("sprites/dirt.png");
+		//dirt = new Image("sprites/dirt.png");
 		
 		gameCanvas.setWidth(map.getWidth() * GRID_CELL_SIZE);
 		gameCanvas.setHeight(map.getHeight() * GRID_CELL_SIZE);
@@ -95,10 +92,6 @@ public class Manager {
 						gc.drawImage(tile, x * GRID_CELL_SIZE, y * GRID_CELL_SIZE);
 					}
 				}
-				
-				
-				
-				
 			}
 		}
 		

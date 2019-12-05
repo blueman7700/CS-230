@@ -129,6 +129,7 @@ public class Player extends Entity {
                 	}
                 	if (((Floor) nextTile).getToken() != null) {
                 		addItemToInv(((Floor) nextTile).getToken());
+                		numTokens++;
                 	}
                 	if (((Floor) nextTile).getFlippers() != null) {
                 		addItemToInv(((Floor) nextTile).getFlippers());
