@@ -71,10 +71,20 @@ public class Manager {
 			for (int y = 0; y < map.getHeight(); y++) {
 				tile = new Image(map.getTile(x, y).getFilePath());
 				gc.drawImage(tile, x * GRID_CELL_SIZE, y * GRID_CELL_SIZE);
-				if (map.getTile(x, y).getContents() != null) {
-					System.out.println(map.getTile(x, y).getFilePath());
-					System.out.println(map.getTile(x, y).getContents().getFilePath());
-					tile = new Image(map.getTile(x, y).getContents().getFilePath());
+				if (( (map.getTile(x, y))).contains() == true) {
+					//checks to see what the contents is then add is
+                	if (((Floor) (map.getTile(x, y))).getKey() != null) {
+                		tile = new Image("sprites/Key"+ ((Floor) map.getTile(x, y)).getKey().getColour() +".png");
+                	}
+                	if (((Floor) (map.getTile(x, y))).getToken() != null) {
+                		tile = new Image("sprites/Token.png");
+                	}
+                	if (((Floor) (map.getTile(x, y))).getFlippers() != null) {
+                		tile = new Image("sprites/Flippers.png");
+                	}
+                	if (((Floor) (map.getTile(x, y))).getFireBoots() != null) {
+                		tile = new Image("sprites/Boots.png");
+                	}
 					gc.drawImage(tile, x * GRID_CELL_SIZE, y * GRID_CELL_SIZE);
 				}
 			}

@@ -13,7 +13,9 @@ public class Tile {
 		return filePath;
 	}
 	
-	public Item getContents() {
-		return null;
+	public Boolean contains() {
+		return false;
 	}
+	
+	
 }

@@ -1,26 +1,77 @@
 public class Floor extends Tile {
 
-	private Item contents;
+	private Key key;
+	private Token token;
+	private Flippers flip;
+	private FireBoots boot;
+	private Boolean contains = false;
 	private static String filePath = "sprites/floor.png";
 
 	public Floor() {
-
-	    contents =  null;
 	}
 
-	public Item getContents() {
-
-		return this.contents;
+	public Key getKey() {
+		return this.key;
 	}
-
+	
+	public Token getToken() {
+		return this.token;
+	}
+	
+	public Flippers getFlippers() {
+		return this.flip;
+	}
+	
+	public FireBoots getFireBoots() {
+		return this.boot;
+	}
+	
+	public Boolean contains() {
+		return contains;
+	}
+	
 	/**
 	 * set the content of the floor tile.
 	 *
-	 * @param i item that the floor will contain.
+	 * @param i key that the floor will contain.
 	 */
 
-	public void setContent(Item i) {
-		contents = i;
+	public void setContent(Key i) {
+		key = i;
+		contains = true;
+	}
+	
+	/**
+	 * set the content of the floor tile.
+	 *
+	 * @param i token that the floor will contain.
+	 */
+
+	public void setContent(Token i) {
+		token = i;
+		contains = true;
+	}
+	
+	/**
+	 * set the content of the floor tile.
+	 *
+	 * @param i flippers that the floor will contain.
+	 */
+
+	public void setContent(Flippers i) {
+		flip = i;
+		contains = true;
+	}
+	
+	/**
+	 * set the content of the floor tile.
+	 *
+	 * @param i boots that the floor will contain.
+	 */
+
+	public void setContent(FireBoots i) {
+		boot = i;
+		contains = true;
 	}
 
 	/**
@@ -32,7 +83,7 @@ public class Floor extends Tile {
 	@Override
 	public boolean getWalkable() {
 
-		return (this.contents == null);
+		return (this.key == null || this.token == null || this.flip == null || this.boot == null);
 	}
 
 	public String getFilePath() {

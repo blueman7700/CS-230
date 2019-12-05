@@ -104,8 +104,21 @@ public class Player extends Entity {
         if (nextTile.getWalkable()) {
             //check if the tile is an instance of floor
             if (nextTile instanceof Floor) {
-                if (((Floor) nextTile).getContents() == null) {
-                    addItemToInv(((Floor) nextTile).getContents());
+                if (((Floor) nextTile).contains() == true) {
+                	//checks to see what the contents is then add is
+                	if (((Floor) nextTile).getKey() != null) {
+                		addItemToInv(((Floor) nextTile).getKey());
+                	}
+                	if (((Floor) nextTile).getToken() != null) {
+                		addItemToInv(((Floor) nextTile).getToken());
+                	}
+                	if (((Floor) nextTile).getFlippers() != null) {
+                		addItemToInv(((Floor) nextTile).getFlippers());
+                	}
+                	if (((Floor) nextTile).getFireBoots() != null) {
+                		addItemToInv(((Floor) nextTile).getFireBoots());
+                	}
+                    
                 }
                 this.setPosition(newX, newY);
 
