@@ -26,7 +26,7 @@ public class Teleporter extends Tile {
      * @param xPos    x position of the teleporter
      * @param yPos    y position of the teleporter
      */
-    public Teleporter(Teleporter partner, int xPos, int yPos){
+    public Teleporter(int xPos, int yPos){
         //TODO: add superclass constructor
         setPartner(partner);
         setPos(xPos, yPos);
@@ -73,7 +73,7 @@ public class Teleporter extends Tile {
         this.yPos = yPos;
     }
 
-    private void setPartner(Teleporter partner) {
+    public void setPartner(Teleporter partner) {
         this.partner = partner;
     }
 
