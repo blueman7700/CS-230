@@ -9,25 +9,14 @@
 public class Item {
 
     //Item name
-    protected String name = new String();
+    protected String filePath;
 
 
-    public Item(String name) {
-        this.name = name;
-    }
-
-
-    public String getName() {
-        return name;
-    }
-
-
-    public void setName(String name) {
-        this.name = name;
+    public Item() {
     }
 
     public String getFilePath() {
-    	return "sprites/token.png";
+    	return filePath;
     }
     
 }
