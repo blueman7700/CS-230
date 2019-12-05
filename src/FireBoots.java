@@ -9,8 +9,8 @@ public class FireBoots extends Item {
 	/**
 	 * @param name of the item (FireBoots)
 	 */
-	public FireBoots(String name) {
-		super(name);
+	public FireBoots() {
+		
 	}
 	
 	/**
