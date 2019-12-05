@@ -29,6 +29,7 @@ public class Player extends Entity {
     private int numTokens;
     private boolean alive;
     private LinkedList<Item> inventory;
+    private static String filePath = "sprites/player.png";
 
     /**
      * creates a new instance of Player.
@@ -41,7 +42,6 @@ public class Player extends Entity {
 
         this.xPos = x;
         this.yPos = y;
-        this.filePath = "sprites/player.png";
         inventory = new LinkedList<>();
         numTokens = 0;
         alive = true;
@@ -100,22 +100,51 @@ public class Player extends Entity {
 
         nextTile = gm.getMap().getTile(newX, newY);
 
+        for(Item i : inventory) {
+        	if(i instanceof FireBoots) {
+        		if(nextTile instanceof Fire) {
+        			nextTile.setWalkable(true);
+        		}
+        	}else if(i instanceof Flippers) {
+        		if(nextTile instanceof Water) {
+        			nextTile.setWalkable(true);
+        		}
+        	}
+        }
+
         //check if the next tile is walkable
         if (nextTile.getWalkable()) {
+
             //check if the tile is an instance of floor
             if (nextTile instanceof Floor) {
-                if (((Floor) nextTile).getContents() == null) {
-                    addItemToInv(((Floor) nextTile).getContents());
+                if (((Floor) nextTile).contains() == true) {
+                	//checks to see what the contents is then add is
+                	if (((Floor) nextTile).getKey() != null) {
+                		addItemToInv(((Floor) nextTile).getKey());
+                	}
+                	if (((Floor) nextTile).getToken() != null) {
+                		addItemToInv(((Floor) nextTile).getToken());
+                	}
+                	if (((Floor) nextTile).getFlippers() != null) {
+                		addItemToInv(((Floor) nextTile).getFlippers());
+                	}
+                	if (((Floor) nextTile).getFireBoots() != null) {
+                		addItemToInv(((Floor) nextTile).getFireBoots());
+                	}
+
                 }
-                this.setPosition(newX, newY);
 
-                //check if the tile is an instance of interactable
-            } else if (nextTile instanceof Interactable) {
 
+
+            }
+            this.setPosition(newX, newY);
+            	//check if the tile is an instance of interactable
+            	/*else if (nextTile instanceof Interactable) {
+				//TODO: Interactable is not a class anymore so this must change
                 //interact with the tile
                 ((Interactable) nextTile).interact(this);
 
-            }
+            }*/
         }
     }
 

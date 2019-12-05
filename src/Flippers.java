@@ -10,8 +10,8 @@ public class Flippers extends Item {
 	/**
 	 * @param name of the item (FireBoots)
 	 */
-	public Flippers(String name) {
-		super(name);
+	public Flippers() {
+		
 	}
 	
 	/**

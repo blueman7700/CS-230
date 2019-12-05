@@ -3,25 +3,23 @@
  * <p>goal object.</p>
  * <br><b>Created:</b> 26/11/2019
  * <br><b>Last Modified:</b> 02/12/2019
- *
  * @author Negrusa Sergiu
  * @version 1.0
  * <br><b>History:</b>
- * <li>Version 1.0 (26/11/2019)</li>
+ * 	<li>Version 1.0 (26/11/2019)</li>
  * </ul>
  */
 
-public class Goal extends Interactable {
+public class Goal extends Tile{
+
     private int xPos;
     private int yPos;
+    private static String filePath = "sprites/goal.png";
 
     /**
      * create an instance of Goal
-     *
-     * @param xPos x coordonate of the goal
-     * @param yPos y coodonate of the goal
      */
-    public Goal(int xPos, int yPos) {
+    public Goal(){
         setxPos(xPos);
         setyPos(yPos);
     }
@@ -31,8 +29,8 @@ public class Goal extends Interactable {
      *
      * @param player we need player in order to check his position
      */
-    public void interact(Player player) {
-        if (player.getxPos() == this.getxPos() && player.getyPos() == this.getyPos()) {
+    public void interact(Player player){
+        if(player.getxPos() == this.getxPos() && player.getyPos() == this.getyPos()){
             System.out.println("You WIN!");
         }
     }
@@ -51,6 +49,10 @@ public class Goal extends Interactable {
 
     public int getyPos() {
         return yPos;
+    }
+
+    public String getFilePath() {
+    	return filePath;
     }
 
     /**

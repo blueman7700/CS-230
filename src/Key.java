@@ -13,8 +13,7 @@ public class Key extends Item {
 	 * @param name of the item (Key)
 	 * @param colour of the key
 	 */
-	public Key(String name, String colour) {
-		super(name);
+	public Key( String colour) {
 		this.colour = colour;
 	}
 	

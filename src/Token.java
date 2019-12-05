@@ -10,8 +10,7 @@ public class Token extends Item {
 	/**
 	 * @param name of the item (Token)
 	 */
-	public Token(String name) {
-		super(name);
+	public Token() {
 	}
 	
 	/**

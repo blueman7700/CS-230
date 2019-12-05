@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -18,6 +20,8 @@ public class Manager {
 	Image dirt;
 	//the player
 	Player player;
+	//all the enemies
+	ArrayList<String> enemiesList = new ArrayList();
 	//the map
 	Map map;
 	//File reader
@@ -29,8 +33,10 @@ public class Manager {
 	public void initialize() {
 		//load filereader
 		fr = new FileReader("src/Files/Level1.txt");
+		//loads the enemies
+		
 		//loads the map and sets the tiles
-		map = new Map(fr.getHeight(), fr.getWidth(), fr.fileToArray(), fr.getStartX(), fr.getStartY());
+		map = new Map(fr.getHeight(), fr.getWidth(), fr.fileToArray(), fr.getStartX(), fr.getStartY(), enemiesList);
 		//load the player
 		player = new Player(fr.getStartX(), fr.getStartY(), this);
 		// Load images
@@ -65,10 +71,20 @@ public class Manager {
 			for (int y = 0; y < map.getHeight(); y++) {
 				tile = new Image(map.getTile(x, y).getFilePath());
 				gc.drawImage(tile, x * GRID_CELL_SIZE, y * GRID_CELL_SIZE);
-				if (map.getTile(x, y).getContents() != null) {
-					System.out.println(map.getTile(x, y).getFilePath());
-					System.out.println(map.getTile(x, y).getContents().getFilePath());
-					tile = new Image(map.getTile(x, y).getContents().getFilePath());
+				if (( (map.getTile(x, y))).contains() == true) {
+					//checks to see what the contents is then add is
+                	if (((Floor) (map.getTile(x, y))).getKey() != null) {
+                		tile = new Image("sprites/Key"+ ((Floor) map.getTile(x, y)).getKey().getColour() +".png");
+                	}
+                	if (((Floor) (map.getTile(x, y))).getToken() != null) {
+                		tile = new Image("sprites/Token.png");
+                	}
+                	if (((Floor) (map.getTile(x, y))).getFlippers() != null) {
+                		tile = new Image("sprites/Flippers.png");
+                	}
+                	if (((Floor) (map.getTile(x, y))).getFireBoots() != null) {
+                		tile = new Image("sprites/Boots.png");
+                	}
 					gc.drawImage(tile, x * GRID_CELL_SIZE, y * GRID_CELL_SIZE);
 				}
 			}
@@ -89,18 +105,34 @@ public class Manager {
 		    case D:
 		    	// Right key was pressed. So move the player right by one cell.
 	        	player.move(MoveType.RIGHT);
+	        	//sees if a player is on an item then removes it if so
+	        	if (map.getTile(player.getxPos(), player.getyPos()) instanceof Floor) {
+	        		((Floor) map.getTile(player.getxPos(), player.getyPos())).removeContents();
+	        	}
 	        	break;
 		    case A:
 		    	//Left key was pressed. So move the player left by one cell.
 		    	player.move(MoveType.LEFT);
+		    	//sees if a player is on an item then removes it if so
+		    	if (map.getTile(player.getxPos(), player.getyPos()) instanceof Floor) {
+	        		((Floor) map.getTile(player.getxPos(), player.getyPos())).removeContents();
+	        	}
 		    	break;
 		    case W:
 		    	//Up key was pressed so move the player up by one cell.
 		    	player.move(MoveType.DOWN);
+		    	//sees if a player is on an item then removes it if so
+		    	if (map.getTile(player.getxPos(), player.getyPos()) instanceof Floor) {
+	        		((Floor) map.getTile(player.getxPos(), player.getyPos())).removeContents();
+	        	}
 		    	break;
 		    case S:
 		    	//Down key was pressed so move the player down by one cell.
 		    	player.move(MoveType.UP);
+		    	//sees if a player is on an item then removes it if so
+		    	if (map.getTile(player.getxPos(), player.getyPos()) instanceof Floor) {
+	       		((Floor) map.getTile(player.getxPos(), player.getyPos())).removeContents();
+	        	}
 		    	break;
 	        default:
 	        	// Do nothing
