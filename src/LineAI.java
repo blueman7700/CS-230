@@ -18,20 +18,20 @@ public class LineAI extends Entity {
     private Manager gm;
     private MoveType direction;
     private int loopCount = 0;
+    private static String FILE_PATH = "sprites/lineAI.png";
 
     /**
      * create a new instance of a Line AI.
      *
-     * @param filePath  file path of the object sprite.
      * @param x         x coordinate of the entity.
      * @param y         y coordinate of the entity.
      * @param direction direction the ai will move.
      */
 
-    public LineAI(String filePath, int x, int y, Manager gm, MoveType direction) {
+    public LineAI(int x, int y, Manager gm, MoveType direction) {
 
-        super(x, y);
-        this.filePath = "sprites/lineAI.png";
+        this.xPos = x;
+        this.yPos = y;
         this.gm = gm;
         this.direction = direction;
     }
@@ -82,7 +82,7 @@ public class LineAI extends Entity {
 
             //check if the tile is floor and has not content
             if (nextTile instanceof Floor) {
-                if (((Floor) nextTile).getContent() == null) {
+                if (((Floor) nextTile).getWalkable()) {
                     canMove = true;
                 }
             }
@@ -112,7 +112,7 @@ public class LineAI extends Entity {
     @Override
     public String toString() {
 
-        return String.format("Smart AI Entity is at %d, %d", this.getxPos(), this.getyPos());
+        return String.format("Line AI Entity is at %d, %d", this.getxPos(), this.getyPos());
     }
 
     /**
@@ -139,6 +139,10 @@ public class LineAI extends Entity {
             default:
         }
         return direction;
+    }
+
+    public String getFilePath() {
+        return FILE_PATH;
     }
 }
 
