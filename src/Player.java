@@ -99,6 +99,7 @@ public class Player extends Entity {
         }
 
         nextTile = gm.getMap().getTile(newX, newY);
+        gm.getMap().openDoor(nextTile, inventory, numTokens);
 
         //Checks to see if the next tiles are hazards that can be traversed with items
         for(Item i : inventory) {
@@ -109,12 +110,6 @@ public class Player extends Entity {
         	}else if(i instanceof Flippers) {
         		if(nextTile instanceof Water) {
         			nextTile.setWalkable(true);
-        		}
-        	}else if(i instanceof Key) {
-        		if(nextTile instanceof KeyDoor) {
-        			System.out.print(((Key)i).getColour());
-        			System.out.print(((KeyDoor)nextTile).getColour());
-        			nextTile.setWalkable(((KeyDoor)nextTile).getColour().equals(((Key)i).getColour())); ;
         		}
         	}
         }
