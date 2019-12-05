@@ -99,6 +99,7 @@ public class Player extends Entity {
         }
 
         nextTile = gm.getMap().getTile(newX, newY);
+        gm.getMap().openDoor(nextTile, inventory, numTokens);
 
         //Checks to see if the next tiles are hazards that can be traversed with items
         for(Item i : inventory) {
