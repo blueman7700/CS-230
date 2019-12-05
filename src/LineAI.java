@@ -18,7 +18,7 @@ public class LineAI extends Entity {
     private Manager gm;
     private MoveType direction;
     private int loopCount = 0;
-
+    private String filePath = "sprites/lineAI.png";
     /**
      * create a new instance of a Line AI.
      *
@@ -29,9 +29,8 @@ public class LineAI extends Entity {
      */
 
     public LineAI(String filePath, int x, int y, Manager gm, MoveType direction) {
-
-        super(x, y);
-        this.filePath = "sprites/lineAI.png";
+    	this.xPos = x;
+        this.yPos = y;
         this.gm = gm;
         this.direction = direction;
     }
@@ -82,7 +81,7 @@ public class LineAI extends Entity {
 
             //check if the tile is floor and has not content
             if (nextTile instanceof Floor) {
-                if (((Floor) nextTile).getContent() == null) {
+                if (((Floor) nextTile).contains()) {
                     canMove = true;
                 }
             }
