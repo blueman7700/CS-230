@@ -105,18 +105,34 @@ public class Manager {
 		    case D:
 		    	// Right key was pressed. So move the player right by one cell.
 	        	player.move(MoveType.RIGHT);
+	        	//sees if a player is on an item then removes it if so
+	        	if (map.getTile(player.getxPos(), player.getyPos()) instanceof Floor) {
+	        		((Floor) map.getTile(player.getxPos(), player.getyPos())).removeContents();
+	        	}
 	        	break;
 		    case A:
 		    	//Left key was pressed. So move the player left by one cell.
 		    	player.move(MoveType.LEFT);
+		    	//sees if a player is on an item then removes it if so
+		    	if (map.getTile(player.getxPos(), player.getyPos()) instanceof Floor) {
+	        		((Floor) map.getTile(player.getxPos(), player.getyPos())).removeContents();
+	        	}
 		    	break;
 		    case W:
 		    	//Up key was pressed so move the player up by one cell.
 		    	player.move(MoveType.DOWN);
+		    	//sees if a player is on an item then removes it if so
+		    	if (map.getTile(player.getxPos(), player.getyPos()) instanceof Floor) {
+	        		((Floor) map.getTile(player.getxPos(), player.getyPos())).removeContents();
+	        	}
 		    	break;
 		    case S:
 		    	//Down key was pressed so move the player down by one cell.
 		    	player.move(MoveType.UP);
+		    	//sees if a player is on an item then removes it if so
+		    	if (map.getTile(player.getxPos(), player.getyPos()) instanceof Floor) {
+	       		((Floor) map.getTile(player.getxPos(), player.getyPos())).removeContents();
+	        	}
 		    	break;
 	        default:
 	        	// Do nothing

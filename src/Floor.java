@@ -144,4 +144,14 @@ public class Floor extends Tile {
 			return false;
 		}
 	}
+	
+	/**
+	 * Removes the contents of the floor
+	 */
+	public void removeContents() {
+		key = null;
+		token = null;
+		flip = null;
+		boot = null;
+	}
 }
