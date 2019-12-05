@@ -5,21 +5,15 @@ import Pathfinding.Step;
  * <b>Name: </b>SmartAI.java
  * <br>
  * <p>
- * AI entity with bfs pathfinding.
+ * AI entity with A* pathfinding.
  * </p>
  * <br><b>Created:</b> 17/11/2019
- * <br><b>Last Modified:</b> 22/11/2019
+ * <br><b>Last Modified:</b> 05/12/2019
  * <br> - no copyright
  * <hr>
  *
  * @author Oliver Morris
- * @version 0.1
- * <br>
- * <br><b>History:</b>
- * <br>
- * <ul>
- * 	<li>Version 0.1 (17/11/2019)</li>
- * </ul>
+ * @version 1.0
  */
 
 public class SmartAI extends Entity {
