@@ -243,10 +243,10 @@ public class FileReader {
 			input = input.substring(6);
 			if(input.contains("FLIP")) {
 				input = input.substring(6);
-				((Floor) level[coodsFromString(input)[1]][coodsFromString(input)[0]]).setContent(new Flippers("Flip"));
+				((Floor) level[coodsFromString(input)[1]][coodsFromString(input)[0]]).setContent(new Flippers());
 			} else {
 				input = input.substring(6);
-				((Floor) level[coodsFromString(input)[1]][coodsFromString(input)[0]]).setContent(new FireBoots("Boot"));
+				((Floor) level[coodsFromString(input)[1]][coodsFromString(input)[0]]).setContent(new FireBoots());
 			}
 			 
 		} else if(input.substring(0, 3).contains("KEY")) { //have to use a substring as some doors have 'KEY' in their line
@@ -257,11 +257,11 @@ public class FileReader {
 				count++;
 			}
 			input = input.substring(count+2);
-			((Floor) level[coodsFromString(input)[1]][coodsFromString(input)[0]]).setContent(new Key("Key", extra));
+			((Floor) level[coodsFromString(input)[1]][coodsFromString(input)[0]]).setContent(new Key(extra));
 			 
 		} else if (input.substring(0, 5).contains("TOKEN")) {
 			input = input.substring(7);
-			((Floor) level[coodsFromString(input)[1]][coodsFromString(input)[0]]).setContent(new Token("Token"));
+			((Floor) level[coodsFromString(input)[1]][coodsFromString(input)[0]]).setContent(new Token());
 			 
 		} else if (input.contains("TELE")) {
 			input = input.substring(6);

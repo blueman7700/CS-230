@@ -4,7 +4,7 @@ import java.io.IOException;
 /**
  * This takes a map, and player name and saves the current state of the map saved as PlayerName.txt
  * @author Nathan Preston
- * @version 1.1
+ * @version 1.2
  */
 public class WriteToFile {
 	/**
@@ -13,7 +13,6 @@ public class WriteToFile {
 	 * @param name player name
 	 */
 	public void saveMap(Map m, String name/*, Entity[] AI*/) {
-		
 		//strToFile(addAI(levelToString(m), AI), name, false); TODO: IMPLEMENT AI
 		strToFile(levelToString(m), name, false);
 	}
@@ -83,24 +82,22 @@ public class WriteToFile {
 				
 				switch(m.getTile(x, y).getClass().getName()) {
 					case("Floor"):
-						if(((Floor) m.getTile(x, y)).getContents() == null)  {
-							
-						} else {
-							switch(((Floor) m.getTile(x, y)).getContents().getName()) {
-								case("Key"):
-									save = save +"KEY, "+((Key) ((Floor) m.getTile(x, y)).getContents()).getColour()
-												+", "+(x+1)+", "+(y+1)+"\n";
-									break;
-								case("Token"):
-									save = save + "TOKEN, "+(x+1)+", "+(y+1)+"\n";
-									break;
-								case("Flippers"):
-									save = save + "ITEM, FLIP, "+(x+1)+", "+(y+1)+"\n";
-									break;
-								case("FireBoots"):
-									save = save + "ITEM, BOOT, "+(x+1)+", "+(y+1)+"\n";
-									break;
-							}
+						if(((Floor) m.getTile(x, y)).contains())  {
+							switch(((Floor) m.getTile(x, y)).getContents().getClass().getName()) {
+							case("Key"):
+								save = save +"KEY, "+((Key) ((Floor) m.getTile(x, y)).getContents()).getColour()
+											+", "+(x+1)+", "+(y+1)+"\n";
+								break;
+							case("Token"):
+								save = save + "TOKEN, "+(x+1)+", "+(y+1)+"\n";
+								break;
+							case("Flippers"):
+								save = save + "ITEM, FLIP, "+(x+1)+", "+(y+1)+"\n";
+								break;
+							case("FireBoots"):
+								save = save + "ITEM, BOOT, "+(x+1)+", "+(y+1)+"\n";
+								break;
+							}	 
 						}
 						break;
 					

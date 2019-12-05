@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  * This class constructs and holds all elements within the game
@@ -33,20 +34,32 @@ public class Map {
 	}
 	
 	/**
-	 * Checks for the type of door, then searches player's inventory for whether they have the necessary item(s)
-	 * @param d the door aimed to be opened
-	 * @param k TESTING
+	 * Checks for the type of door, then searches player's inventory for whether they have the necessary item(s),
+	 * If the necessary items are found, the door becomes a floor
+	 * @param d the door to be opened
+	 * @param playerInv the player's inventory to be searched through
+	 * @param int n the number of tokens
 	 */
-	public void openDoor(Object d, Key k, int n) {
+	public void openDoor(Tile d, LinkedList<Item> playerInv, int n) {
 		int[] coods = new int[2];
-		//SEARCH THROUGH INVENTORY
-		if(d instanceof KeyDoor && k.getColour() == ((KeyDoor) d).getColour()) {
-			coods = getTileCoods((Tile) d);
-			level[coods[1]][coods[0]] = new Floor();
-		} else if (d instanceof TokenDoor && n == ((TokenDoor) d).getNum()) {
-			coods = getTileCoods((Tile) d);
-			level[coods[1]][coods[0]] = new Floor();
+		Key k = null;
+		
+		for(Item i : playerInv) {
+			if(i.getClass().getName() == "Key") {
+				k = (Key) i;
+			}
 		}
+
+		if(k != null) {
+			if(d instanceof KeyDoor && k.getColour().equals(((KeyDoor) d).getColour())) {
+				coods = getTileCoods(d);
+				level[coods[1]][coods[0]] = new Floor();
+			} else if (d instanceof TokenDoor && n == ((TokenDoor) d).getNum()) {
+				coods = getTileCoods(d);
+				level[coods[1]][coods[0]] = new Floor();
+			}
+		}
+		
 	}
 	
 	/**
