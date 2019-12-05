@@ -43,7 +43,7 @@ public class Map {
 	public void openDoor(Tile d, LinkedList<Item> playerInv, int n) {
 		int[] coods = new int[2];
 		Key k = null;
-		
+
 		for(Item i : playerInv) {
 			if(i.getClass().getName() == "Key") {
 				k = (Key) i;
@@ -59,7 +59,7 @@ public class Map {
 				level[coods[1]][coods[0]] = new Floor();
 			}
 		}
-		
+
 	}
 	
 	/**

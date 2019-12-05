@@ -3,7 +3,7 @@
  * @author Nathan Preston
  * @version 1.0
  */
-public class KeyDoor extends Tile {
+public class KeyDoor extends Tile{
 	private String colour;//colour of door
 	
 	/**
@@ -29,4 +29,5 @@ public class KeyDoor extends Tile {
 	public void setColour(String colour) {
 		this.colour = colour;
 	}
+
 }

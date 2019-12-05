@@ -5,13 +5,14 @@
  * </p>
  * <br><b>Created:</b> 26/11/2019
  * <br><b>Last Modified:</b> 02/12/2019
+ *
  * @author Negrusa Sergiu
  * @version 1.0
  * <br><b>History:</b>
- * 	<li>Version 1.0 (26/11/2019)</li>
+ * <li>Version 1.0 (26/11/2019)</li>
  * </ul>
  */
-public class Teleporter extends Tile{
+public class Teleporter extends Tile {
     private int xPos;
     private int yPos;
     private Teleporter partner;
@@ -20,10 +21,12 @@ public class Teleporter extends Tile{
 
     /**
      * create an instance of Teleporter.
-     * @param xPos x position of the teleporter
-     * @param yPos y position of the teleporter
+     *
+     * @param partner we need the partner in order to connect teleporters
+     * @param xPos    x position of the teleporter
+     * @param yPos    y position of the teleporter
      */
-    public Teleporter(int xPos, int yPos){
+    public Teleporter(Teleporter partner, int xPos, int yPos){
         //TODO: add superclass constructor
         setPartner(partner);
         setPos(xPos, yPos);
@@ -70,7 +73,7 @@ public class Teleporter extends Tile{
         this.yPos = yPos;
     }
 
-    public void setPartner(Teleporter partner) {
+    private void setPartner(Teleporter partner) {
         this.partner = partner;
     }
 

@@ -1,6 +1,6 @@
 /**
  * The walkable floor tile, which can contain an item
- * @author Lewis 
+ * @author Lewis
  * @version 1.2
  */
 public class Floor extends Tile {
@@ -11,7 +11,7 @@ public class Floor extends Tile {
 	private FireBoots boot;
 	private Boolean contains = false;//false if nothing is contained, true if there is something
 	private static String filePath = "sprites/floor.png";
-	
+
 	/**
 	 * return's the key stored
 	 * @return Key object
@@ -19,7 +19,7 @@ public class Floor extends Tile {
 	public Key getKey() {
 		return this.key;
 	}
-	
+
 	/**
 	 * return's the token stored
 	 * @return Token object
@@ -27,7 +27,7 @@ public class Floor extends Tile {
 	public Token getToken() {
 		return this.token;
 	}
-	
+
 	/**
 	 * return's the Flippers stored
 	 * @return Flipper object
@@ -35,7 +35,7 @@ public class Floor extends Tile {
 	public Flippers getFlippers() {
 		return this.flip;
 	}
-	
+
 	/**
 	 * return's the Fire Boots stored
 	 * @return FireBoot object
@@ -43,7 +43,7 @@ public class Floor extends Tile {
 	public FireBoots getFireBoots() {
 		return this.boot;
 	}
-	
+
 	/**
 	 * Checks whether the Floor contains anything
 	 * @return the Boolean contains attribute
@@ -51,7 +51,7 @@ public class Floor extends Tile {
 	public Boolean contains() {
 		return contains;
 	}
-	
+
 	/**
 	 * Checks what has been stored, and returns the contents
 	 * @return Key/Token/Flippers/FireBoots Object
@@ -67,7 +67,7 @@ public class Floor extends Tile {
 			return boot;
 		}
 	}
-	
+
 	/**
 	 * set the content of the floor tile.
 	 *
@@ -78,7 +78,7 @@ public class Floor extends Tile {
 		key = i;
 		contains = true;
 	}
-	
+
 	/**
 	 * set the content of the floor tile.
 	 *
@@ -89,7 +89,7 @@ public class Floor extends Tile {
 		token = i;
 		contains = true;
 	}
-	
+
 	/**
 	 * set the content of the floor tile.
 	 *
@@ -100,7 +100,7 @@ public class Floor extends Tile {
 		flip = i;
 		contains = true;
 	}
-	
+
 	/**
 	 * set the content of the floor tile.
 	 *
@@ -131,7 +131,7 @@ public class Floor extends Tile {
 	public String getFilePath() {
 		return filePath;
 	}
-	
+
 	/**
 	 * checks whether an object stored in a variable is null
 	 * @param i variable of type Item
@@ -144,7 +144,7 @@ public class Floor extends Tile {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Removes the contents of the floor
 	 */

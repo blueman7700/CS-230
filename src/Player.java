@@ -40,8 +40,8 @@ public class Player extends Entity {
 
     public Player(int x, int y, Manager gm) {
 
-        super.xPos = x;
-        super.yPos = y;
+        this.xPos = x;
+        this.yPos = y;
         inventory = new LinkedList<>();
         numTokens = 0;
         alive = true;
@@ -99,7 +99,7 @@ public class Player extends Entity {
         }
 
         nextTile = gm.getMap().getTile(newX, newY);
-        
+
         //Checks to see if the next tiles are hazards that can be traversed with items
         for(Item i : inventory) {
         	if(i instanceof FireBoots) {
@@ -135,11 +135,7 @@ public class Player extends Entity {
                 	if (((Floor) nextTile).getFireBoots() != null) {
                 		addItemToInv(((Floor) nextTile).getFireBoots());
                 	}
-                    
                 }
-                
-
-                
             }
             this.setPosition(newX, newY);
             	//check if the tile is an instance of interactable
@@ -150,11 +146,6 @@ public class Player extends Entity {
 
             }*/
         }
-        
-        
-        
-
-        
     }
 
     /**

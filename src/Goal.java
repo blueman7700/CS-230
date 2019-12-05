@@ -11,7 +11,7 @@
  */
 
 public class Goal extends Tile{
-	
+
     private int xPos;
     private int yPos;
     private static String filePath = "sprites/goal.png";
@@ -26,6 +26,7 @@ public class Goal extends Tile{
 
     /**
      * method that checks if the player reaches the goal
+     *
      * @param player we need player in order to check his position
      */
     public void interact(Player player){
@@ -49,7 +50,7 @@ public class Goal extends Tile{
     public int getyPos() {
         return yPos;
     }
-    
+
     public String getFilePath() {
     	return filePath;
     }
