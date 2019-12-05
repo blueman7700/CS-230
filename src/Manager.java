@@ -15,17 +15,17 @@ public class Manager {
 	// The size of each cell
 	private static int GRID_CELL_SIZE = 50;
 	// Load an image
-	Image tile;
-	Image playerImg;
-	Image dirt;
+	private Image tile;
+	private Image playerImg;
+	private Image dirt;
 	//the player
-	Player player;
+	private Player player;
 	//all the enemies
-	ArrayList<String> enemiesList = new ArrayList();
+	private ArrayList<String> enemiesList = new ArrayList<>();
 	//the map
-	Map map;
+	private Map map;
 	//File reader
-	FileReader fr;
+	private FileReader fr;
 	
 	@FXML
 	private Canvas gameCanvas;
@@ -154,5 +154,15 @@ public class Manager {
 
 	public Map getMap() {
 		return map;
+	}
+
+	/**
+	 * get the player.
+	 *
+	 * @return player
+	 */
+
+	public Player getPlayer() {
+		return player;
 	}
 }
