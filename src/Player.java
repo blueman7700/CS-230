@@ -100,6 +100,7 @@ public class Player extends Entity {
 
         nextTile = gm.getMap().getTile(newX, newY);
         
+        //Checks to see if the next tiles are hazards that can be traversed with items
         for(Item i : inventory) {
         	if(i instanceof FireBoots) {
         		if(nextTile instanceof Fire) {
@@ -111,9 +112,12 @@ public class Player extends Entity {
         		}
         	}
         }
-
-        //check if the next tile is walkable
-        if (nextTile.getWalkable()) {
+         //check if the next tile is walkable
+        if(nextTile instanceof Teleporter) {
+        	newX = ((Teleporter)nextTile).getPartner().getxPos();
+        	newY = ((Teleporter)nextTile).getPartner().getyPos();
+        	this.setPosition(newX, newY);
+        } else if (nextTile.getWalkable()) {
         	
             //check if the tile is an instance of floor
             if (nextTile instanceof Floor) {
@@ -146,6 +150,11 @@ public class Player extends Entity {
 
             }*/
         }
+        
+        
+        
+
+        
     }
 
     /**
