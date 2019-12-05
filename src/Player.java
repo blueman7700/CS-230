@@ -110,6 +110,12 @@ public class Player extends Entity {
         		if(nextTile instanceof Water) {
         			nextTile.setWalkable(true);
         		}
+        	}else if(i instanceof Key) {
+        		if(nextTile instanceof KeyDoor) {
+        			System.out.print(((Key)i).getColour());
+        			System.out.print(((KeyDoor)nextTile).getColour());
+        			nextTile.setWalkable(((KeyDoor)nextTile).getColour().equals(((Key)i).getColour())); ;
+        		}
         	}
         }
          //check if the next tile is walkable
