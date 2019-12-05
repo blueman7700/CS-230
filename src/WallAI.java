@@ -17,7 +17,7 @@ public class WallAI extends Entity {
 
     private Manager gm;
     private MoveType prevDirection;
-
+    private String filePath = "sprites/wallAI.png";
     private Tile[][] vision = new Tile[3][3]; //array containing the tiles the AI can 'see'.
 
     /**
@@ -29,10 +29,8 @@ public class WallAI extends Entity {
      */
 
     public WallAI(String filePath, int x, int y, Manager gm) {
-
         this.xPos = x;
         this.yPos = y;
-        this.filePath = "sprites/wallAI.png";
         this.gm = gm;
         this.prevDirection = getStartDirection();
     }
@@ -218,7 +216,7 @@ public class WallAI extends Entity {
         if (!(vision[0][1] instanceof Floor)) {
 
             return MoveType.UP;
-        }else if (((Floor)vision[0][1]).getContent() != null){
+        }else if (((Floor)vision[0][1]).contains()){
 
             return MoveType.UP;
         }
@@ -227,7 +225,7 @@ public class WallAI extends Entity {
         if (!(vision[1][0] instanceof Floor)) {
 
             return MoveType.RIGHT;
-        }else if (((Floor)vision[1][0]).getContent() != null){
+        }else if (((Floor)vision[1][0]).contains()){
 
             return MoveType.RIGHT;
         }
@@ -236,7 +234,7 @@ public class WallAI extends Entity {
         if (!(vision[2][1] instanceof Floor)) {
 
             return MoveType.DOWN;
-        }else if (((Floor)vision[2][1]).getContent() != null){
+        }else if (((Floor)vision[2][1]).contains()){
 
             return MoveType.DOWN;
         }
@@ -245,7 +243,7 @@ public class WallAI extends Entity {
         if (!(vision[1][2] instanceof Floor)) {
 
             return MoveType.LEFT;
-        }else if (((Floor)vision[1][2]).getContent() != null){
+        }else if (((Floor)vision[1][2]).contains()){
 
             return MoveType.LEFT;
         }
