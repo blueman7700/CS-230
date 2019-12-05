@@ -5,6 +5,10 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Queue;
 
+/**
+ *
+ */
+
 public class AStar implements Pathfinder {
 
 	private ArrayList<Node> closed = new ArrayList<>();
@@ -13,17 +17,25 @@ public class AStar implements Pathfinder {
 
 	private ManhattenDistance heuristic = new ManhattenDistance();
 
-	private static boolean ALLOW_DIAG_MOVE = false;
+	private static boolean ALLOW_DIAG_MOVE = false; // if diagonal movement is allowed the set to TRUE
 
 	private Map gameMap;
-	private int maxDistance = gameMap.getHeight() * gameMap.getWidth();
+	private int maxDistance;
+
+	/**
+	 * create a new instance of the A* pathfinder.
+	 *
+	 * @param gameMap map of the current level
+	 */
 
 	public AStar(Map gameMap) {
 
 		this.gameMap = gameMap;
+		maxDistance = gameMap.getHeight() * gameMap.getWidth();
 
 		nodes = new Node[gameMap.getWidth()][gameMap.getHeight()];
 
+		//add all map tiles to node array
 		for (int i = 0; i < gameMap.getWidth(); i++) {
 			for (int k = 0; k < gameMap.getHeight(); k++) {
 				nodes[i][k] = new Node(i, k, gameMap.getTile(i,k).getWalkable());
@@ -31,15 +43,28 @@ public class AStar implements Pathfinder {
 		}
 	}
 
+	/**
+	 * calculate the path to the player.
+	 *
+	 * @param sX start x coordinate.
+	 * @param sY start y coordinate.
+	 * @param fX target x coordinate.
+	 * @param fY target y coordinate.
+	 * @return path to player.
+	 */
+
 	public Path getPath(int sX, int sY, int fX, int fY) {
 
 		if (!(gameMap.getTile(fX, fY).getWalkable())) {
 			return null;
 		}
 
+		//set initial cost and depth to 0 and parent to null for starting node.
 		nodes[sX][sY].setCost(0);
 		nodes[sX][sY].setDepth(0);
 		nodes[sX][sY].setParent(null);
+
+		//clear lists and add start node to open array
 		closed.clear();
 		open.clear();
 		open.add(nodes[sX][sY]);
@@ -77,22 +102,13 @@ public class AStar implements Pathfinder {
 
 					//check if the new location can be moved to
 					if (isValidLocation(sX, sY, xp, yp)) {
-						// the cost to get to this node is cost the current plus the movement
 
-						// cost to reach this node. Note that the heursitic value is only used
-
-						// in the sorted open list
-
+						// the cost to get to the new node is the cost to get to the current node + 1
 						int nextStepCost = current.getCost() + 1;
 						Node neighbour = nodes[xp][yp];
 
-						// if the new cost we've determined for this node is lower than
-
-						// it has been previously makes sure the node hasn'e've
-						// determined that there might have been a better path to get to
-
-						// this node so it needs to be re-evaluated
-
+						//if the new cost we have determined is lower than the cost of a neighbour
+						// then it can be re-evaluated
 						if (nextStepCost < neighbour.getCost()) {
 							if (open.contains(neighbour)){
 								open.remove(neighbour);
@@ -102,12 +118,8 @@ public class AStar implements Pathfinder {
 							}
 						}
 
-						// if the node hasn't already been processed and discarded then
-
-						// reset it's cost to our current cost and add it as a next possible
-
-						// step (i.e. to the open list)
-
+						//if the current node hasn't been processed already then set its cost and parent accordingly
+						// before adding to the open list
 						if (!(open.contains(neighbour)) && !(closed.contains(neighbour))) {
 							neighbour.setCost(nextStepCost);
 							neighbour.setHeuristicCost(heuristic.getCost(xp, yp, fX, fY));
@@ -121,8 +133,33 @@ public class AStar implements Pathfinder {
 			}
 		}
 
-		return null;
+		//if the parent of the tile at the final coordinates is null then there is no path
+		if (nodes[fX][fY].getParent() == null) {
+			return null;
+		}
+
+		//create the path to the player
+		Path path = new Path();
+		Node trgt = nodes[fX][fY];
+		while (trgt != nodes[sX][sY]) {
+
+			//add the previous step to the front of the list as we are working backwards
+			path.prependStep(trgt.getX(), trgt.getY());
+			trgt = trgt.getParent();
+		}
+
+		return path;
 	}
+
+	/**
+	 * Check if the location is a valid move.
+	 *
+	 * @param sx start x coordinate.
+	 * @param sy start y coordinate.
+	 * @param x x coordinate of the location to check.
+	 * @param y y coordinate of the location to check.
+	 * @return true if the location can be moved to, else false.
+	 */
 
 	private boolean isValidLocation(int sx, int sy, int x, int y) {
 		boolean invalid = (x < 0) || (y < 0) || (x >= gameMap.getWidth()) || (y >= gameMap.getHeight());

@@ -18,4 +18,10 @@ public class Path {
 		Step newStep = new Step(x,y);
 		steps.add(newStep);
 	}
+
+	public void prependStep(int x, int y) {
+
+		Step newStep = new Step(x, y);
+		steps.add(0, newStep);
+	}
 }
