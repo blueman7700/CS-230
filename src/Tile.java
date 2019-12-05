@@ -17,5 +17,9 @@ public class Tile {
 		return false;
 	}
 	
+	public void setWalkable(Boolean w) {
+		this.walkable = w;
+	}
+	
 	
 }

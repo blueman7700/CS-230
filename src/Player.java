@@ -99,9 +99,22 @@ public class Player extends Entity {
         }
 
         nextTile = gm.getMap().getTile(newX, newY);
+        
+        for(Item i : inventory) {
+        	if(i instanceof FireBoots) {
+        		if(nextTile instanceof Fire) {
+        			nextTile.setWalkable(true);
+        		}
+        	}else if(i instanceof Flippers) {
+        		if(nextTile instanceof Water) {
+        			nextTile.setWalkable(true);
+        		}
+        	}
+        }
 
         //check if the next tile is walkable
         if (nextTile.getWalkable()) {
+        	
             //check if the tile is an instance of floor
             if (nextTile instanceof Floor) {
                 if (((Floor) nextTile).contains() == true) {
@@ -120,10 +133,13 @@ public class Player extends Entity {
                 	}
                     
                 }
-                this.setPosition(newX, newY);
+                
 
-                //check if the tile is an instance of interactable
-            } /*else if (nextTile instanceof Interactable) {
+                
+            }
+            this.setPosition(newX, newY);
+            	//check if the tile is an instance of interactable
+            	/*else if (nextTile instanceof Interactable) {
 				//TODO: Interactable is not a class anymore so this must change
                 //interact with the tile
                 ((Interactable) nextTile).interact(this);
