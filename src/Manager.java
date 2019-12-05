@@ -31,6 +31,8 @@ public class Manager {
 	private Canvas gameCanvas;
 	@FXML
 	public void initialize() {
+		Experiment ex = new Experiment();
+		
 		//load filereader
 		fr = new FileReader("src/Files/Level1.txt");
 		//loads the enemies
