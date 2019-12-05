@@ -16,6 +16,8 @@ public class Teleporter extends Tile {
     private int xPos;
     private int yPos;
     private Teleporter partner;
+    private static String filePath = "sprites/Teleporter.png";
+    private Boolean walkable = true;
 
     /**
      * create an instance of Teleporter.
@@ -77,6 +79,10 @@ public class Teleporter extends Tile {
 
     public Teleporter getPartner() {
         return partner;
+    }
+    
+    public String getFilePath() {
+    	return filePath;
     }
 
     /**
