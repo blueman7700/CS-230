@@ -10,7 +10,7 @@
 #T_______#
 ##########
 START, 5, 2
-AI, DUMB, NORTH, 6, 5
+AI, DUMB, 6, 5
 DOOR, KEY, RED, 8, 5
 DOOR, TOKEN, 2, 8, 7
 ITEM, FLIP, 9, 9
