@@ -146,6 +146,9 @@ public class Manager {
 	        	if (map.getTile(player.getxPos(), player.getyPos()) instanceof Floor) {
 	        		((Floor) map.getTile(player.getxPos(), player.getyPos())).removeContents();
 	        	}
+	        	for(Entity e : enemies) {
+	    			e.move(MoveType.AUTO);
+	    		}
 	        	break;
 		    case A:
 		    	//Left key was pressed. So move the player left by one cell.
@@ -154,6 +157,9 @@ public class Manager {
 		    	if (map.getTile(player.getxPos(), player.getyPos()) instanceof Floor) {
 	        		((Floor) map.getTile(player.getxPos(), player.getyPos())).removeContents();
 	        	}
+		    	for(Entity e : enemies) {
+					e.move(MoveType.AUTO);
+				}
 		    	break;
 		    case W:
 		    	//Up key was pressed so move the player up by one cell.
@@ -162,6 +168,9 @@ public class Manager {
 		    	if (map.getTile(player.getxPos(), player.getyPos()) instanceof Floor) {
 	        		((Floor) map.getTile(player.getxPos(), player.getyPos())).removeContents();
 	        	}
+		    	for(Entity e : enemies) {
+					e.move(MoveType.AUTO);
+				}
 		    	break;
 		    case S:
 		    	//Down key was pressed so move the player down by one cell.
@@ -170,14 +179,13 @@ public class Manager {
 		    	if (map.getTile(player.getxPos(), player.getyPos()) instanceof Floor) {
 	       		((Floor) map.getTile(player.getxPos(), player.getyPos())).removeContents();
 	        	}
+		    	for(Entity e : enemies) {
+					e.move(MoveType.AUTO);
+				}
 		    	break;
 	        default:
 	        	// Do nothing
 	        	break;
-		}
-
-		for(Entity e : enemies) {
-			e.move(MoveType.AUTO);
 		}
 		
 		// Redraw game as the player may have moved.
