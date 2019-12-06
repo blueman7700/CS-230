@@ -11,6 +11,9 @@ import javafx.stage.Stage;
 
 public class MenuController {
 
+	//logged in user
+	private String user;
+	
 	@FXML
 	Button startBtn;
 	Button loadBtn;
@@ -22,6 +25,10 @@ public class MenuController {
 		
 	}
 	
+	public void start(String user) {
+		this.user = user;
+	}
+	
 	@FXML
 	public void startClick(ActionEvent e) throws IOException {
 		//loads new stage by swapping root
@@ -31,7 +38,7 @@ public class MenuController {
         root = (Parent)loader.load();
         Manager controller = (Manager)loader.getController();
         Scene scene = new Scene(root, 1920, 1080);
-        controller.start(scene, "Level1");
+        controller.start(scene, "Level1", user);
         stage.setScene(scene);
         stage.show();
 	}

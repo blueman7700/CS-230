@@ -10,8 +10,8 @@
    <top>
       <HBox prefHeight="39.0" prefWidth="590.0" spacing="5.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="SaveBtn" mnemonicParsing="false" text="Save" />
-            <Button fx:id="ExitBtn" mnemonicParsing="false" onAction="#exitClick" text="Exit" />
+            <Button fx:id="saveBtn" mnemonicParsing="false" onAction="#saveClick" text="Save" />
+            <Button fx:id="exitBtn" mnemonicParsing="false" onAction="#exitClick" text="Exit" />
          </children>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

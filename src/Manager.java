@@ -40,10 +40,13 @@ public class Manager {
 	private FileReader fr;
 	//path to current level
 	private String levelPath;
+	//The current user logged in
+	private String user;
 	
 	@FXML
 	private Canvas gameCanvas;
 	private Button exitBtn;
+	private Button saveBtn;
 	
 	/**
 	 * 
@@ -73,9 +76,10 @@ public class Manager {
 		drawGame();
 	}
 	
-	public void start(Scene scene, String level) {
+	public void start(Scene scene, String level, String user) {
 		scene.addEventFilter(KeyEvent.KEY_PRESSED, event -> processKeyEvent(event));
 		this.levelPath = "src/Files/"+level+".txt";
+		this.user = user;
 	}
 	
 	/**
@@ -307,6 +311,11 @@ public class Manager {
         Scene scene = new Scene(root, 1920, 1080);
         stage.setScene(scene);
         stage.show();
+	}
+	
+	@FXML
+	public void saveClick(ActionEvent e) {
+		new WriteToFile().saveMap(map, user);;
 	}
 	
 }
