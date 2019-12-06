@@ -66,8 +66,6 @@ public class Player extends Entity {
     @Override
     public void move(MoveType type) {
 
-        //TODO: implement all move conditions
-
         Tile nextTile;
         int newX = 0;
         int newY = 0;
@@ -95,26 +93,47 @@ public class Player extends Entity {
                 break;
         }
 
+        //get the tile the player will move to
         nextTile = gm.getMap().getTile(newX, newY);
-        gm.getMap().openDoor(nextTile, inventory, numTokens);
 
-        //Checks to see if the next tiles are hazards that can be traversed with items
-        for(Item i : inventory) {
-        	if(i instanceof FireBoots) {
-        		if(nextTile instanceof Fire) {
-        			nextTile.setWalkable(true);
-        		}
-        	}else if(i instanceof Flippers) {
-        		if(nextTile instanceof Water) {
-        			nextTile.setWalkable(true);
-        		}
-        	}
-        }
-         //check if the next tile is walkable
-        if(nextTile instanceof Teleporter) {
+        //check if the game has been won
+        if (wonGame(nextTile)) {
+            setPosition(newX, newY);
+            //todo end the game
+            return;
+        //check if the next tile is a fire tile
+        }else if (nextTile instanceof Fire) {
+            //search inventory for the correct item
+            for (Item i : inventory) {
+                if (i instanceof FireBoots) {
+                    setPosition(newX, newY);
+                    //no need to continue the loop
+                    break;
+                }
+            }
+        //check if the next tile is a water tile
+        }else if (nextTile instanceof Water) {
+            //search inventory for correct item
+            for (Item i : inventory) {
+                if (i instanceof Flippers) {
+                    setPosition(newX, newY);
+                    //no need to continue the loop
+                    break;
+                }
+            }
+        //check if the next tile is a door
+        }else if (nextTile instanceof TokenDoor || nextTile instanceof KeyDoor){
+            //attempt to open the door
+            gm.getMap().openDoor(nextTile, inventory, numTokens);
+            nextTile = gm.getMap().getTile(newX, newY);
 
+            //if the door has been opened then move through
+            if (nextTile instanceof Floor) {
+                setPosition(newX, newY);
+            }
+        //check if the next tile is a teleporter and move the player accordingly
+        }else if(nextTile instanceof Teleporter) {
         	switch (type) {
-
 				case UP:
 					newX = ((Teleporter)nextTile).getPartner().getxPos();
 					newY = ((Teleporter)nextTile).getPartner().getyPos() - 1;
@@ -133,34 +152,43 @@ public class Player extends Entity {
 					break;
 			}
 
+			//move the player to the new position
 			Tile newTile = gm.getMap().getTile(newX, newY);
         	if (newTile.getWalkable()) {
         		setPosition(newX, newY);
 			}
 
-        } else if (nextTile.getWalkable()) {
-        	
+        } else if (nextTile instanceof Floor) {
+
             //check if the tile is an instance of floor
-            if (nextTile instanceof Floor) {
-                if ((nextTile).contains()) {
-                	//checks to see what the contents is then add is
-                	if (((Floor) nextTile).getKey() != null) {
-                		addItemToInv(((Floor) nextTile).getKey());
-                	}
-                	if (((Floor) nextTile).getToken() != null) {
-                		addItemToInv(((Floor) nextTile).getToken());
-                		numTokens++;
-                	}
-                	if (((Floor) nextTile).getFlippers() != null) {
-                		addItemToInv(((Floor) nextTile).getFlippers());
-                	}
-                	if (((Floor) nextTile).getFireBoots() != null) {
-                		addItemToInv(((Floor) nextTile).getFireBoots());
-                	}
+            if ((nextTile).contains()) {
+                //checks to see what the contents is then adds to inventory
+                if (((Floor) nextTile).getKey() != null) {
+                    addItemToInv(((Floor) nextTile).getKey());
+                }
+                if (((Floor) nextTile).getToken() != null) {
+                    numTokens++;
+                }
+                if (((Floor) nextTile).getFlippers() != null) {
+                    addItemToInv(((Floor) nextTile).getFlippers());
+                }
+                if (((Floor) nextTile).getFireBoots() != null) {
+                    addItemToInv(((Floor) nextTile).getFireBoots());
                 }
             }
             this.setPosition(newX, newY);
         }
+    }
+
+    /**
+     * check if the game has been won.
+     *
+     * @param tile tile to check.
+     * @return true if tile is an instance of Goal, else false.
+     */
+    private boolean wonGame(Tile tile) {
+
+        return (tile instanceof Goal);
     }
 
     /**
@@ -209,11 +237,12 @@ public class Player extends Entity {
     }
 
     /**
-     * increment the token counter by 1
+     * get the number of tokens the player has.
+     *
+     * @return number of tokens.
      */
-    public void addToken() {
-
-        numTokens++;
+    public int getTokens() {
+        return numTokens;
     }
 
     /**
