@@ -17,7 +17,7 @@ public class WallAI extends Entity {
 
     private Manager gm;
     private MoveType prevDirection;
-    private String filePath = "sprites/wallAI.png";
+    private String FILE_PATH = "sprites/wallAI.png";
     private Tile[][] vision = new Tile[3][3]; //array containing the tiles the AI can 'see'.
 
     /**
