@@ -140,44 +140,56 @@ public class Manager {
 		switch (event.getCode()) {
 			
 		    case D:
+		    	for(Entity e : enemies) {
+	    			e.move(MoveType.AUTO);
+	    		}
 		    	// Right key was pressed. So move the player right by one cell.
 	        	player.move(MoveType.RIGHT);
 	        	//sees if a player is on an item then removes it if so
 	        	if (map.getTile(player.getxPos(), player.getyPos()) instanceof Floor) {
 	        		((Floor) map.getTile(player.getxPos(), player.getyPos())).removeContents();
 	        	}
+	        	
 	        	break;
 		    case A:
+		    	for(Entity e : enemies) {
+					e.move(MoveType.AUTO);
+				}
 		    	//Left key was pressed. So move the player left by one cell.
 		    	player.move(MoveType.LEFT);
 		    	//sees if a player is on an item then removes it if so
 		    	if (map.getTile(player.getxPos(), player.getyPos()) instanceof Floor) {
 	        		((Floor) map.getTile(player.getxPos(), player.getyPos())).removeContents();
 	        	}
+		    	
 		    	break;
 		    case W:
+		    	for(Entity e : enemies) {
+					e.move(MoveType.AUTO);
+				}
 		    	//Up key was pressed so move the player up by one cell.
 		    	player.move(MoveType.DOWN);
 		    	//sees if a player is on an item then removes it if so
 		    	if (map.getTile(player.getxPos(), player.getyPos()) instanceof Floor) {
 	        		((Floor) map.getTile(player.getxPos(), player.getyPos())).removeContents();
 	        	}
+		    	
 		    	break;
 		    case S:
+		    	for(Entity e : enemies) {
+					e.move(MoveType.AUTO);
+				}
 		    	//Down key was pressed so move the player down by one cell.
 		    	player.move(MoveType.UP);
 		    	//sees if a player is on an item then removes it if so
 		    	if (map.getTile(player.getxPos(), player.getyPos()) instanceof Floor) {
 	       		((Floor) map.getTile(player.getxPos(), player.getyPos())).removeContents();
 	        	}
+		    	
 		    	break;
 	        default:
 	        	// Do nothing
 	        	break;
-		}
-
-		for(Entity e : enemies) {
-			e.move(MoveType.AUTO);
 		}
 		
 		// Redraw game as the player may have moved.
