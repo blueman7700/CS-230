@@ -37,7 +37,6 @@ public class Player extends Entity {
      * @param x        x coordinate of the player.
      * @param y        y coordinate of the player.
      */
-
     public Player(int x, int y, Manager gm) {
 
         this.xPos = x;
@@ -53,7 +52,6 @@ public class Player extends Entity {
      *
      * @return player as String
      */
-
     @Override
     public String toString() {
 
@@ -65,7 +63,6 @@ public class Player extends Entity {
      *
      * @param type the type of movement that the player will make
      */
-
     @Override
     public void move(MoveType type) {
 
@@ -115,14 +112,37 @@ public class Player extends Entity {
         }
          //check if the next tile is walkable
         if(nextTile instanceof Teleporter) {
-        	newX = ((Teleporter)nextTile).getPartner().getxPos();
-        	newY = ((Teleporter)nextTile).getPartner().getyPos();
-        	this.setPosition(newX, newY);
+
+        	switch (type) {
+
+				case UP:
+					newX = ((Teleporter)nextTile).getPartner().getxPos();
+					newY = ((Teleporter)nextTile).getPartner().getyPos() - 1;
+					break;
+				case DOWN:
+					newX = ((Teleporter)nextTile).getPartner().getxPos();
+					newY = ((Teleporter)nextTile).getPartner().getyPos() + 1;
+					break;
+				case LEFT:
+					newX = ((Teleporter)nextTile).getPartner().getxPos() - 1;
+					newY = ((Teleporter)nextTile).getPartner().getyPos();
+					break;
+				case RIGHT:
+					newX = ((Teleporter)nextTile).getPartner().getxPos() + 1;
+					newY = ((Teleporter)nextTile).getPartner().getyPos();
+					break;
+			}
+
+			Tile newTile = gm.getMap().getTile(newX, newY);
+        	if (newTile.getWalkable()) {
+        		setPosition(newX, newY);
+			}
+
         } else if (nextTile.getWalkable()) {
         	
             //check if the tile is an instance of floor
             if (nextTile instanceof Floor) {
-                if (((Floor) nextTile).contains() == true) {
+                if ((nextTile).contains()) {
                 	//checks to see what the contents is then add is
                 	if (((Floor) nextTile).getKey() != null) {
                 		addItemToInv(((Floor) nextTile).getKey());
@@ -140,13 +160,6 @@ public class Player extends Entity {
                 }
             }
             this.setPosition(newX, newY);
-            	//check if the tile is an instance of interactable
-            	/*else if (nextTile instanceof Interactable) {
-				//TODO: Interactable is not a class anymore so this must change
-                //interact with the tile
-                ((Interactable) nextTile).interact(this);
-
-            }*/
         }
     }
 
@@ -155,7 +168,6 @@ public class Player extends Entity {
      *
      * @param item item to add to the list.
      */
-
     public void addItemToInv(Item item) {
 
         inventory.add(item);
@@ -167,7 +179,6 @@ public class Player extends Entity {
      * @param item item to remove from the list.
      * @throws NoSuchElementException thrown if the specified item does not exist.
      */
-
     public Item removeFromInv(Item item) {
 
         boolean found = false;
@@ -200,7 +211,6 @@ public class Player extends Entity {
     /**
      * increment the token counter by 1
      */
-
     public void addToken() {
 
         numTokens++;
@@ -211,7 +221,6 @@ public class Player extends Entity {
      *
      * @return alive
      */
-
     public Boolean isAlive() {
 
         return alive;
