@@ -6,8 +6,10 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
-import sprites.*;
-import views.*;
+
+/**
+ *
+ */
 
 //The manager class
 public class Manager {
@@ -18,10 +20,15 @@ public class Manager {
 	private Image tile;
 	private Image playerImg;
 	private Image dirt;
+	private Image dumbAIImg;
+	private Image smartAIImg;
+	private Image wallAIImg;
+	private Image lineAIImg;
 	//the player
 	private Player player;
 	//all the enemies
 	private ArrayList<String> enemiesList = new ArrayList<>();
+	private ArrayList<Entity> enemies;
 	//the map
 	private Map map;
 	//File reader
@@ -36,15 +43,20 @@ public class Manager {
 		//load filereader
 		fr = new FileReader("src/Files/Level1.txt");
 		//loads the enemies
-		
+		//enemiesList = fr.getEnemies();
 		//loads the map and sets the tiles
-		map = new Map(fr.getHeight(), fr.getWidth(), fr.fileToArray(), fr.getStartX(), fr.getStartY(), enemiesList);
+		map = new Map(fr.getHeight(), fr.getWidth(), fr.fileToArray(), fr.getStartX(), fr.getStartY(), fr.getEnemies());
 		//load the player
-		addAI();
+
 		player = new Player(fr.getStartX(), fr.getStartY(), this);
+		enemies = addAI();
 		// Load images
 		playerImg = new Image("sprites/player.png");
 		dirt = new Image("sprites/Floor.png");
+		dumbAIImg = new Image("sprites/player.png");
+		smartAIImg = new Image("sprites/player.png");
+		lineAIImg = new Image("sprites/player.png");
+		wallAIImg = new Image("sprites/player.png");
 		
 		gameCanvas.setWidth(map.getWidth() * GRID_CELL_SIZE);
 		gameCanvas.setHeight(map.getHeight() * GRID_CELL_SIZE);
@@ -105,6 +117,18 @@ public class Manager {
 		
 		// Draw player at current location
 		gc.drawImage(playerImg, player.getxPos() * GRID_CELL_SIZE, player.getyPos() * GRID_CELL_SIZE);
+
+		for (Entity e : enemies) {
+			if (e instanceof DumbAI) {
+				gc.drawImage(dumbAIImg, e.getxPos() * GRID_CELL_SIZE, e.getyPos() * GRID_CELL_SIZE);
+			}else if (e instanceof SmartAI) {
+				gc.drawImage(smartAIImg, e.getxPos() * GRID_CELL_SIZE, e.getyPos() * GRID_CELL_SIZE);
+			}else if (e instanceof WallAI) {
+				gc.drawImage(wallAIImg, e.getxPos() * GRID_CELL_SIZE, e.getyPos() * GRID_CELL_SIZE);
+			}else {
+				gc.drawImage(lineAIImg, e.getxPos() * GRID_CELL_SIZE, e.getyPos() * GRID_CELL_SIZE);
+			}
+		}
 	}
 	
 	/**
@@ -151,6 +175,10 @@ public class Manager {
 	        	// Do nothing
 	        	break;
 		}
+
+		for(Entity e : enemies) {
+			e.move(MoveType.AUTO);
+		}
 		
 		// Redraw game as the player may have moved.
 		drawGame();
@@ -162,32 +190,41 @@ public class Manager {
 	/**
 	 * adds the AI into the map
 	 */
-	public void addAI() {
+	public ArrayList<Entity> addAI() {
 		int[] coods = new int[2];
+		ArrayList<Entity> ai = new ArrayList<>();
+
 		for(String s : map.getEnemies()) {
 			if(s.contains("DUMB")) {
 				s = s.substring(6);
 				coods = coodsFromString(s);
-				new DumbAI(coods[0],coods[1],this);
+				ai.add(new DumbAI(coods[0],coods[1],this));
+				System.out.println("Made Dumb AI");
 			} else if (s.contains("SMART")){
 				s = s.substring(7);
 				coods = coodsFromString(s);
-				new DumbAI(coods[0],coods[1],this);
-			} else if (s.contains("LINE")){
+				ai.add(new SmartAI(coods[0],coods[1],this));
+			} else if (s.contains("WALL")){
+				s=s.substring(6);
+				coods = coodsFromString(s);
+				ai.add(new WallAI(coods[0], coods[1], this));
+			}else if (s.contains("LINE")){
 				s = s.substring(6);
 				coods = coodsFromString(s);
 				if(s.contains("UP")) {
-					new LineAI(coods[0],coods[1],this, MoveType.UP);
+					ai.add(new LineAI(coods[0],coods[1],this, MoveType.UP));
 				} else if(s.contains("DOWN")) {
-					new LineAI(coods[0],coods[1],this, MoveType.DOWN);
+					ai.add(new LineAI(coods[0],coods[1],this, MoveType.DOWN));
 				} else if(s.contains("LEFT")) {
-					new LineAI(coods[0],coods[1],this, MoveType.LEFT);
+					ai.add(new LineAI(coods[0],coods[1],this, MoveType.LEFT));
 				} else {
-					new LineAI(coods[0],coods[1],this, MoveType.RIGHT);
+					ai.add(new LineAI(coods[0],coods[1],this, MoveType.RIGHT));
 				}
 				
 			}
 		}
+
+		return ai;
 	}
 	
 	/**
