@@ -14,19 +14,26 @@ public class Map {
 	private String[] enemies;
 	private int startX;//player's starting X cood
 	private int startY;//player's starting Y cood
-	
+	private Manager gm;
+
 	/**
-	 * This constructs the map, by creating a 2d array and filling it with Tiles
-	 * @param height of the map
-	 * @param width of the map
-	 * @param strTiles a string of all tiles
+	 * Create a new map instance.
+	 *
+	 * @param height 		height of the map.
+	 * @param width 		width of the map.
+	 * @param level 		array of tiles representing the map.
+	 * @param startX 		starting x coordinate.
+	 * @param startY 		starting y coordinate.
+	 * @param enemiesList 	list of enemies on the map.
+	 * @param gm 			game manager.
 	 */
-	public Map(int height, int width, Tile[][] level, int startX, int startY, ArrayList<String> enemiesList){
+	public Map(int height, int width, Tile[][] level, int startX, int startY, ArrayList<String> enemiesList, Manager gm){
 		this.height = height;
 		this.width = width;
 		this.level = level;	
 		this.startX = startX;
 		this.startY = startY;
+		this.gm = gm;
 		enemies = new String[enemiesList.size()];
 		for(int x = 0; x < enemiesList.size(); x++) {
 			enemies[x] = enemiesList.get(x);
@@ -38,29 +45,37 @@ public class Map {
 	 * If the necessary items are found, the door becomes a floor
 	 * @param d the door to be opened
 	 * @param playerInv the player's inventory to be searched through
-	 * @param int n the number of tokens
 	 */
 	public void openDoor(Tile d, LinkedList<Item> playerInv, int n) {
-		int[] coods = new int[2];
-		Key k = null;
+		int[] coods;
 
-		for(Item i : playerInv) {
-			if(i.getClass().getName() == "Key") {
-				k = (Key) i;
+		//check if the door is a key door or a token door
+		if(d instanceof KeyDoor) {
+			coods = getTileCoods(d);
+			KeyDoor kd = (KeyDoor) d;
+
+			//check if the player has the correct key
+			for(Item i : playerInv) {
+				if(i instanceof Key) {
+					Key k = (Key) i;
+					//if the colours match then open the door
+					if (kd.getColour().equals(k.getColour())) {
+						gm.getPlayer().removeFromInv(k);
+						level[coods[1]][coods[0]] = new Floor();
+						break;
+					}
+				}
 			}
-		}
 
-		if(k != null) {
-			if(d instanceof KeyDoor && k.getColour().equals(((KeyDoor) d).getColour())) {
-				coods = getTileCoods(d);
+		}else if (d instanceof TokenDoor) {
+			coods = getTileCoods(d);
+			TokenDoor td = (TokenDoor) d;
+
+			//check if the player has the right number of tokens
+			if (gm.getPlayer().getTokens() == td.getNum()) {
 				level[coods[1]][coods[0]] = new Floor();
 			}
 		}
-		if (d instanceof TokenDoor && n == ((TokenDoor) d).getNum()) {
-			coods = getTileCoods(d);
-			level[coods[1]][coods[0]] = new Floor();
-		}
-
 	}
 	
 	/**
@@ -79,7 +94,6 @@ public class Map {
 				}
 			}
 		}
-		
 		return coods;
 	}
 	
