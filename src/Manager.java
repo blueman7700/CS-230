@@ -212,12 +212,16 @@ public class Manager {
 				s = s.substring(6);
 				coods = coodsFromString(s);
 				if(s.contains("UP")) {
+					s.substring(4);
 					ai.add(new LineAI(coods[0],coods[1],this, MoveType.UP));
 				} else if(s.contains("DOWN")) {
+					s.substring(6);
 					ai.add(new LineAI(coods[0],coods[1],this, MoveType.DOWN));
 				} else if(s.contains("LEFT")) {
+					s.substring(6);
 					ai.add(new LineAI(coods[0],coods[1],this, MoveType.LEFT));
 				} else {
+					s.substring(7);
 					ai.add(new LineAI(coods[0],coods[1],this, MoveType.RIGHT));
 				}
 				
