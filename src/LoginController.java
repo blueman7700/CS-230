@@ -57,11 +57,9 @@ public class LoginController {
 		//loads new stage by swapping root
         Parent root;
         Stage stage = (Stage)((Node) e.getSource()).getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("views/Game.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("views/Menu.fxml"));
         root = (Parent)loader.load();
-        Manager controller = (Manager)loader.getController();
         Scene scene = new Scene(root, 1920, 1080);
-        controller.start(scene);
         stage.setScene(scene);
         stage.show();
 		
