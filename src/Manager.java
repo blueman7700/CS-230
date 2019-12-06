@@ -53,10 +53,10 @@ public class Manager {
 		// Load images
 		playerImg = new Image("sprites/player.png");
 		dirt = new Image("sprites/Floor.png");
-		dumbAIImg = new Image("sprites/player.png");
-		smartAIImg = new Image("sprites/player.png");
-		lineAIImg = new Image("sprites/player.png");
-		wallAIImg = new Image("sprites/player.png");
+		dumbAIImg = new Image("sprites/dumbAI.png");
+		smartAIImg = new Image("sprites/smartAI.png");
+		lineAIImg = new Image("sprites/lineAI.png");
+		wallAIImg = new Image("sprites/wallAI.png");
 		
 		gameCanvas.setWidth(map.getWidth() * GRID_CELL_SIZE);
 		gameCanvas.setHeight(map.getHeight() * GRID_CELL_SIZE);
