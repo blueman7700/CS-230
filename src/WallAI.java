@@ -150,19 +150,19 @@ public class WallAI extends Entity {
                         newY = this.getyPos() - 1;
                         prevDirection = MoveType.UP;
 
+                    }else if (validMove(vision[2][1])) {
+
+                        newX = this.getxPos() + 1;
+                        newY = this.getyPos();
+                        prevDirection = MoveType.RIGHT;
+
                     }else if (validMove(vision[1][2])) {
 
                         newX = this.getxPos();
                         newY = this.getyPos() + 1;
                         prevDirection = MoveType.DOWN;
 
-                    }else if (validMove(vision[0][1])) {
-
-                        newX = this.getxPos() - 1;
-                        newY = this.getyPos();
-                        prevDirection = MoveType.LEFT;
-
-                    }else if (validMove(vision[2][1])){
+                    }else if (validMove(vision[0][1])){
 
                         newX = this.getxPos() - 1;
                         newY = this.getyPos();
