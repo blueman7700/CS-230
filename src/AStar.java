@@ -31,14 +31,15 @@ public class AStar implements Pathfinder {
 	public AStar(Map gameMap) {
 
 		this.gameMap = gameMap;
-		maxDistance = gameMap.getHeight() * gameMap.getWidth();
+		maxDistance = 40;
 
 		nodes = new Node[gameMap.getWidth()][gameMap.getHeight()];
 
 		//add all map tiles to node array
 		for (int i = 0; i < gameMap.getWidth(); i++) {
 			for (int k = 0; k < gameMap.getHeight(); k++) {
-				nodes[i][k] = new Node(i, k, gameMap.getTile(i,k).getWalkable());
+				nodes[i][k] = new Node(i, k, (gameMap.getTile(i,k) instanceof Floor
+						&& !(gameMap.getTile(i,k).contains())));
 			}
 		}
 	}
@@ -78,6 +79,7 @@ public class AStar implements Pathfinder {
 				break;
 			}
 
+			open.removeHead();
 			closed.add(current);
 
 			//search through all the neighbours of the current node
@@ -165,7 +167,7 @@ public class AStar implements Pathfinder {
 		boolean invalid = (x < 0) || (y < 0) || (x >= gameMap.getWidth()) || (y >= gameMap.getHeight());
 
 		if ((!invalid) && ((sx != x) || (sy != y))) {
-			invalid = gameMap.getTile(x, y).getWalkable();
+			invalid = !(gameMap.getTile(x,y) instanceof Floor && !(gameMap.getTile(x, y).contains()));
 		}
 
 		return !invalid;

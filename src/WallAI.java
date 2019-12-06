@@ -23,7 +23,6 @@ public class WallAI extends Entity {
     /**
      * create a new instance of a Line AI.
      *
-     * @param filePath  file path of the object sprite.
      * @param x         x coordinate of the entity.
      * @param y         y coordinate of the entity.
      */
@@ -47,8 +46,8 @@ public class WallAI extends Entity {
         //set what the Entity can currently 'see'
         setVision();
 
-        int newX;
-        int newY;
+        int newX = xPos;
+        int newY = yPos;
 
         if (type != MoveType.AUTO) {
             System.out.println("Entity move type must be set to AUTO!");
@@ -58,25 +57,25 @@ public class WallAI extends Entity {
             switch (prevDirection) {
                 //check what move to make if the previous move was upwards
                 case UP:
-                    if (vision[0][1].getWalkable()) {
+                    if (validMove(vision[0][1])) {
 
                         newX = this.getxPos() - 1;
                         newY = this.getyPos();
                         prevDirection = MoveType.LEFT;
 
-                    }else if (vision[1][0].getWalkable()) {
+                    }else if (validMove(vision[1][0])) {
 
                         newX = this.getxPos();
                         newY = this.getyPos() - 1;
                         prevDirection = MoveType.UP;
 
-                    }else if (vision[2][1].getWalkable()) {
+                    }else if (validMove(vision[2][1])) {
 
                         newX = this.getxPos() + 1;
                         newY = this.getyPos();
                         prevDirection = MoveType.RIGHT;
 
-                    }else {
+                    }else if (validMove(vision[1][2])){
 
                         newX = this.getxPos();
                         newY = this.getyPos() + 1;
@@ -87,25 +86,25 @@ public class WallAI extends Entity {
                 //check what move to make if the previous move was downwards
                 case DOWN:
 
-                    if (vision[2][1].getWalkable()) {
+                    if (validMove(vision[2][1])) {
 
                         newX = this.getxPos() + 1;
                         newY = this.getyPos();
                         prevDirection = MoveType.RIGHT;
 
-                    }else if (vision[1][2].getWalkable()) {
+                    }else if (validMove(vision[1][2])) {
 
                         newX = this.getxPos();
                         newY = this.getyPos() + 1;
                         prevDirection = MoveType.DOWN;
 
-                    }else if (vision[0][1].getWalkable()) {
+                    }else if (validMove(vision[0][1])) {
 
                         newX = this.getxPos() - 1;
                         newY = this.getyPos();
                         prevDirection = MoveType.LEFT;
 
-                    }else {
+                    }else if (validMove(vision[1][0])){
 
                         newX = this.getxPos();
                         newY = this.getyPos() - 1;
@@ -116,25 +115,25 @@ public class WallAI extends Entity {
                 //check what move to make if the previous move was to the left
                 case LEFT:
 
-                    if (vision[1][2].getWalkable()) {
+                    if (validMove(vision[1][2])) {
 
                         newX = this.getxPos();
                         newY = this.getyPos() + 1;
                         prevDirection = MoveType.DOWN;
 
-                    }else if (vision[0][1].getWalkable()) {
+                    }else if (validMove(vision[0][1])) {
 
                         newX = this.getxPos() - 1;
                         newY = this.getyPos();
                         prevDirection = MoveType.LEFT;
 
-                    }else if (vision[1][0].getWalkable()) {
+                    }else if (validMove(vision[1][0])) {
 
                         newX = this.getxPos();
                         newY = this.getyPos() - 1;
                         prevDirection = MoveType.UP;
 
-                    }else {
+                    }else if (validMove(vision[2][1])){
 
                         newX = this.getxPos() + 1;
                         newY = this.getyPos();
@@ -145,25 +144,25 @@ public class WallAI extends Entity {
                 //check what move to make if the previous move was to the right
                 case RIGHT:
 
-                    if (vision[1][0].getWalkable()) {
+                    if (validMove(vision[1][0])) {
 
                         newX = this.getxPos();
                         newY = this.getyPos() - 1;
                         prevDirection = MoveType.UP;
 
-                    }else if (vision[1][2].getWalkable()) {
+                    }else if (validMove(vision[1][2])) {
 
                         newX = this.getxPos();
                         newY = this.getyPos() + 1;
                         prevDirection = MoveType.DOWN;
 
-                    }else if (vision[0][1].getWalkable()) {
+                    }else if (validMove(vision[0][1])) {
 
                         newX = this.getxPos() - 1;
                         newY = this.getyPos();
                         prevDirection = MoveType.LEFT;
 
-                    }else {
+                    }else if (validMove(vision[2][1])){
 
                         newX = this.getxPos() - 1;
                         newY = this.getyPos();
@@ -192,13 +191,13 @@ public class WallAI extends Entity {
         int y = this.getyPos();
 
         vision[0][0] = gm.getMap().getTile(x - 1, y - 1);
-        vision[0][1] = gm.getMap().getTile(x, y - 1);
-        vision[0][2] = gm.getMap().getTile(x + 1, y - 1);
-        vision[1][0] = gm.getMap().getTile(x - 1, y);
+        vision[0][1] = gm.getMap().getTile(x - 1, y);
+        vision[0][2] = gm.getMap().getTile(x - 1, y + 1);
+        vision[1][0] = gm.getMap().getTile(x, y - 1);
         vision[1][1] = gm.getMap().getTile(x, y);
-        vision[1][2] = gm.getMap().getTile(x + 1, y);
-        vision[2][0] = gm.getMap().getTile(x - 1, y + 1);
-        vision[2][1] = gm.getMap().getTile(x, y + 1);
+        vision[1][2] = gm.getMap().getTile(x, y + 1);
+        vision[2][0] = gm.getMap().getTile(x + 1, y - 1);
+        vision[2][1] = gm.getMap().getTile(x + 1, y);
         vision[2][2] = gm.getMap().getTile(x + 1, y + 1);
     }
 
@@ -213,42 +212,42 @@ public class WallAI extends Entity {
         setVision();
 
         //check if the tile to the left is walkable
-        if (!(vision[0][1] instanceof Floor)) {
-
-            return MoveType.UP;
-        }else if (((Floor)vision[0][1]).contains()){
+        if (validMove(vision[0][1])){
 
             return MoveType.UP;
         }
 
         //check if the tile above is walkable
-        if (!(vision[1][0] instanceof Floor)) {
-
-            return MoveType.RIGHT;
-        }else if (((Floor)vision[1][0]).contains()){
+        if (validMove(vision[1][0])){
 
             return MoveType.RIGHT;
         }
 
         //check if the tile to the right is walkable
-        if (!(vision[2][1] instanceof Floor)) {
-
-            return MoveType.DOWN;
-        }else if (((Floor)vision[2][1]).contains()){
+        if (validMove(vision[2][1])){
 
             return MoveType.DOWN;
         }
 
         //check if the tile below is walkable
-        if (!(vision[1][2] instanceof Floor)) {
-
-            return MoveType.LEFT;
-        }else if (((Floor)vision[1][2]).contains()){
+        if (validMove(vision[1][2])){
 
             return MoveType.LEFT;
         }
 
         return null;
+    }
+
+    /**
+     * check if a move to a tile is valid.
+     *
+     * @param tile tile to check
+     * @return true if ai can move to the tile, else false.
+     */
+
+    private boolean validMove(Tile tile) {
+
+        return (tile instanceof Floor && !(tile.contains()));
     }
 
     /**

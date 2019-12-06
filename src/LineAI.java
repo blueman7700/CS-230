@@ -27,7 +27,6 @@ public class LineAI extends Entity {
      * @param y         y coordinate of the entity.
      * @param direction direction the ai will move.
      */
-
     public LineAI(int x, int y, Manager gm, MoveType direction) {
 
         this.xPos = x;
@@ -41,7 +40,6 @@ public class LineAI extends Entity {
      *
      * @param type move type of the entity.
      */
-
     @Override
     public void move(MoveType type) {
 
@@ -125,7 +123,6 @@ public class LineAI extends Entity {
      *
      * @return SmartAI as string.
      */
-
     @Override
     public String toString() {
 
@@ -137,7 +134,6 @@ public class LineAI extends Entity {
      *
      * @return new direction.
      */
-
     private MoveType swapDirection() {
 
         switch (direction) {
@@ -158,6 +154,11 @@ public class LineAI extends Entity {
         return direction;
     }
 
+    /**
+     * get the file path of the sprite.
+     *
+     * @return file path.
+     */
     public String getFilePath() {
         return FILE_PATH;
     }

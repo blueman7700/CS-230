@@ -47,6 +47,9 @@ public class DumbAI extends Entity{
 
     public void move(MoveType type) {
 
+        playerX = gm.getPlayer().getxPos();
+        playerY = gm.getPlayer().getyPos();
+
         if (type != MoveType.AUTO) {
             System.out.println("Move Type Set Incorrectly! Set To AUTO");
         }else {
@@ -73,27 +76,32 @@ public class DumbAI extends Entity{
 
                 //move up
                 newY--;
-            }else if (newY < 0) {
+            }else if (diffY < 0) {
 
                 //move down
                 newY++;
             }
 
             //if the AI is further away in the X axis it will move left/right or vice-versa.
-            if (Math.abs(newX) > Math.abs(newY)) {
+            if (Math.abs(diffX) > Math.abs(diffY)) {
 
                 //if the AI can move along the x axis it will, otherwise it will try the y axis
-                if (gm.getMap().getTile(newX, yPos).getWalkable()) {
+                if (gm.getMap().getTile(newX, yPos) instanceof Floor
+                        && gm.getMap().getTile(newX, yPos).getWalkable()) {
+
                     setPosition(newX, yPos);
-                }else if (gm.getMap().getTile(xPos, newY).getWalkable() && Math.abs(newY) > 0) {
+                }else if (gm.getMap().getTile(xPos, newY) instanceof Floor
+                        && gm.getMap().getTile(xPos, newY).getWalkable() && Math.abs(newY) > 0) {
                     setPosition(xPos, newY);
                 }
             }else {
 
                 //if the AI can move along the y axis it will, otherwise it will try the x axis
-                if (gm.getMap().getTile(xPos, newY).getWalkable()) {
+                if (gm.getMap().getTile(xPos, newY) instanceof Floor
+                        && gm.getMap().getTile(xPos, newY).getWalkable()) {
                     setPosition(xPos, newY);
-                }else if (gm.getMap().getTile(newX, yPos).getWalkable() && Math.abs(newX) > 0) {
+                }else if (gm.getMap().getTile(newX, yPos) instanceof Floor
+                        && gm.getMap().getTile(newX, yPos).getWalkable() && Math.abs(newX) > 0) {
                     setPosition(newX, yPos);
                 }
             }
