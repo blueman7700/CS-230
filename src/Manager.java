@@ -1,11 +1,18 @@
+import java.io.IOException;
 import java.util.ArrayList;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.Stage;
 
 /**
  *
@@ -36,6 +43,7 @@ public class Manager {
 	
 	@FXML
 	private Canvas gameCanvas;
+	private Button exitBtn;
 	
 	/**
 	 * 
@@ -288,4 +296,17 @@ public class Manager {
 	public Player getPlayer() {
 		return player;
 	}
+	
+	@FXML
+	public void exitClick(ActionEvent e) throws IOException {
+		//loads new stage by swapping root
+        Parent root;
+        Stage stage = (Stage)((Node) e.getSource()).getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("views/Menu.fxml"));
+        root = (Parent)loader.load();
+        Scene scene = new Scene(root, 1920, 1080);
+        stage.setScene(scene);
+        stage.show();
+	}
+	
 }
