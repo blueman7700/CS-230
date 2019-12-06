@@ -55,6 +55,12 @@ public class SortedNodeList {
 	 */
 	public void remove(Node n) {
 		list.remove(n);
+		Collections.sort(list);
+	}
+
+	public void removeHead() {
+		list.remove(0);
+		Collections.sort(list);
 	}
 
 	/**
