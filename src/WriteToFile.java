@@ -140,9 +140,9 @@ public class WriteToFile {
 			} else if (en.getClass().getName() == "SmartAI") {
 				save = save + "SMART, "+x+", "+y+"\n";
 			} else if (en.getClass().getName() == "WallAI") {
-				// = s + "WALL, "+en.getDirection()+", "+x+", "+y+"\n";;
+				save = save + "WALL, "+x+", "+y+"\n";
 			} else {
-				//s = s + "LINE, "+en.getDirection()+", "+x+", "+y+"\n";;
+				s = s + "LINE, "+((LineAI) en).getDirection()+", "+x+", "+y+"\n";;
 			}
 		}
 		return s;

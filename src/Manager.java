@@ -1,10 +1,13 @@
 import java.util.ArrayList;
+
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
+import sprites.*;
+import views.*;
 
 //The manager class
 public class Manager {
@@ -37,10 +40,11 @@ public class Manager {
 		//loads the map and sets the tiles
 		map = new Map(fr.getHeight(), fr.getWidth(), fr.fileToArray(), fr.getStartX(), fr.getStartY(), enemiesList);
 		//load the player
+		addAI();
 		player = new Player(fr.getStartX(), fr.getStartY(), this);
 		// Load images
 		playerImg = new Image("sprites/player.png");
-		//dirt = new Image("sprites/dirt.png");
+		dirt = new Image("sprites/Floor.png");
 		
 		gameCanvas.setWidth(map.getWidth() * GRID_CELL_SIZE);
 		gameCanvas.setHeight(map.getHeight() * GRID_CELL_SIZE);
@@ -92,6 +96,10 @@ public class Manager {
 						gc.drawImage(tile, x * GRID_CELL_SIZE, y * GRID_CELL_SIZE);
 					}
 				}
+				
+				
+				
+				
 			}
 		}
 		
@@ -151,6 +159,61 @@ public class Manager {
 		event.consume();
 	}
 
+	/**
+	 * adds the AI into the map
+	 */
+	public void addAI() {
+		int[] coods = new int[2];
+		for(String s : map.getEnemies()) {
+			if(s.contains("DUMB")) {
+				s = s.substring(6);
+				coods = coodsFromString(s);
+				new DumbAI(coods[0],coods[1],this);
+			} else if (s.contains("SMART")){
+				s = s.substring(7);
+				coods = coodsFromString(s);
+				new DumbAI(coods[0],coods[1],this);
+			} else if (s.contains("LINE")){
+				s = s.substring(6);
+				coods = coodsFromString(s);
+				if(s.contains("UP")) {
+					new LineAI(coods[0],coods[1],this, MoveType.UP);
+				} else if(s.contains("DOWN")) {
+					new LineAI(coods[0],coods[1],this, MoveType.DOWN);
+				} else if(s.contains("LEFT")) {
+					new LineAI(coods[0],coods[1],this, MoveType.LEFT);
+				} else {
+					new LineAI(coods[0],coods[1],this, MoveType.RIGHT);
+				}
+				
+			}
+		}
+	}
+	
+	/**
+	 * Takes in coodinates and returns the X and Y separately 
+	 * @param input the coods
+	 * @return the int format of the coods
+	 */
+	public int[] coodsFromString(String input) {
+		int[] coods = new int[2];
+		if(input.charAt(1) == ',') {
+			coods[0] = Integer.valueOf(input.substring(0, 1)) - 1;//if next char is a comma then its 1 digit (X)
+			input = input.substring(3);
+		} else {
+			coods[0] = Integer.valueOf(input.substring(0, 2)) - 1;//otherwise it's 2 digits
+			input = input.substring(4);
+		}
+	
+		if(input.length() > 1) {
+			coods[1] = Integer.valueOf(input.substring(0, 2)) - 1;//if there's more than one digit then its a 2 digit num (Y)
+		} else {
+			coods[1] = Integer.valueOf(input.substring(0, 1)) - 1;//otherwise just 1 digit
+		}
+		
+		return coods;
+	}
+	
 	/**
 	 * get the game map.
 	 *

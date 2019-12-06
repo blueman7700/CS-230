@@ -176,22 +176,7 @@ public class FileReader {
 			if(input.contains("DUMB")) {
 				type = "DUMB";
 				input = input.substring(6);
-				
-				if(input.contains("NORTH")) {//get the way the AI its facing
-					extra = "UP";
-					input = input.substring(7);
-				} else if(input.contains("SOUTH")) {
-					extra = "DOWN";
-					input = input.substring(7);
-				} else if(input.contains("EAST")) {
-					extra = "LEFT";
-					input = input.substring(6);
-				} else {
-					extra = "RIGHT";
-					input = input.substring(6);
-				}
-				
-				addEnemy(type+" "+extra+" "+String.valueOf(coodsFromString(input)[0])+" "+String.valueOf(coodsFromString(input)[1]));
+				addEnemy(type+", "+String.valueOf(coodsFromString(input)[0])+", "+String.valueOf(coodsFromString(input)[1]));
 			} else if (input.contains("LINE")) {
 				type = "LINE";			
 				input = input.substring(6);
@@ -210,15 +195,15 @@ public class FileReader {
 					input = input.substring(6);
 				}
 				
-				addEnemy(type+" "+extra+" "+String.valueOf(coodsFromString(input)[0])+" "+String.valueOf(coodsFromString(input)[1]));
+				addEnemy(type+", "+extra+", "+String.valueOf(coodsFromString(input)[0])+", "+String.valueOf(coodsFromString(input)[1]));
 			} else if (input.contains("WALL")) {//checking for the type of AI
 				type = "WALL";
 				input = input.substring(6);
-				addEnemy(type+" "+String.valueOf(coodsFromString(input)[0])+" "+String.valueOf(coodsFromString(input)[1]));
+				addEnemy(type+", "+String.valueOf(coodsFromString(input)[0])+", "+String.valueOf(coodsFromString(input)[1]));
 			} else {
 				type = "SMART";
 				input = input.substring(7);//constantly removing unneeded parts of the input
-				addEnemy(type+" "+String.valueOf(coodsFromString(input)[0])+" "+String.valueOf(coodsFromString(input)[1]));
+				addEnemy(type+", "+String.valueOf(coodsFromString(input)[0])+", "+String.valueOf(coodsFromString(input)[1]));
 			}
 		} else if(input.contains("DOOR")) { //if door
 			input = input.substring(6);

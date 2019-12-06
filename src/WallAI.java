@@ -28,7 +28,7 @@ public class WallAI extends Entity {
      * @param y         y coordinate of the entity.
      */
 
-    public WallAI(String filePath, int x, int y, Manager gm) {
+    public WallAI(int x, int y, Manager gm) {
         this.xPos = x;
         this.yPos = y;
         this.gm = gm;

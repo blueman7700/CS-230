@@ -102,7 +102,24 @@ public class LineAI extends Entity {
             }
         }
     }
-
+    
+	/**
+	 * gets the direction of the AI
+	 * @return String value of the direction of the AI
+	 */
+    public String getDirection() {
+    	switch (direction) {
+        case DOWN:
+            return "SOUTH";
+        case UP:
+            return "NORTH";
+        case LEFT:
+        	return "EAST";
+        default:
+            return "WEST";
+    	}
+    }
+    
     /**
      * create a string containing entity information.
      *
