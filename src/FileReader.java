@@ -252,7 +252,6 @@ public class FileReader {
 			input = input.substring(6);
 			int[] xy1;
 			
-			
 			if(input.substring(4, 5).equals(",")) {
 				xy1 = coodsFromString(input.substring(0, 4));
 				input = input.substring(6);

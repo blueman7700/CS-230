@@ -350,7 +350,7 @@ public class Manager {
 	
 	@FXML
 	public void saveClick(ActionEvent e) {
-		new WriteToFile().saveMap(map, user);;
+		//new WriteToFile().saveMap(map, user);;
 	}
 	
 }
