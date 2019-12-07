@@ -26,7 +26,7 @@ public class TitleScreenController {
         Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("views/Login.fxml"));
         root = (Parent)loader.load();
-        Scene scene = new Scene(root, 1920, 1080);
+        Scene scene = new Scene(root, 1000, 1000);
         stage.setScene(scene);
         stage.show();
     }

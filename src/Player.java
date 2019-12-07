@@ -99,7 +99,7 @@ public class Player extends Entity {
         //check if the game has been won
         if (wonGame(nextTile)) {
             setPosition(newX, newY);
-            //todo end the game
+            gm.win();
             return;
         //check if the next tile is a fire tile
         }else if (nextTile instanceof Fire) {

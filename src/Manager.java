@@ -1,4 +1,6 @@
 import java.io.IOException;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.ArrayList;
 
 import javafx.event.ActionEvent;
@@ -42,6 +44,8 @@ public class Manager {
 	private String levelPath;
 	//The current user logged in
 	private String user;
+	//first start of timer
+	Instant first;
 	
 	@FXML
 	private Canvas gameCanvas;
@@ -51,6 +55,8 @@ public class Manager {
 	public Manager(String level, String user) {
 		this.levelPath = "src/Files/"+level+".txt";
 		this.user = user;
+		//start the timer
+		first = Instant.now();
 	}
 	
 	public void start(Scene scene) {
@@ -262,6 +268,30 @@ public class Manager {
 		return ai;
 	}
 	
+	public void win(){
+		Instant second = Instant.now();
+		Duration duration = Duration.between(first, second);
+		//change scene to win
+		//loads new stage by swapping root
+        Parent root;
+        Stage stage = (Stage)gameCanvas.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("views/Win.fxml"));
+        try {
+			root = (Parent)loader.load();
+			WinController controller = (WinController)loader.getController();
+	        Scene scene = new Scene(root, 1000, 1000);
+	        controller.start(levelPath, user, Long.toString(duration.getSeconds()));
+	        stage.setScene(scene);
+	        stage.show();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("error loading scene");
+		}
+        
+        
+	}
+	
 	/**
 	 * Takes in coodinates and returns the X and Y separately 
 	 * @param input the coods
@@ -313,7 +343,7 @@ public class Manager {
         Stage stage = (Stage)((Node) e.getSource()).getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("views/Menu.fxml"));
         root = (Parent)loader.load();
-        Scene scene = new Scene(root, 1920, 1080);
+        Scene scene = new Scene(root, 1000, 1000);
         stage.setScene(scene);
         stage.show();
 	}

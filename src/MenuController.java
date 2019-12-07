@@ -38,7 +38,7 @@ public class MenuController {
         loader.setController(new Manager("Level1", user));
         root = (Parent)loader.load();
         Manager controller = loader.getController();  
-        Scene scene = new Scene(root, 1920, 1080);     
+        Scene scene = new Scene(root, 1000, 1000);     
         controller.start(scene);        
         stage.setScene(scene);
         stage.show();

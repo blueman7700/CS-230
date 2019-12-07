@@ -59,7 +59,7 @@ public class LoginController {
 		        FXMLLoader loader = new FXMLLoader(getClass().getResource("views/Menu.fxml"));
 		        root = (Parent)loader.load();
 		        MenuController controller = (MenuController)loader.getController();
-		        Scene scene = new Scene(root, 1920, 1080);
+		        Scene scene = new Scene(root, 1000, 1000);
 		        controller.start(user);
 		        stage.setScene(scene);
 		        stage.show();
