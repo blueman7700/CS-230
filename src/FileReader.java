@@ -70,6 +70,29 @@ public class FileReader {
 
 		return leaderboard;
 	}
+	
+	/**
+	 * Find the current level of the file
+	 * @return the file level
+	 */
+	public int readLevel() {
+		Scanner in = readDataFile();
+		
+		while(in.hasNextLine() && in.hasNext()) {//loops through file to the level
+			String line = in.nextLine();
+			if(line.contains("LEVEL")) {
+				
+				in.useDelimiter("(\\p{javaWhitespace}|,)+");//Change Delimeter to also ','
+				in.hasNext();
+				return in.nextInt();
+				
+			} else{
+				System.out.println("Error finding level");
+				return 0;
+			}
+		}
+		return 0;
+	}
 
 	/**
 	 * Takes filename as an input, and returns the map height - found at the top of the file.

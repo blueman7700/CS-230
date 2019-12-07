@@ -77,7 +77,7 @@ public class MenuController {
 		Parent root;
 		Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("views/Game.fxml"));
-		loader.setController(new Manager(user+"1", user));
+		loader.setController(new Manager(user, user));
 		try {
 			root = (Parent) loader.load();
 			Manager controller = loader.getController();

@@ -37,7 +37,7 @@ public class LoseController {
 	@FXML
 	public void restartClick(ActionEvent e) {
 		//gets the number of the current level
-		level = level.substring(level.length()-5, level.length()-4);;
+		level = level.substring(level.length()-5, level.length()-4);
 		//loads new stage by swapping root
         Parent root;
         Stage stage = (Stage)((Node) e.getSource()).getScene().getWindow();

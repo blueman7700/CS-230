@@ -14,7 +14,7 @@ public class WriteToFile {
 	 * @param name player name
 	 */
 	public void saveMap(Map m, String name, ArrayList<Entity> AI, String levelNum) {
-		strToFile(addAI(levelToString(m), AI), name, false, levelNum);
+		strToFile(addLevel(addAI(levelToString(m), AI), levelNum), name, false);
 	}
 
 	/**
@@ -118,7 +118,6 @@ public class WriteToFile {
 			}
 		}
 
-
 		return save;
 	}
 
@@ -149,12 +148,22 @@ public class WriteToFile {
 	}
 
 	/**
+	 * Adds the current level to the save file
+	 * @param s already made save file
+	 * @param level the current level
+	 * @return the updated save file
+	 */
+	public String addLevel(String s, String level) {
+		return (s = s + "LEVEL: "+level);
+	}
+
+	/**
 	 * Creates a new file, as the player's name
 	 * @param data the map in String form
 	 * @param name the player's name
 	 */
-	public void strToFile(String data, String name, Boolean b, String levelNum) {
-        File file = new File("src/Files/"+name+levelNum+".txt");
+	public void strToFile(String data, String name, Boolean b) {
+        File file = new File("src/Files/"+name+".txt");
         FileWriter fr = null;
         try {
             fr = new FileWriter(file, b);
@@ -178,7 +187,7 @@ public class WriteToFile {
 	public void saveLeaderboard(String input) {
 		String leaderboard = input + "\n";
 
-		strToFile(leaderboard, "Leaderboard", false, "");
+		strToFile(leaderboard, "Leaderboard", false);
 	}
 
 	/**
@@ -188,6 +197,6 @@ public class WriteToFile {
 	public void savePlayer(String input) {
 		String name = input + "\n";;
 
-		strToFile(name, "Users", true, "");
+		strToFile(name, "Users", true);
 	}
 }

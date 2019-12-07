@@ -42,6 +42,7 @@ public class Manager {
 	private FileReader fr;
 	//path to current level
 	private String levelPath;
+	private String level;
 	//The current user logged in
 	private String user;
 	//first start of timer
@@ -53,6 +54,7 @@ public class Manager {
 	private Button saveBtn;
 	
 	public Manager(String level, String user) {
+		this.level = level;
 		this.levelPath = "src/Files/"+level+".txt";
 		this.user = user;
 		//start the timer
@@ -285,9 +287,18 @@ public class Manager {
 	}
 	
 	public void win(){
+		//stops timer
 		Instant second = Instant.now();
 		Duration duration = Duration.between(first, second);
-		//change scene to win
+		
+		//sess if it is a user save and if so added the current level to the filepath
+		if(level.equals(user)) {
+			int levelNum = fr.readLevel();
+			level = level+levelNum;
+			levelPath = "src/Files/"+level+".txt";
+		}
+		
+		//change scene to win		
 		//loads new stage by swapping root
         Parent root;
         Stage stage = (Stage)gameCanvas.getScene().getWindow();
@@ -307,9 +318,18 @@ public class Manager {
 	}
 	
 	public void lose() {
+		//stops timer
 		Instant second = Instant.now();
 		Duration duration = Duration.between(first, second);
-		//change scene to win
+		
+		//sess if it is a user save and if so added the current level to the filepath
+		if(level.equals(user)) {
+			int levelNum = fr.readLevel();
+			level = level+levelNum;
+			levelPath = "src/Files/"+level+".txt";
+		}
+		
+		//change scene to lose
 		//loads new stage by swapping root
         Parent root;
         Stage stage = (Stage)gameCanvas.getScene().getWindow();
