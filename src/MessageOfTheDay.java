@@ -3,10 +3,20 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
+/**
+ * @author Nathan Hardy
+ * @version 1.0
+ */
 public class MessageOfTheDay {
 	static String BASE_URL = "http://cswebcat.swan.ac.uk/message?solution=";
 	static String PUZZLE_URL = "http://cswebcat.swan.ac.uk/puzzle";
-	
+
+	/**
+	 * solve the puzzle to get the message URL extension.
+	 *
+	 * @return message URL extension.
+	 * @throws Exception
+	 */
 	private static String solve() throws Exception {
 		ArrayList<Integer> puzzle = getPuzzle(PUZZLE_URL);
 		String finalStr= "";
@@ -26,7 +36,14 @@ public class MessageOfTheDay {
 		return finalStr;
 		
 	}
-	
+
+	/**
+	 * get the puzzle from the web server.
+	 *
+	 * @param urlText puzzle URL.
+	 * @return puzzle to be solved.
+	 * @throws Exception
+	 */
 	private static ArrayList<Integer> getPuzzle(String urlText) throws Exception{
 		ArrayList<Integer> puzzle = new ArrayList<Integer>();
 		int currBit;
@@ -40,12 +57,17 @@ public class MessageOfTheDay {
 		}
 		return puzzle;
 	}
-	
+
+	/**
+	 * get the message from the web server.
+	 *
+	 * @return message
+	 * @throws Exception
+	 */
 	public static String getMessage() throws Exception {
 		String extension = solve();
 		String finalStr = "";
 		int currBit;
-		//System.out.println(baseUrl + extension);
 		URL url = new URL(BASE_URL + extension);
 		HttpURLConnection con = (HttpURLConnection) url.openConnection();
 		InputStream in = con.getInputStream();
