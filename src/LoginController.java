@@ -48,22 +48,26 @@ public class LoginController {
 	
 	@FXML
 	public void loginClick(ActionEvent e) throws IOException {
-		try {
-			Login.loginTwo(textIn.getText());
-		} catch (Exception e1) {
-			
+		String user = textIn.getText();
+		
+		if(!user.equals("")) {
+			try {
+				Login.loginTwo(user);
+				//loads new stage by swapping root
+		        Parent root;
+		        Stage stage = (Stage)((Node) e.getSource()).getScene().getWindow();
+		        FXMLLoader loader = new FXMLLoader(getClass().getResource("views/Menu.fxml"));
+		        root = (Parent)loader.load();
+		        MenuController controller = (MenuController)loader.getController();
+		        Scene scene = new Scene(root, 1920, 1080);
+		        controller.start(user);
+		        stage.setScene(scene);
+		        stage.show();
+			} catch (Exception e1) {
+				
+			}
 		}
 		
-		//loads new stage by swapping root
-        Parent root;
-        Stage stage = (Stage)((Node) e.getSource()).getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("views/Game.fxml"));
-        root = (Parent)loader.load();
-        Manager controller = (Manager)loader.getController();
-        Scene scene = new Scene(root, 1920, 1080);
-        controller.start(scene);
-        stage.setScene(scene);
-        stage.show();
 		
 	}
 	

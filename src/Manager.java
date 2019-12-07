@@ -1,11 +1,18 @@
+import java.io.IOException;
 import java.util.ArrayList;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.Stage;
 
 /**
  *
@@ -19,7 +26,6 @@ public class Manager {
 	// Load an image
 	private Image tile;
 	private Image playerImg;
-	private Image dirt;
 	private Image dumbAIImg;
 	private Image smartAIImg;
 	private Image wallAIImg;
@@ -27,32 +33,38 @@ public class Manager {
 	//the player
 	private Player player;
 	//all the enemies
-	private ArrayList<String> enemiesList = new ArrayList<>();
 	private ArrayList<Entity> enemies;
 	//the map
 	private Map map;
 	//File reader
 	private FileReader fr;
+	//path to current level
+	private String levelPath;
+	//The current user logged in
+	private String user;
 	
 	@FXML
 	private Canvas gameCanvas;
+	private Button exitBtn;
+	private Button saveBtn;
+	
+	/**
+	 * 
+	 */
 	@FXML
 	public void initialize() {
 		Experiment ex = new Experiment();
 		
 		//load filereader
 		fr = new FileReader("src/Files/Level1.txt");
-		//loads the enemies
-		//enemiesList = fr.getEnemies();
 		//loads the map and sets the tiles
-		map = new Map(fr.getHeight(), fr.getWidth(), fr.fileToArray(), fr.getStartX(), fr.getStartY(), fr.getEnemies());
+		map = new Map(fr.getHeight(), fr.getWidth(), fr.fileToArray(), fr.getStartX(), fr.getStartY(), fr.getEnemies(), this);
 		//load the player
 
 		player = new Player(fr.getStartX(), fr.getStartY(), this);
 		enemies = addAI();
 		// Load images
 		playerImg = new Image("sprites/player.png");
-		dirt = new Image("sprites/Floor.png");
 		dumbAIImg = new Image("sprites/dumbAI.png");
 		smartAIImg = new Image("sprites/smartAI.png");
 		lineAIImg = new Image("sprites/lineAI.png");
@@ -64,8 +76,10 @@ public class Manager {
 		drawGame();
 	}
 	
-	public void start(Scene scene) {
+	public void start(Scene scene, String level, String user) {
 		scene.addEventFilter(KeyEvent.KEY_PRESSED, event -> processKeyEvent(event));
+		this.levelPath = "src/Files/"+level+".txt";
+		this.user = user;
 	}
 	
 	/**
@@ -286,4 +300,22 @@ public class Manager {
 	public Player getPlayer() {
 		return player;
 	}
+	
+	@FXML
+	public void exitClick(ActionEvent e) throws IOException {
+		//loads new stage by swapping root
+        Parent root;
+        Stage stage = (Stage)((Node) e.getSource()).getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("views/Menu.fxml"));
+        root = (Parent)loader.load();
+        Scene scene = new Scene(root, 1920, 1080);
+        stage.setScene(scene);
+        stage.show();
+	}
+	
+	@FXML
+	public void saveClick(ActionEvent e) {
+		new WriteToFile().saveMap(map, user);;
+	}
+	
 }

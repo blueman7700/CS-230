@@ -6,13 +6,12 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1900.0" xmlns="http://javafx.com/javafx/8.0.231" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Manager">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Manager">
    <top>
       <HBox prefHeight="39.0" prefWidth="590.0" spacing="5.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="LoadBtn" mnemonicParsing="false" text="Load" />
-            <Button fx:id="SaveBtn" mnemonicParsing="false" text="Save" />
-            <Button fx:id="ExitBtn" mnemonicParsing="false" text="Exit" />
+            <Button fx:id="saveBtn" mnemonicParsing="false" onAction="#saveClick" text="Save" />
+            <Button fx:id="exitBtn" mnemonicParsing="false" onAction="#exitClick" text="Exit" />
          </children>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
