@@ -32,6 +32,8 @@ public class MenuController {
 	@FXML
 	Button drawBtn;
 	@FXML
+	Button logBtn;
+	@FXML
 	private Label motd;
 
 	@FXML
@@ -104,6 +106,18 @@ public class MenuController {
 
 	}
 
+	@FXML
+	public void logClick(ActionEvent e) throws IOException {
+		//loads new stage by swapping root
+        Parent root;
+        Stage stage = (Stage)((Node) e.getSource()).getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("views/Login.fxml"));
+        root = (Parent)loader.load();
+        Scene scene = new Scene(root, 1000, 1000);
+        stage.setScene(scene);
+        stage.show();
+	}
+	
 	private void changeMessage() {
 
 		String msg;
