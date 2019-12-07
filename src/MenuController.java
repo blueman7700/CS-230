@@ -71,6 +71,8 @@ public class MenuController {
 	@FXML
 	public void loadClick(ActionEvent e) {
 		
+		System.out.println(user+"!!");
+		
 		//loads new stage by swapping root
 		Parent root;
 		Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();

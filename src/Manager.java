@@ -375,13 +375,15 @@ public class Manager {
 	@FXML
 	public void exitClick(ActionEvent e) throws IOException {
 		//loads new stage by swapping root
-        Parent root;
-        Stage stage = (Stage)((Node) e.getSource()).getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("views/Menu.fxml"));
-        root = (Parent)loader.load();
-        Scene scene = new Scene(root, 1000, 1000);
-        stage.setScene(scene);
-        stage.show();
+		Parent root;
+		Stage stage = (Stage)((Node) e.getSource()).getScene().getWindow();
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("views/Menu.fxml"));
+		root = (Parent)loader.load();
+		MenuController controller = (MenuController)loader.getController();
+		Scene scene = new Scene(root, 1000, 1000);
+		controller.start(user);
+		stage.setScene(scene);
+		stage.show();
 	}
 	
 	@FXML
