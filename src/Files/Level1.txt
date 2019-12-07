@@ -18,3 +18,9 @@
 #_____#__#______T#
 ##################
 START, 2, 2
+AI, WALL, 5, 7
+AI, LINE, SOUTH, 4, 16
+AI, SMART, 17, 10
+AI, DUMB, 7, 6
+DOOR, KEY, RED, 3, 8
+KEY, RED, 4, 6
