@@ -49,7 +49,7 @@ public class Floor extends Tile {
 	 * @return the Boolean contains attribute
 	 */
 	public Boolean contains() {
-		return contains;
+		return (getContents() != null);
 	}
 
 	/**
