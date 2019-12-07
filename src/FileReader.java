@@ -250,9 +250,21 @@ public class FileReader {
 			 
 		} else if (input.contains("TELE")) {
 			input = input.substring(6);
-			int[] xy1 = coodsFromString(input.substring(0, 4));
-			input = input.substring(6);
+			int[] xy1;
+			
+			
+			if(input.substring(4, 5).equals(",")) {
+				xy1 = coodsFromString(input.substring(0, 4));
+				input = input.substring(6);
+			} else if(input.substring(5, 6).equals(",")) {
+				xy1 = coodsFromString(input.substring(0, 5));
+				input = input.substring(7);
+			} else {
+				xy1 = coodsFromString(input.substring(0, 6));
+				input = input.substring(8);
+			}
 			int[] xy2 = coodsFromString(input);
+
 			Teleporter t1 = new Teleporter(xy1[0], xy1[1]);
 			Teleporter t2 = new Teleporter(xy2[0], xy2[1]);
 			t1.setPartner(t2);
