@@ -223,6 +223,7 @@ public class Manager {
 	 */
 	public ArrayList<Entity> addAI() {
 		int[] coods = new int[2];
+		MoveType m;
 		ArrayList<Entity> ai = new ArrayList<>();
 
 		for(String s : map.getEnemies()) {
@@ -241,26 +242,29 @@ public class Manager {
 				ai.add(new WallAI(coods[0], coods[1], this));
 			}else if (s.contains("LINE")){
 				s = s.substring(6);
-				coods = coodsFromString(s);
 				if(s.contains("UP")) {
-					s.substring(4);
-					ai.add(new LineAI(coods[0],coods[1],this, MoveType.UP));
+					s= s.substring(4);
+					m = MoveType.UP;
 				} else if(s.contains("DOWN")) {
-					s.substring(6);
-					ai.add(new LineAI(coods[0],coods[1],this, MoveType.DOWN));
+					s = s.substring(6);
+					m = MoveType.DOWN;
 				} else if(s.contains("LEFT")) {
-					s.substring(6);
-					ai.add(new LineAI(coods[0],coods[1],this, MoveType.LEFT));
+					s = s.substring(6);
+					m = MoveType.LEFT;
 				} else {
-					s.substring(7);
-					ai.add(new LineAI(coods[0],coods[1],this, MoveType.RIGHT));
+					s = s.substring(7);
+					m = MoveType.RIGHT;
+					
 				}
-				
+				System.out.print(s);
+				coods = coodsFromString(s);
+				ai.add(new LineAI(coods[0],coods[1],this, m));
 			}
 		}
 
 		return ai;
 	}
+	
 	
 	/**
 	 * Takes in coodinates and returns the X and Y separately 
@@ -320,7 +324,7 @@ public class Manager {
 	
 	@FXML
 	public void saveClick(ActionEvent e) {
-		new WriteToFile().saveMap(map, user);;
+		new WriteToFile().saveMap(map, user, enemies);;
 	}
 	
 }

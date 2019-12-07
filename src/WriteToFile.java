@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 /**
  * This takes a map, and player name and saves the current state of the map saved as PlayerName.txt
  * @author Nathan Preston
@@ -12,9 +13,8 @@ public class WriteToFile {
 	 * @param m the current map
 	 * @param name player name
 	 */
-	public void saveMap(Map m, String name/*, Entity[] AI*/) {
-		//strToFile(addAI(levelToString(m), AI), name, false); TODO: IMPLEMENT AI
-		strToFile(levelToString(m), name, false);
+	public void saveMap(Map m, String name, ArrayList<Entity> AI) {
+		strToFile(addAI(levelToString(m), AI), name, false);
 	}
 	
 	/**
@@ -128,7 +128,7 @@ public class WriteToFile {
 	 * @param enemies list of enemies
 	 * @return the updated save file
 	 */
-	public String addAI(String s, Entity[] enemies) {
+	public String addAI(String s, ArrayList<Entity> enemies) {
 		String save = s;
 		int x;
 		int y;
