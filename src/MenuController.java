@@ -35,10 +35,11 @@ public class MenuController {
         Parent root;
         Stage stage = (Stage)((Node) e.getSource()).getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("views/Game.fxml"));
+        loader.setController(new Manager("Level1", user));
         root = (Parent)loader.load();
-        Manager controller = (Manager)loader.getController();
-        Scene scene = new Scene(root, 1920, 1080);
-        controller.start(scene, "Level1", user);
+        Manager controller = loader.getController();  
+        Scene scene = new Scene(root, 1920, 1080);     
+        controller.start(scene);        
         stage.setScene(scene);
         stage.show();
 	}

@@ -48,6 +48,15 @@ public class Manager {
 	private Button exitBtn;
 	private Button saveBtn;
 	
+	public Manager(String level, String user) {
+		this.levelPath = "src/Files/"+level+".txt";
+		this.user = user;
+	}
+	
+	public void start(Scene scene) {
+		scene.addEventFilter(KeyEvent.KEY_PRESSED, event -> processKeyEvent(event));
+	}
+		
 	/**
 	 * 
 	 */
@@ -56,7 +65,7 @@ public class Manager {
 		Experiment ex = new Experiment();
 		
 		//load filereader
-		fr = new FileReader("src/Files/Level1.txt");
+		fr = new FileReader(levelPath);
 		//loads the map and sets the tiles
 		map = new Map(fr.getHeight(), fr.getWidth(), fr.fileToArray(), fr.getStartX(), fr.getStartY(), fr.getEnemies(), this);
 		//load the player
@@ -76,11 +85,7 @@ public class Manager {
 		drawGame();
 	}
 	
-	public void start(Scene scene, String level, String user) {
-		scene.addEventFilter(KeyEvent.KEY_PRESSED, event -> processKeyEvent(event));
-		this.levelPath = "src/Files/"+level+".txt";
-		this.user = user;
-	}
+
 	
 	/**
 	 * Draw the game on the canvas.
