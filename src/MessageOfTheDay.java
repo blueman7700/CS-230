@@ -4,7 +4,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class MessageOfTheDay {
-	static String baseUrl = "http://cswebcat.swan.ac.uk/message?solution=";
+	static String BASE_URL = "http://cswebcat.swan.ac.uk/message?solution=";
 	static String PUZZLE_URL = "http://cswebcat.swan.ac.uk/puzzle";
 	
 	private static String solve() throws Exception {
@@ -37,9 +37,7 @@ public class MessageOfTheDay {
 		while(currBit >=65 && currBit <= 90) {
 			puzzle.add(currBit);
 			currBit = in.read();
-			//System.out.println();
 		}
-		
 		return puzzle;
 	}
 	
@@ -48,15 +46,19 @@ public class MessageOfTheDay {
 		String finalStr = "";
 		int currBit;
 		//System.out.println(baseUrl + extension);
-		URL url = new URL(baseUrl + extension);
+		URL url = new URL(BASE_URL + extension);
 		HttpURLConnection con = (HttpURLConnection) url.openConnection();
 		InputStream in = con.getInputStream();
 		currBit = in.read();
 		while(currBit >0) {
-			finalStr += (char) currBit;
-			//System.out.println(currBit);
+			if(currBit == 226) {
+				finalStr += "'";
+			}else {
+				finalStr += (char) currBit;
+			}
 			currBit = in.read();
 		}
+		in.close();
 		return finalStr;
 	}
 }
