@@ -68,7 +68,7 @@ public class Manager {
 	 */
 	@FXML
 	public void initialize() {
-		Experiment ex = new Experiment();
+		//Experiment ex = new Experiment();
 		
 		//load filereader
 		fr = new FileReader(levelPath);
