@@ -35,8 +35,8 @@ public class FileReader {
 	}
 	
 	/**
-	 * takes the filename, checks if it is real. If so creates a scanner from it
-	 * @param filename, filename of .txt file
+	 * takes the filename, checks if it is real. If so creates a scanner from it.
+	 *
 	 * @return the scanner of the file
 	 */
 	public static Scanner readDataFile() {
@@ -70,8 +70,8 @@ public class FileReader {
 	}
 	
 	/**
-	 * Takes filename as an input, and returns the map height - found at the top of the file
-	 * @param filename is the directory 
+	 * Takes filename as an input, and returns the map height - found at the top of the file.
+	 *
 	 * @return the height of the map
 	 */
 	public int getHeight() {
@@ -83,8 +83,8 @@ public class FileReader {
 	}
 	
 	/**
-	 * Takes filename as an input, and returns the map width - found at the top of the file
-	 * @param filename is the directory 
+	 * Takes filename as an input, and returns the map width - found at the top of the file.
+	 *
 	 * @return the width of the map
 	 */
 	public int getWidth() {
@@ -97,8 +97,8 @@ public class FileReader {
 	}
 	
 	/**
-	 * This method takes in a filename, reads and returns the ASCII map into String format
-	 * @param filename is the directory 
+	 * This method takes in a filename, reads and returns the ASCII map into String format.
+	 *
 	 * @return the ASCII map as a string 
 	 */
 	public String readMap() {
@@ -117,8 +117,8 @@ public class FileReader {
 	}
 	
 	/**
-	 * This method takes in a filename, reads and returns the information found below the ASCII map in string form
-	 * @param filename is the directory 
+	 * This method takes in a filename, reads and returns the information found below the ASCII map in string form.
+	 *
 	 * @return the extra map details in an arraylist 
 	 */
 	public ArrayList<String> readDetails() {

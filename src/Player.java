@@ -100,7 +100,6 @@ public class Player extends Entity {
         if (wonGame(nextTile)) {
             setPosition(newX, newY);
             gm.win();
-            return;
         //check if the next tile is a fire tile
         }else if (nextTile instanceof Fire) {
             //search inventory for the correct item

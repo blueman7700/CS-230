@@ -247,18 +247,21 @@ public class Manager {
 				ai.add(new WallAI(coods[0], coods[1], this));
 			}else if (s.contains("LINE")){
 				s = s.substring(6);
-				coods = coodsFromString(s);
 				if(s.contains("UP")) {
-					s.substring(4);
+					s = s.substring(4);
+					coods = coodsFromString(s);
 					ai.add(new LineAI(coods[0],coods[1],this, MoveType.UP));
 				} else if(s.contains("DOWN")) {
-					s.substring(6);
+					s = s.substring(6);
+					coods = coodsFromString(s);
 					ai.add(new LineAI(coods[0],coods[1],this, MoveType.DOWN));
 				} else if(s.contains("LEFT")) {
-					s.substring(6);
+					s = s.substring(6);
+					coods = coodsFromString(s);
 					ai.add(new LineAI(coods[0],coods[1],this, MoveType.LEFT));
 				} else {
-					s.substring(7);
+					s = s.substring(7);
+					coods = coodsFromString(s);
 					ai.add(new LineAI(coods[0],coods[1],this, MoveType.RIGHT));
 				}
 				

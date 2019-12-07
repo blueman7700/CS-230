@@ -36,4 +36,8 @@ public class Experiment {
 			e.printStackTrace();
 		}  	
     }
+
+    public void stop() {
+    	clip.stop();
+	}
 }

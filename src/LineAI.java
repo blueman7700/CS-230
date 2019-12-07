@@ -53,11 +53,11 @@ public class LineAI extends Entity {
             switch (direction) {
                 case UP:
                     newX = this.getxPos();
-                    newY = this.getyPos() + 1;
+                    newY = this.getyPos() - 1;
                     break;
                 case DOWN:
                     newX = this.getxPos();
-                    newY = this.getyPos() - 1;
+                    newY = this.getyPos() + 1;
                     break;
                 case LEFT:
                     newX = this.getxPos() - 1;
@@ -79,10 +79,10 @@ public class LineAI extends Entity {
             Tile nextTile = gm.getMap().getTile(newX, newY);
 
             //check if the tile is floor and has not content
-            if (nextTile instanceof Floor) {
-                if (((Floor) nextTile).getWalkable()) {
-                    canMove = true;
-                }
+            if (nextTile instanceof Floor && !nextTile.contains()) {
+
+                loopCount = 0;
+                canMove = true;
             }
 
             //check if the next tile can be moved to
@@ -95,7 +95,7 @@ public class LineAI extends Entity {
                 //if the counter is greater than one then the entity is unable to move from its current position
                 if (loopCount <= 1) {
                     direction = swapDirection();
-                    move(direction);
+                    move(MoveType.AUTO);
                 }
             }
         }
