@@ -31,13 +31,33 @@ public class WinController {
 		this.level=level;
 		this.user=user;
 		this.seconds=seconds;
-		System.out.println("Your time was: "+seconds+" Seconds");
 		scoreText.setText("Your time was: "+seconds+" Seconds");
 	}
 	
 	@FXML
 	public void nextClick(ActionEvent e) {
-		
+		//gets the number of the current level and adds one to get the next level
+		level = level.substring(level.length()-5, level.length()-4);;
+		int iLevel = Integer.parseInt(level);
+		iLevel++;
+		//loads new stage by swapping root
+        Parent root;
+        Stage stage = (Stage)((Node) e.getSource()).getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("views/Game.fxml"));
+        loader.setController(new Manager("Level"+iLevel, user));
+        try {
+			root = (Parent)loader.load();
+			Manager controller = loader.getController();  
+			Scene scene = new Scene(root, 1000, 1000);     
+			controller.start(scene);        
+			stage.setScene(scene);
+			stage.show();	
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			System.out.println("Cant load level"+iLevel);
+		}
+        
 	}
 	
 	@FXML
