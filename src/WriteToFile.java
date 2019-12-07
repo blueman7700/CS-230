@@ -132,19 +132,21 @@ public class WriteToFile {
 		int x;
 		int y;
 		for(Entity en : enemies) {
-			x = en.getxPos() + 1;
-			y = en.getyPos() + 1;
-			if(en.getClass().getName() == "DumbAI") {
+			x = en.getxPos();
+			y = en.getyPos();
+			if(en instanceof DumbAI) {
 				save = save + "AI, DUMB, "+x+", "+y+"\n";;
-			} else if (en.getClass().getName() == "SmartAI") {
+			} else if (en instanceof SmartAI) {
 				save = save + "AI, SMART, "+x+", "+y+"\n";
-			} else if (en.getClass().getName() == "WallAI") {
+			} else if (en instanceof WallAI) {
 				save = save + "AI, WALL, "+x+", "+y+"\n";
+			} else if (en instanceof LineAI){
+				save = save + "AI, LINE, "+((LineAI) en).getDirection()+", "+x+", "+y+"\n";;
 			} else {
-				s = s + "AI, LINE, "+((LineAI) en).getDirection()+", "+x+", "+y+"\n";;
+				
 			}
 		}
-		return s;
+		return save;
 	}
 
 	/**
