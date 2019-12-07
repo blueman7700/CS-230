@@ -132,11 +132,7 @@ public class Manager {
 	                	}
 						gc.drawImage(tile, x * GRID_CELL_SIZE, y * GRID_CELL_SIZE);
 					}
-				}
-				
-				
-				
-				
+				}					
 			}
 		}
 		
@@ -217,6 +213,10 @@ public class Manager {
 	        	break;
 		}
 		
+		if(collision()) {
+			lose();
+		}
+		
 		// Redraw game as the player may have moved.
 		drawGame();
 		
@@ -264,8 +264,21 @@ public class Manager {
 				
 			}
 		}
-
 		return ai;
+	}
+	
+	public Boolean collision() {
+		for(Entity i : enemies) {
+			
+			int px = player.getxPos();
+			int py = player.getyPos();
+			int ax = i.getxPos();
+			int ay = i.getyPos();
+			if(px == ax && py == ay) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	public void win(){
@@ -288,8 +301,28 @@ public class Manager {
 			e.printStackTrace();
 			System.out.println("error loading scene");
 		}
-        
-        
+	}
+	
+	public void lose() {
+		Instant second = Instant.now();
+		Duration duration = Duration.between(first, second);
+		//change scene to win
+		//loads new stage by swapping root
+        Parent root;
+        Stage stage = (Stage)gameCanvas.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("views/Lose.fxml"));
+        try {
+			root = (Parent)loader.load();
+			LoseController controller = (LoseController)loader.getController();
+	        Scene scene = new Scene(root, 1000, 1000);
+	        controller.start(levelPath, user, Long.toString(duration.getSeconds()));
+	        stage.setScene(scene);
+	        stage.show();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("error loading scene");
+		}
 	}
 	
 	/**
