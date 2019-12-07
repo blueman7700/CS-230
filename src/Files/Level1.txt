@@ -1,35 +1,28 @@
-15,15
-###############
-#_____________#
-#_____________#
-#_____________#
-#####_###_###d#
-#_T_###_###___#
-#___#_________#
-#___#_________#
-#___#___T_____#
-#___#########d#
-#_____#___ww__#
-#fff__#g__ww__#
-#__f__#___ww__#
-#__f__#___ww__#
-###############
+12,12
+############
+#_dg#______#
+#__#T______#
+#_T#______T#
+############
+#____f_#__T#
+#____ff#___#
+#______#___#
+#______#___#
+#www___#___#
+#__w___d___#
+############
 START, 2, 2
-AI, LINE, NORTH, 5, 5
-AI, LINE, SOUTH, 7, 3
-AI, LINE, NORTH, 9, 5
-AI, LINE, SOUTH, 11, 3
-AI, LINE, NORTH, 13, 5
-AI, WALL, 13, 7
-AI, SMART, 9, 7
-AI, DUMB, 5, 11
-AI, LINE, NORTH, 10, 14
-TOKEN, 14, 2
-TOKEN, 6, 5
-TOKEN, 10, 5
-DOOR, TOKEN, 3, 14, 5
-KEY, RED, 2, 14
-DOOR, KEY, RED, 14, 10
-ITEM, BOOT, 6, 8
-ITEM, FLIP, 6, 14
-TELE, 10, 9, 3, 6
+AI, LINE, EAST, 11, 4
+AI, SMART, 10, 7
+AI, WALL, 10, 10
+TOKEN, 11, 2
+TOKEN, 9, 8
+TOKEN, 2, 11
+TOKEN, 7, 6
+DOOR, TOKEN, 4, 3, 2
+ITEM, BOOT, 3, 11
+ITEM, FLIP, 2, 6
+KEY, BLUE, 6, 2
+DOOR, KEY, BLUE, 8, 11
+TELE, 3, 4, 5, 3
+TELE, 11, 4, 11, 6

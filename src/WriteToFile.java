@@ -16,7 +16,7 @@ public class WriteToFile {
 	public void saveMap(Map m, String name, ArrayList<Entity> AI, String levelNum) {
 		strToFile(addAI(levelToString(m), AI), name, false, levelNum);
 	}
-	
+
 	/**
 	 * Takes in a map, draws an ASCII version. Then calls detailsToString to get the map details
 	 * @param m the current map
@@ -51,17 +51,17 @@ public class WriteToFile {
 						break;
 					default:
 						save = save + "_";
-						break;	
+						break;
 				}
 			}
 			save = save + "\n";
 		}
-		
+
 		save = detailsToString(m, save);
-		
+
 		return save;
 	}
-	
+
 	/**
 	 * Takes in the current map and finds any items/doors/teleporters and adds the specific details
 	 * @param m current map
@@ -73,13 +73,13 @@ public class WriteToFile {
 		Boolean teleporter = false;//there's two teleporters in the map, only need one to be read
 		int startx = m.getStartX() + 1;
 		int starty = m.getStartY() + 1;
-		
-		
+
+
 		save = save + "START, "+startx+", "+starty+"\n";
-		
-		for(int y = 0; y < m.getHeight(); y++) {	
+
+		for(int y = 0; y < m.getHeight(); y++) {
 			for(int x = 0; x < m.getWidth(); x++) {
-				
+
 				switch(m.getTile(x, y).getClass().getName()) {
 					case("Floor"):
 						if(((Floor) m.getTile(x, y)).contains())  {
@@ -97,10 +97,10 @@ public class WriteToFile {
 							case("FireBoots"):
 								save = save + "ITEM, BOOT, "+(x+1)+", "+(y+1)+"\n";
 								break;
-							}	 
+							}
 						}
 						break;
-					
+
 					case("KeyDoor"):
 						save = save + "DOOR, KEY, "+((KeyDoor) m.getTile(x, y)).getColour()+", "+(x+1)+", "+(y+1)+"\n";
 						break;
@@ -117,11 +117,11 @@ public class WriteToFile {
 				}
 			}
 		}
-		
-		
+
+
 		return save;
 	}
-	
+
 	/**
 	 * Adds AI to the save file
 	 * @param s already made save file
@@ -147,7 +147,7 @@ public class WriteToFile {
 		}
 		return s;
 	}
-	
+
 	/**
 	 * Creates a new file, as the player's name
 	 * @param data the map in String form
@@ -170,24 +170,24 @@ public class WriteToFile {
             }
         }
     }
-	
+
 	/**
 	 * Saves the top 10 players: their username and score
 	 * @param input string value of the leaderboard
 	 */
 	public void saveLeaderboard(String input) {
 		String leaderboard = input + "\n";
-		
+
 		strToFile(leaderboard, "Leaderboard", false, "");
-	}	
-	
+	}
+
 	/**
 	 * Adds a new name to the list of players
 	 * @param input the String value of the new name
 	 */
 	public void savePlayer(String input) {
 		String name = input + "\n";;
-		
+
 		strToFile(name, "Users", true, "");
 	}
 }
