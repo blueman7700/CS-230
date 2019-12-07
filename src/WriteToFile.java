@@ -13,8 +13,8 @@ public class WriteToFile {
 	 * @param m the current map
 	 * @param name player name
 	 */
-	public void saveMap(Map m, String name, ArrayList<Entity> AI) {
-		strToFile(addAI(levelToString(m), AI), name, false);
+	public void saveMap(Map m, String name, ArrayList<Entity> AI, String levelNum) {
+		strToFile(addAI(levelToString(m), AI), name, false, levelNum);
 	}
 	
 	/**
@@ -136,13 +136,13 @@ public class WriteToFile {
 			x = en.getxPos() + 1;
 			y = en.getyPos() + 1;
 			if(en.getClass().getName() == "DumbAI") {
-				save = save + "DUMB, "+x+", "+y+"\n";;
+				save = save + "AI, DUMB, "+x+", "+y+"\n";;
 			} else if (en.getClass().getName() == "SmartAI") {
-				save = save + "SMART, "+x+", "+y+"\n";
+				save = save + "AI, SMART, "+x+", "+y+"\n";
 			} else if (en.getClass().getName() == "WallAI") {
-				save = save + "WALL, "+x+", "+y+"\n";
+				save = save + "AI, WALL, "+x+", "+y+"\n";
 			} else {
-				s = s + "LINE, "+((LineAI) en).getDirection()+", "+x+", "+y+"\n";;
+				s = s + "AI, LINE, "+((LineAI) en).getDirection()+", "+x+", "+y+"\n";;
 			}
 		}
 		return s;
@@ -153,8 +153,8 @@ public class WriteToFile {
 	 * @param data the map in String form
 	 * @param name the player's name
 	 */
-	public void strToFile(String data, String name, Boolean b) {
-        File file = new File("src/Files/"+name+".txt");
+	public void strToFile(String data, String name, Boolean b, String levelNum) {
+        File file = new File("src/Files/"+name+levelNum+".txt");
         FileWriter fr = null;
         try {
             fr = new FileWriter(file, b);
@@ -178,7 +178,7 @@ public class WriteToFile {
 	public void saveLeaderboard(String input) {
 		String leaderboard = input + "\n";
 		
-		strToFile(leaderboard, "Leaderboard", false);
+		strToFile(leaderboard, "Leaderboard", false, "");
 	}	
 	
 	/**
@@ -188,6 +188,6 @@ public class WriteToFile {
 	public void savePlayer(String input) {
 		String name = input + "\n";;
 		
-		strToFile(name, "Users", true);
+		strToFile(name, "Users", true, "");
 	}
 }

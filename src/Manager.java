@@ -386,7 +386,8 @@ public class Manager {
 	
 	@FXML
 	public void saveClick(ActionEvent e) {
-		//new WriteToFile().saveMap(map, user);;
+		String levelNum = levelPath.substring(levelPath.length()-5, levelPath.length()-4);
+		new WriteToFile().saveMap(map, user, enemies, levelNum);;
 	}
 	
 }

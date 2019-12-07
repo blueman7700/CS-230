@@ -70,7 +70,26 @@ public class MenuController {
 
 	@FXML
 	public void loadClick(ActionEvent e) {
-
+		
+		//loads new stage by swapping root
+		Parent root;
+		Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("views/Game.fxml"));
+		loader.setController(new Manager(user+"1", user));
+		try {
+			root = (Parent) loader.load();
+			Manager controller = loader.getController();
+			Scene scene = new Scene(root, 1000, 1000);
+			controller.start(scene);
+			stage.setScene(scene);
+			stage.show();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			System.out.println("Cant load user level");
+		}
+		
+		
 	}
 
 	@FXML
