@@ -135,11 +135,11 @@ public class Player extends Entity {
         	switch (type) {
 				case UP:
 					newX = ((Teleporter)nextTile).getPartner().getxPos();
-					newY = ((Teleporter)nextTile).getPartner().getyPos() - 1;
+					newY = ((Teleporter)nextTile).getPartner().getyPos() + 1;
 					break;
 				case DOWN:
 					newX = ((Teleporter)nextTile).getPartner().getxPos();
-					newY = ((Teleporter)nextTile).getPartner().getyPos() + 1;
+					newY = ((Teleporter)nextTile).getPartner().getyPos() - 1;
 					break;
 				case LEFT:
 					newX = ((Teleporter)nextTile).getPartner().getxPos() - 1;
