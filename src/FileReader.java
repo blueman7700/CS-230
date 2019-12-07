@@ -26,7 +26,6 @@ public class FileReader {
 		int count = 0;
 		for(int y = 0; y < h; y++) {
 			for(int x = 0; x < w; x++) {
-				System.out.print(x);
 				level[y][x] = charToObject(readMap().charAt(count));//takes a character from the string and inputs a Tile
 				count++;
 			}
