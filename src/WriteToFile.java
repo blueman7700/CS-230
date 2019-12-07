@@ -108,11 +108,9 @@ public class WriteToFile {
 						save = save + "DOOR, TOKEN, "+((TokenDoor) m.getTile(x, y)).getNum()+", "+(x+1)+", "+(y+1)+"\n";
 						break;
 					case("Teleporter"):
-						if(teleporter == false) {
 							Teleporter t = ((Teleporter) m.getTile(x, y)).getPartner();
 							save = save + "TELE, "+(x+1)+", "+(y+1)+", "+(t.getxPos()+1)+", "+(t.getyPos()+1)+"\n";
 							teleporter = true;
-						}
 						break;
 				}
 			}
