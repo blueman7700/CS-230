@@ -327,6 +327,7 @@ public class Manager {
 			int levelNum = fr.readLevel();
 			level = level+levelNum;
 			levelPath = "src/Files/"+level+".txt";
+			System.out.println(levelPath+" : " + level);
 		}
 		
 		//change scene to lose

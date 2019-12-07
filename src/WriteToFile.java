@@ -154,7 +154,7 @@ public class WriteToFile {
 	 * @return the updated save file
 	 */
 	public String addLevel(String s, String level) {
-		return (s = s + "LEVEL: "+level);
+		return (s = s + "LEVEL, "+level);
 	}
 
 	/**

@@ -77,21 +77,15 @@ public class FileReader {
 	 */
 	public int readLevel() {
 		Scanner in = readDataFile();
-		
-		while(in.hasNextLine() && in.hasNext()) {//loops through file to the level
-			String line = in.nextLine();
-			if(line.contains("LEVEL")) {
-				
-				in.useDelimiter("(\\p{javaWhitespace}|,)+");//Change Delimeter to also ','
-				in.hasNext();
-				return in.nextInt();
-				
-			} else{
-				System.out.println("Error finding level");
-				return 0;
-			}
+		System.out.println("reading level");
+		String line = in.nextLine();
+		while(in.hasNext()) {//loops through file to the level
+			line = in.nextLine();
+			System.out.println(line);
 		}
-		return 0;
+		System.out.println("Line:" + line);
+		System.out.println(line.substring(line.length()-1));
+		return Integer.parseInt(line.substring(line.length()-1));
 	}
 
 	/**
