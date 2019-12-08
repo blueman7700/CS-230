@@ -50,7 +50,9 @@ public class Manager {
 	
 	@FXML
 	private Canvas gameCanvas;
+	@FXML
 	private Button exitBtn;
+	@FXML
 	private Button saveBtn;
 	
 	public Manager(String level, String user) {
@@ -238,7 +240,6 @@ public class Manager {
 				s = s.substring(6);
 				coods = coodsFromString(s);
 				ai.add(new DumbAI(coods[0],coods[1],this));
-				System.out.println("Made Dumb AI");
 			} else if (s.contains("SMART")){
 				s = s.substring(7);
 				coods = coodsFromString(s);
@@ -327,7 +328,6 @@ public class Manager {
 			int levelNum = fr.readLevel();
 			level = level+levelNum;
 			levelPath = "src/Files/"+level+".txt";
-			System.out.println(levelPath+" : " + level);
 		}
 		
 		//change scene to lose
@@ -409,6 +409,9 @@ public class Manager {
 	
 	@FXML
 	public void saveClick(ActionEvent e) {
+		for (Entity en : enemies) {
+			System.out.println("x: "+en.getxPos()+"y: "+en.getyPos());
+		}
 		String levelNum = levelPath.substring(levelPath.length()-5, levelPath.length()-4);
 		new WriteToFile().saveMap(map, user, enemies, levelNum);;
 	}

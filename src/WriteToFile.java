@@ -132,6 +132,7 @@ public class WriteToFile {
 		for(Entity en : enemies) {
 			x = en.getxPos();
 			y = en.getyPos();
+			System.out.println("x: "+x+"y: "+y);
 			if(en instanceof DumbAI) {
 				save = save + "AI, DUMB, "+x+", "+y+"\n";;
 			} else if (en instanceof SmartAI) {

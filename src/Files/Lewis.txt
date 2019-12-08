@@ -1,31 +1,37 @@
-12, 12
-############
-#_dg#______#
-#__#t______#
-#_t#______t#
-############
-#____f_#__t#
-#____ff#___#
-#______#___#
-#______#___#
-#www___#___#
-#__w___d___#
-############
+15, 15
+###############
+#_____________#
+#_____________#
+#_____________#
+#####_###_###d#
+#_t_###_###___#
+#___#_________#
+#___#_________#
+#___#____t____#
+#___#########d#
+#_____#___ww__#
+#fff__#g__ww__#
+#__f__#___ww__#
+#__f__#___ww__#
+###############
 START, 2, 2
-DOOR, TOKEN, 4, 3, 2
-KEY, BLUE, 6, 2
-TOKEN, 11, 2
-TELE, 5, 3, 3, 4
-TELE, 3, 4, 5, 3
-TELE, 11, 4, 11, 6
-ITEM, FLIP, 2, 6
-TOKEN, 7, 6
-TELE, 11, 6, 11, 4
-TOKEN, 9, 8
-TOKEN, 2, 11
-ITEM, BOOT, 3, 11
-DOOR, KEY, BLUE, 8, 11
-AI, LINE, EAST, 9, 2
-AI, SMART, 8, 5
-AI, WALL, 8, 8
-LEVEL, 1
+TOKEN, 14, 2
+TOKEN, 6, 5
+TOKEN, 10, 5
+DOOR, TOKEN, 3, 14, 5
+TELE, 3, 6, 10, 9
+ITEM, BOOT, 6, 8
+TELE, 10, 9, 3, 6
+DOOR, KEY, RED, 14, 10
+KEY, RED, 2, 14
+ITEM, FLIP, 6, 14
+AI, LINE, NORTH, 3, 2
+AI, LINE, SOUTH, 5, 2
+AI, LINE, NORTH, 7, 2
+AI, LINE, SOUTH, 9, 2
+AI, LINE, NORTH, 11, 2
+AI, WALL, 12, 5
+AI, SMART, 7, 6
+AI, DUMB, 3, 8
+AI, LINE, NORTH, 8, 11
+LEVEL, 2
