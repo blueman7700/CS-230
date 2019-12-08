@@ -186,7 +186,7 @@ public class Manager {
 		for (Item i : player.getInv()) {
 
 			if (i instanceof Key) {
-				if (((Key) i).getColour().equals("Red")) {
+				if (((Key) i).getColour().equals("RED")) {
 					totRKey++;
 				}else {
 					totBKey++;
