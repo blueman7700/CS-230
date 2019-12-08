@@ -25,6 +25,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -205,6 +207,8 @@ public class DrawController {
 	 */
 	public void start(String user) {
 		this.userID = user;
+		new Pane();
+		((Pane)canvas.getParent()).getStyleClass().add("canvas");
 	}
 	
 	/**
