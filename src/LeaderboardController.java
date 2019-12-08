@@ -138,7 +138,7 @@ public class LeaderboardController {
         }
         positions.entrySet().stream().sorted(Collections.reverseOrder(Map.Entry.comparingByValue())).forEachOrdered(x -> sortedPosition.put(x.getKey(), x.getValue()));
         Set<Map.Entry<String, Integer>> mapSet = sortedPosition.entrySet();
-        fullLeaderboard.add("Level "+levelNum+ " Top Scores:");
+        fullLeaderboard.add("Level "+levelNum+ " Fastest Times:");
         for(int i = 1;i<displayNum+1;i++) {
         	Map.Entry<String, Integer> partAt = (new ArrayList<Map.Entry<String, Integer>>(mapSet)).get(positions.size()-i);
         	System.out.println(partAt.toString().replace("=","   "));
