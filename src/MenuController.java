@@ -1,4 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Handler;
@@ -96,14 +99,16 @@ public class MenuController {
 	@FXML
 	public void loadClick(ActionEvent e) {
 		
-		System.out.println(user+"!!");
+		File f = new File("src/Files/"+user+".txt");
 		
-		//loads new stage by swapping root
-		Parent root;
-		Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("views/Game.fxml"));
-		loader.setController(new Manager(user, user));
 		try {
+			//Scanner checks to see if the user has a save
+			Scanner in = new Scanner(f);
+			//loads new stage by swapping root
+			Parent root;
+			Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("views/Game.fxml"));
+			loader.setController(new Manager(user, user));
 			root = (Parent) loader.load();
 			Manager controller = loader.getController();
 			Scene scene = new Scene(root, 1000, 1000);
@@ -111,10 +116,9 @@ public class MenuController {
 			stage.setScene(scene);
 			stage.show();
 		} catch (IOException e1) {
-			e1.printStackTrace();
-			System.out.println("Cant load user level");
+			System.out.println("Not Found");	//if file not found, throw exception
+			
 		}
-		
 		
 	}
 
