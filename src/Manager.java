@@ -148,14 +148,6 @@ public class Manager {
 	public void drawGame() {
 		// Get the Graphic Context of the canvas. This is what we draw on.
 		GraphicsContext gc = gameCanvas.getGraphicsContext2D();
-
-		// trys and loads a custom player sprite, if it can then loads default
-		try {
-			playerImg = new Image("Files/"+user+".png");
-		} catch(Exception e) {
-			System.out.println("can't load custom sprite!");
-			playerImg = new Image("sprites/player.png");
-		}
 		
 		// Clear canvas
 		gc.fillRect(0, 0, gameCanvas.getWidth(), gameCanvas.getHeight());
