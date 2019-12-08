@@ -36,6 +36,7 @@ public class Player extends Entity {
      *
      * @param x        x coordinate of the player.
      * @param y        y coordinate of the player.
+     * @param gm the game manager
      */
     public Player(int x, int y, Manager gm) {
 

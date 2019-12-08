@@ -180,6 +180,7 @@ public class WriteToFile {
 	 * Creates a new file, as the player's name
 	 * @param data the map in String form
 	 * @param name the player's name
+	 * @param b true.
 	 */
 	public void strToFile(String data, String name, Boolean b) {
         File file = new File("src/Files/"+name+".txt");

@@ -125,6 +125,7 @@ public class MenuController {
 	/**
 	 * Changes scene to leader boards
 	 * @param e action of clicking
+	 * @throws IOException can't chnage scene
 	 */
 	@FXML
 	public void leaderClick(ActionEvent e) throws IOException{

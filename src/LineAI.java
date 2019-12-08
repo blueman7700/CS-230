@@ -26,6 +26,7 @@ public class LineAI extends Entity {
      * @param x         x coordinate of the entity.
      * @param y         y coordinate of the entity.
      * @param direction direction the ai will move.
+     * @param gm the game Manager.
      */
     public LineAI(int x, int y, Manager gm, MoveType direction) {
 

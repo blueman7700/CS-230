@@ -25,6 +25,7 @@ public class WallAI extends Entity {
      *
      * @param x         x coordinate of the entity.
      * @param y         y coordinate of the entity.
+     * @param gm The game manager.
      */
 
     public WallAI(int x, int y, Manager gm) {

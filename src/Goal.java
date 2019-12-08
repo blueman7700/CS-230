@@ -6,8 +6,7 @@
  * @author Negrusa Sergiu
  * @version 1.0
  * <br><b>History:</b>
- * 	<li>Version 1.0 (26/11/2019)</li>
- * </ul>
+ * <p>Version 1.0 (26/11/2019)</p>
  */
 
 public class Goal extends Tile{

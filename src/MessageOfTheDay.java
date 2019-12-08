@@ -62,8 +62,8 @@ public class MessageOfTheDay {
 	/**
 	 * get the message from the web server.
 	 *
-	 * @return message
-	 * @throws Exception
+	 * @return message The message from the server
+	 * @throws Exception cant get message
 	 */
 	public static String getMessage() throws Exception {
 		String extension = solve();

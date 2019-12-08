@@ -64,14 +64,14 @@ public class leaderboardController {
 		scores.setPrefWidth(500);
 		scores.setPrefHeight(700);
 	}
-
+	
+	@FXML
 	/**
 	 * leave the leaderboard and return to the menu.
 	 *
 	 * @param e
 	 * @throws IOException
 	 */
-	@FXML
 	public void backClick(ActionEvent e) throws IOException {
 		//loads new stage by swapping root
 		Parent root;

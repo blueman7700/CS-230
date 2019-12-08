@@ -567,12 +567,12 @@ public class Manager {
 		return player;
 	}
 	
+	@FXML
 	/**
 	 * Exits too the main menu
 	 * @param Action of clicking
 	 * @throws IOException cant change scene
 	 */
-	@FXML
 	public void exitClick(ActionEvent e) throws IOException {
 		//loads new stage by swapping root
 		Parent root;
@@ -586,11 +586,11 @@ public class Manager {
 		stage.show();
 	}
 	
+	@FXML
 	/**
 	 * Saves the current game
 	 * @param eAction of clicking
 	 */
-	@FXML
 	public void saveClick(ActionEvent e) {
 		
 		if(level.equals(user)) {

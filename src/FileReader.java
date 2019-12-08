@@ -259,6 +259,8 @@ public class FileReader {
 	/**
 	 * adds the details specified under the ASCII drawing of the map
 	 * @param input one detail (one line from the file)
+	 * @param level The list of tiles
+	 * @return The list of tiles with details added
 	 */
 	public Tile[][] addDetails(String input, Tile[][] level) {
 		String type = "";//the type of AI

@@ -57,14 +57,14 @@ public class LoginController {
 			System.out.println("failed to display names");
 		}
 	}
-
+	
+	@FXML
 	/**
 	 * process login button click.
 	 *
 	 * @param e action event.
 	 * @throws IOException
 	 */
-	@FXML
 	public void loginClick(ActionEvent e) throws IOException {
 		try {
 			if(!textIn.getText().contains(" ")) {

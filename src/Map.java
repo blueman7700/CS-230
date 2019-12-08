@@ -45,6 +45,7 @@ public class Map {
 	 * If the necessary items are found, the door becomes a floor
 	 * @param d the door to be opened
 	 * @param playerInv the player's inventory to be searched through
+	 * @param n the number of token the player has
 	 */
 	public void openDoor(Tile d, LinkedList<Item> playerInv, int n) {
 		int[] coods;
