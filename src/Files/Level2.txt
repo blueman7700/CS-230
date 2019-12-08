@@ -14,7 +14,7 @@
 #__f__#___ww__#
 #__f__#___ww__#
 ###############
-START, 2, 2
+START, 2, 3
 AI, LINE, NORTH, 5, 5
 AI, LINE, SOUTH, 7, 3
 AI, LINE, NORTH, 9, 5

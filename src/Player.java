@@ -69,7 +69,7 @@ public class Player extends Entity {
         Tile nextTile;
         int newX = 0;
         int newY = 0;
-
+        Boolean hasItem = false;
         //get the position of the tile in the direction of movement
         switch (type) {
             case UP:
@@ -105,24 +105,30 @@ public class Player extends Entity {
             //search inventory for the correct item
             for (Item i : inventory) {
                 if (i instanceof FireBoots) {
-                    setPosition(newX, newY);
+                    hasItem = true;
                     //no need to continue the loop
                     break;
-                } else {
-                	gm.lose(); //if they dont have the boots, they die 
-                }
+                } 
+            }
+            if(hasItem) {
+                setPosition(newX, newY);
+            } else {
+            	gm.lose();
             }
         //check if the next tile is a water tile
         }else if (nextTile instanceof Water) {
             //search inventory for correct item
             for (Item i : inventory) {
                 if (i instanceof Flippers) {
-                    setPosition(newX, newY);
+                    hasItem = true;
                     //no need to continue the loop
                     break;
-                } else {
-                	gm.lose();//if they don't have flippers they drown
-                }
+                } 
+            }
+            if(hasItem) {
+                setPosition(newX, newY);
+            } else {
+            	gm.lose();
             }
         //check if the next tile is a door
         }else if (nextTile instanceof TokenDoor || nextTile instanceof KeyDoor){
