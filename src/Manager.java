@@ -113,15 +113,15 @@ public class Manager {
 		player.setTokens(fr.readTokens());
 		//load ai
 		enemies = addAI();
-		// Load images
+		
+		// trys and loads a custom player sprite, if it can then loads default
 		try {
 			playerImg = new Image("Files/"+user+".png");
 		} catch(Exception e) {
 			System.out.println("can't load custom sprite!");
 			playerImg = new Image("sprites/player.png");
 		}
-		
-		
+		// loads images	
 		dumbAIImg = new Image("sprites/dumbAI.png");
 		smartAIImg = new Image("sprites/smartAI.png");
 		lineAIImg = new Image("sprites/lineAI.png");
