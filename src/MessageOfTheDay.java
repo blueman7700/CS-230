@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 /**
+ * Handles getting the message of the day from external websites.
  * @author Nathan Hardy
  * @version 1.0
  */
