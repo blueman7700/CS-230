@@ -37,9 +37,11 @@ public class WinController {
 	@FXML
 	public void nextClick(ActionEvent e) {
 		//gets the number of the current level and adds one to get the next level
+		System.out.println(level);
 		level = level.substring(level.length()-5, level.length()-4);;
 		int iLevel = Integer.parseInt(level);
 		iLevel++;
+		System.out.println(iLevel);
 		//loads new stage by swapping root
         Parent root;
         Stage stage = (Stage)((Node) e.getSource()).getScene().getWindow();

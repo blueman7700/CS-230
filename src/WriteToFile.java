@@ -13,8 +13,8 @@ public class WriteToFile {
 	 * @param m the current map
 	 * @param name player name
 	 */
-	public void saveMap(Map m, String name, ArrayList<Entity> AI, String levelNum) {
-		strToFile(addLevel(addAI(levelToString(m), AI), levelNum), name, false);
+	public void saveMap(Map m, String name, ArrayList<Entity> AI, String levelNum, Player p) {
+		strToFile(addLevel(addAI(levelToString(m, p), AI), levelNum), name, false);
 	}
 
 	/**
@@ -22,7 +22,7 @@ public class WriteToFile {
 	 * @param m the current map
 	 * @return String format of the current map
 	 */
-	public String levelToString(Map m) {
+	public String levelToString(Map m, Player p) {
 		String save = "";
 		save = save + m.getHeight()+", "+m.getWidth()+"\n";
 		for(int y = 0; y < m.getHeight(); y++) {
@@ -57,7 +57,7 @@ public class WriteToFile {
 			save = save + "\n";
 		}
 
-		save = detailsToString(m, save);
+		save = detailsToString(m, save, p);
 
 		return save;
 	}
@@ -68,14 +68,10 @@ public class WriteToFile {
 	 * @param inSave the String passed from levelToString, to update
 	 * @return the updated string from levelToString, including map details
 	 */
-	public String detailsToString(Map m, String inSave) {
+	public String detailsToString(Map m, String inSave, Player p) {
 		String save = inSave;//save value
-		Boolean teleporter = false;//there's two teleporters in the map, only need one to be read
-		int startx = m.getStartX() + 1;
-		int starty = m.getStartY() + 1;
 
-
-		save = save + "START, "+startx+", "+starty+"\n";
+		save = save + "START, "+(p.getxPos()+1)+", "+(p.getyPos()+1)+"\n";
 
 		for(int y = 0; y < m.getHeight(); y++) {
 			for(int x = 0; x < m.getWidth(); x++) {
@@ -110,12 +106,27 @@ public class WriteToFile {
 					case("Teleporter"):
 							Teleporter t = ((Teleporter) m.getTile(x, y)).getPartner();
 							save = save + "TELE, "+(x+1)+", "+(y+1)+", "+(t.getxPos()+1)+", "+(t.getyPos()+1)+"\n";
-							teleporter = true;
 						break;
 				}
 			}
 		}
 
+		save = save + "INV, ";
+		
+		for(Item i : p.getInv()) {
+			if(i instanceof Flippers) {
+				save = save + "FLIP, ";
+			}else if(i instanceof FireBoots) {
+				save = save + "BOOTS, ";
+			}else if(i instanceof Key) {
+				save = save + "KEY, " + ((Key)i).getColour() + ", ";
+			}else {
+				System.out.println("unknown item!");
+			}
+		}
+		
+		save = save + p.getTokens() + "\n";
+		
 		return save;
 	}
 

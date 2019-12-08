@@ -237,11 +237,18 @@ public class Player extends Entity {
 
     /**
      * get the number of tokens the player has.
-     *
      * @return number of tokens.
      */
     public int getTokens() {
         return numTokens;
+    }
+    
+    /**
+     * sets the number of tokens
+     * @param t number of tokens
+     */
+    public void setTokens(int t) {
+    	this.numTokens = t;
     }
 
     /**
@@ -254,4 +261,11 @@ public class Player extends Entity {
         return alive;
     }
 
+    /**
+     * gets the players inventory
+     * @return the players inventory
+     */
+    public LinkedList<Item> getInv(){
+    	return this.inventory;
+    }
 }

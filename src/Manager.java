@@ -85,6 +85,12 @@ public class Manager {
 		//load the player
 
 		player = new Player(fr.getStartX(), fr.getStartY(), this);
+		for(Item e : fr.readItems()) {
+			player.addItemToInv(e);
+		}
+		
+		player.setTokens(fr.readTokens());
+		
 		enemies = addAI();
 		// Load images
 		playerImg = new Image("sprites/player.png");
@@ -296,20 +302,21 @@ public class Manager {
 		Instant second = Instant.now();
 		Duration duration = Duration.between(first, second);
 		
-		FileReader lfr = new FileReader("src/Files/Users.txt");
-		String userInfo = lfr.readUser(user);
+		//sees if it is a user save and if so added the current level to the filepath
+		if(level.equals(user)) {
+			int levelNum = fr.readLevel();
+			System.out.println(levelNum);
+			level = level+levelNum;
+			levelPath = "src/Files/"+level+".txt";
+		}
+		
+		FileReader ufr = new FileReader("src/Files/Users.txt");
+		String userInfo = ufr.readUser(user);
+		
 		int userCurrent = Integer.parseInt(level.substring(level.length()-1));
 		int userMax = Integer.parseInt(userInfo.substring(userInfo.length()-1));
 		if(userCurrent > userMax) {
 			updateUser(user, userCurrent);
-		}
-		
-		System.out.println("user:" + lfr.readUser(user));	
-		//sess if it is a user save and if so added the current level to the filepath
-		if(level.equals(user)) {
-			int levelNum = fr.readLevel();
-			level = level+levelNum;
-			levelPath = "src/Files/"+level+".txt";
 		}
 		
 		//change scene to win		
@@ -325,7 +332,6 @@ public class Manager {
 	        stage.setScene(scene);
 	        stage.show();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("error loading scene");
 		}
@@ -388,7 +394,7 @@ public class Manager {
 		Instant second = Instant.now();
 		Duration duration = Duration.between(first, second);
 		
-		//sess if it is a user save and if so added the current level to the filepath
+		//sees if it is a user save and if so added the current level to the filepath
 		if(level.equals(user)) {
 			int levelNum = fr.readLevel();
 			level = level+levelNum;
@@ -474,11 +480,15 @@ public class Manager {
 	
 	@FXML
 	public void saveClick(ActionEvent e) {
-		for (Entity en : enemies) {
-			System.out.println("x: "+en.getxPos()+"y: "+en.getyPos());
+		
+		if(level.equals(user)) {
+			int levelNum = fr.readLevel();
+			level = level+levelNum;
+			levelPath = "src/Files/"+level+".txt";
 		}
+		
 		String levelNum = levelPath.substring(levelPath.length()-5, levelPath.length()-4);
-		new WriteToFile().saveMap(map, user, enemies, levelNum);;
+		new WriteToFile().saveMap(map, user, enemies, levelNum, player);
 	}
 	
 }

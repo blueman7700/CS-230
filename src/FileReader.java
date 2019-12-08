@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.LinkedList;
 /**
  * This class will take a text file and create a 2D array
  * @author Nathan Preston
@@ -92,17 +93,61 @@ public class FileReader {
 	 */
 	public int readLevel() {
 		Scanner in = readDataFile();
-		System.out.println("reading level");
 		String line = in.nextLine();
-		while(in.hasNext()) {//loops through file to the level
-			line = in.nextLine();
-			System.out.println(line);
+		in.useDelimiter("(\\p{javaWhitespace}|,)+");//Change Delimeter to also ','
+		String data;
+		while(in.hasNextLine()) {//loops through file to the level
+			data = in.next();
+			System.out.println(data);
+			if(data.equals("LEVEL")) {
+				return Integer.parseInt(in.next());
+			}
 		}
-		System.out.println("Line:" + line);
-		System.out.println(line.substring(line.length()-1));
-		return Integer.parseInt(line.substring(line.length()-1));
+		return 0;
 	}
 
+	/**
+	 * Gets the saved inventory of the play
+	 * @return the inventory
+	 */
+	public LinkedList<Item> readItems(){
+		
+		LinkedList<Item> inv = new LinkedList();		
+		Scanner in = readDataFile();
+		in.useDelimiter("(\\p{javaWhitespace}|,)+");//Change Delimeter to also ','
+		String data;
+		while(in.hasNextLine()) {//loops through file to the level
+			data = in.next();
+			if(data.contains("INV")) {
+				while(in.hasNext()) {
+					data = in.next();
+					if(data.equals("FLIP")) {
+						inv.add(new Flippers());
+					}else if(data.equals("BOOTS")) {
+						inv.add(new FireBoots());
+					}else if(data.equals("KEY")) {
+						inv.add(new Key(in.next()));
+					}
+				}
+			}
+		}
+		return inv;
+	}
+	
+	public int readTokens() {
+		LinkedList<Item> inv = new LinkedList();		
+		Scanner in = readDataFile();
+		String line;
+		while(in.hasNextLine()) {
+			line = in.nextLine();
+			if(line.contains("INV")) {
+				return Integer.parseInt(line.substring(line.length()-1));
+			}
+		}
+		
+		return 0;
+	}
+	
 	/**
 	 * Takes filename as an input, and returns the map height - found at the top of the file.
 	 *
