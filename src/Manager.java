@@ -1,3 +1,4 @@
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -385,6 +386,13 @@ public class Manager {
 			updateUser(user, userCurrent);
 		}
 		
+		try {
+			addToLeaderboard(userCurrent,user,duration);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		//change scene to win		
 		//loads new stage by swapping root
         Parent root;
@@ -401,6 +409,30 @@ public class Manager {
 			e.printStackTrace();
 			System.out.println("error loading scene");
 		}
+	}
+	
+	
+	private static void addToLeaderboard(int levelNum, String name,Duration time) throws Exception {
+		System.out.println(levelNum);
+		String filePath ="src/Files/leaderboard"+levelNum+".txt";
+		File file = new File(filePath);
+		if(file.exists()) {
+			String content = name+" "+time.getSeconds();
+			BufferedWriter writer = new BufferedWriter(new FileWriter(filePath,true));
+			writer.newLine();
+			writer.write(content);
+			writer.close();
+		}else {
+			file.createNewFile();
+			String content = name+" "+time.getSeconds();
+			BufferedWriter writer = new BufferedWriter(new FileWriter(filePath,true));
+			writer.write(content);
+			writer.close();
+		}
+		
+			
+		
+		
 	}
 	
 	/**
