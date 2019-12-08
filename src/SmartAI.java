@@ -1,6 +1,11 @@
 import Pathfinding.Path;
 import Pathfinding.Step;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
+
 /**
  * <b>Name: </b>SmartAI.java
  * <br>
@@ -67,26 +72,49 @@ public class SmartAI extends Entity {
 
     private void randMove() {
 
-        //check tile above
-        if (gm.getMap().getTile(xPos, yPos - 1).getWalkable()) {
-            setPosition(xPos, yPos - 1);
+        boolean canMove = false;
+        int newX = xPos;
+        int newY = yPos;
 
-        //check tile below
-        } else if (gm.getMap().getTile(xPos, yPos + 1).getWalkable()) {
-            setPosition(xPos, yPos + 1);
+        //randomise the order in which the AI will check the surrounding tiles.
+        Integer[] possibleMove = {0,1,2,3};
+        List<Integer> tmp = Arrays.asList(possibleMove);
+        Collections.shuffle(tmp);
+        tmp.toArray(possibleMove);
 
-        //check tile to the left
-        } else if (gm.getMap().getTile(xPos - 1, yPos).getWalkable()) {
-            setPosition(xPos - 1, yPos);
-
-        //check tile to the right
-        } else if (gm.getMap().getTile(xPos + 1, yPos).getWalkable()) {
-            setPosition(xPos + 1, yPos);
-
-        //if no moves are possible then stay put.
-        } else {
-            setPosition(xPos, yPos);
+        //loop through move array untill a move can be made
+        for (int i : possibleMove) {
+            if (i == 0) {
+                if (gm.getMap().getTile(xPos, yPos - 1) instanceof Floor
+                        && gm.getMap().getTile(xPos, yPos - 1).getWalkable()) {
+                    newX = xPos;
+                    newY = yPos - 1;
+                    break;
+                }
+            }else if (i == 1) {
+                if (gm.getMap().getTile(xPos, yPos + 1) instanceof Floor
+                        && gm.getMap().getTile(xPos, yPos + 1).getWalkable()) {
+                    newX = xPos;
+                    newY = yPos + 1;
+                    break;
+                }
+            }else if (i == 2) {
+                if (gm.getMap().getTile(xPos - 1, yPos) instanceof Floor
+                        && gm.getMap().getTile(xPos - 1, yPos).getWalkable()) {
+                    newX = xPos - 1;
+                    newY = yPos;
+                    break;
+                }
+            }else {
+                if (gm.getMap().getTile(xPos + 1, yPos) instanceof Floor
+                        && gm.getMap().getTile(xPos + 1, yPos).getWalkable()) {
+                    newX = xPos + 1;
+                    newY = yPos;
+                    break;
+                }
+            }
         }
+        this.setPosition(newX, newY);
     }
 
     /**
