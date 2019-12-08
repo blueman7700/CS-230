@@ -53,7 +53,7 @@ public class Manager {
 	//The current user logged in
 	private String user;
 	//first start of timer
-	Instant first;
+	private Instant first;
 	
 	//GUI elements
 	@FXML
@@ -158,7 +158,7 @@ public class Manager {
 				}else {
 					tile = new Image(map.getTile(x, y).getFilePath());
 					gc.drawImage(tile, x * GRID_CELL_SIZE, y * GRID_CELL_SIZE);
-					if (( (map.getTile(x, y))).contains() == true) {
+					if (((map.getTile(x, y))).contains()) {
 						//checks to see what the contents is then add is
 	                	if (((Floor) (map.getTile(x, y))).getKey() != null) {
 	                		tile = new Image("sprites/Key"+ ((Floor) map.getTile(x, y)).getKey().getColour() +".png");

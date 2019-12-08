@@ -74,7 +74,7 @@ public class MenuController {
 
 	/**
 	 * Changes scene to main game
-	 * @param Action of clicking
+	 * @param e Action of clicking
 	 * @throws IOException can't change scene
 	 */
 	@FXML
@@ -94,7 +94,7 @@ public class MenuController {
 
 	/**
 	 * Changes scene to main game but with a user level
-	 * @param Action of clicking
+	 * @param e Action of clicking
 	 */
 	@FXML
 	public void loadClick(ActionEvent e) {
@@ -124,16 +124,23 @@ public class MenuController {
 
 	/**
 	 * Changes scene to leader boards
-	 * @param action of clicking
+	 * @param e action of clicking
 	 */
 	@FXML
-	public void leaderClick(ActionEvent e) {
+	public void leaderClick(ActionEvent e) throws IOException{
 
+		Parent root;
+		Stage stage = (Stage)((Node) e.getSource()).getScene().getWindow();
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("views/leaderboard.fxml"));
+		root = (Parent)loader.load();
+		Scene scene = new Scene(root, 1000, 1000);
+		stage.setScene(scene);
+		stage.show();
 	}
 
 	/**
 	 * Changes scene to drawing
-	 * @param Action of clicking
+	 * @param e Action of clicking
 	 */
 	@FXML
 	public void drawClick(ActionEvent e) {
@@ -142,7 +149,7 @@ public class MenuController {
 
 	/**
 	 * Changes scene to log in menu, thus logs out
-	 * @param Acion of clicking
+	 * @param e Acion of clicking
 	 * @throws IOException can't load scene.
 	 */
 	@FXML
