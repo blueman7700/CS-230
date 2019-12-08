@@ -193,5 +193,38 @@ public class LoginController {
 		BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH,false));
 		writer.write(content);
 		writer.close();
+		removeFromLeaderboards(phrase);
+	}
+	
+	private static void removeFromLeaderboards(String name){
+		int levelNum = 1;
+		boolean fileExists = true;
+		while(fileExists) {
+			try {
+				File file = new File("src/Files/leaderboard"+levelNum+".txt");
+				Scanner in = new Scanner(file);
+				System.out.println("Leader loaded");
+				String content = "";
+				while(in.hasNextLine()) {
+					CURR_NAME = in.next();
+
+					if(!(CURR_NAME.equals(name))) {
+						content += CURR_NAME + " " + in.nextInt() +"\n";
+						System.out.println("someone else");
+					}else {
+						System.out.println("found yes");
+						in.nextInt();
+					}
+				}
+				content = content.substring(0, content.length()-1);
+				BufferedWriter writer = new BufferedWriter(new FileWriter("src/Files/leaderboard"+levelNum+".txt",false));
+				writer.write(content);
+				writer.close();
+				levelNum++;
+			}catch(Exception e2) {
+				fileExists = false;
+				System.out.println("Leader failed");
+			}
+		}
 	}
 }
