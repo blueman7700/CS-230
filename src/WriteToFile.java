@@ -11,11 +11,11 @@ public class WriteToFile {
 	
 	/**
 	 * Saves the map, player, and AI to a file.
-	 * @param The map
-	 * @param the Username
-	 * @param All the AI of that map
-	 * @param The level number
-	 * @param The player
+	 * @param m The map
+	 * @param name the Username
+	 * @param AI All the AI of that map
+	 * @param levelNum The level number
+	 * @param p The player
 	 */
 	public void saveMap(Map m, String name, ArrayList<Entity> AI, String levelNum, Player p) {
 		strToFile(addLevel(addAI(levelToString(m, p), AI), levelNum), name, false);
@@ -24,7 +24,7 @@ public class WriteToFile {
 	/**
 	 * Takes in a map, draws an ASCII version. Then calls detailsToString to get the map details
 	 * @param m the current map
-	 * @param the player
+	 * @param p the player
 	 * @return String format of the current map
 	 */
 	public String levelToString(Map m, Player p) {
@@ -71,7 +71,7 @@ public class WriteToFile {
 	 * Takes in the current map and finds any items/doors/teleporters and adds the specific details
 	 * @param m current map
 	 * @param inSave the String passed from levelToString, to update
-	 * @param the player
+	 * @param p the player
 	 * @return the updated string from levelToString, including map details
 	 */
 	public String detailsToString(Map m, String inSave, Player p) {

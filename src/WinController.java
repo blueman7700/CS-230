@@ -52,7 +52,7 @@ public class WinController {
 	
 	/**
 	 * Changes scene to the next level.
-	 * @param action of clicking
+	 * @param e action of clicking
 	 */
 	@FXML
 	public void nextClick(ActionEvent e) {
@@ -82,7 +82,7 @@ public class WinController {
 	
 	/**
 	 * Changes scene to main menu.
-	 * @param Action of clicking
+	 * @param e Action of clicking
 	 * @throws IOException unable to load scene
 	 */
 	@FXML

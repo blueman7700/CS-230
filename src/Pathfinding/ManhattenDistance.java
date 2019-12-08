@@ -14,7 +14,6 @@ package Pathfinding;
  * @author Oliver Morris
  * @version 1.0
  */
-
 public class ManhattenDistance {
 
 	//min cost to move from one tile to another
@@ -33,7 +32,7 @@ public class ManhattenDistance {
 	 * @param sY starting y coordinate.
 	 * @param fX target x coordinate.
 	 * @param fY target y coordinate.
-	 * @return
+	 * @return return the cost of moving from the start tile to this tile.
 	 */
 
 	public int getCost(int sX, int sY, int fX, int fY) {

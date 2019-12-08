@@ -7,6 +7,8 @@ import java.util.Queue;
 
 /**
  *
+ * @author Oliver Morris
+ * @version 1.1
  */
 
 public class AStar implements Pathfinder {

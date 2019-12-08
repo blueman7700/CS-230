@@ -7,11 +7,19 @@
 public class Wall extends Tile{
 	
 	private static String filePath = "sprites/wall.png";
-	
+
+	/**
+	 * create a new wall instance.
+	 */
 	public Wall() {
 		this.walkable = false;
 	}
 
+	/**
+	 * get the file path of te wall sprite.
+	 *
+	 * @return file path.
+	 */
 	public String getFilePath() {
 		return filePath;
 	}
