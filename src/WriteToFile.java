@@ -134,13 +134,13 @@ public class WriteToFile {
 			y = en.getyPos();
 			System.out.println("x: "+x+"y: "+y);
 			if(en instanceof DumbAI) {
-				save = save + "AI, DUMB, "+x+", "+y+"\n";;
+				save = save + "AI, DUMB, "+(x+2)+", "+(y+2)+"\n";;
 			} else if (en instanceof SmartAI) {
-				save = save + "AI, SMART, "+x+", "+y+"\n";
+				save = save + "AI, SMART, "+(x+2)+", "+(y+2)+"\n";
 			} else if (en instanceof WallAI) {
-				save = save + "AI, WALL, "+x+", "+y+"\n";
+				save = save + "AI, WALL, "+(x+2)+", "+(y+2)+"\n";
 			} else if (en instanceof LineAI){
-				save = save + "AI, LINE, "+((LineAI) en).getDirection()+", "+x+", "+y+"\n";;
+				save = save + "AI, LINE, "+((LineAI) en).getDirection()+", "+(x+2)+", "+(y+2)+"\n";;
 			} else {
 				
 			}
