@@ -72,7 +72,7 @@ public class leaderboardController {
 	}
 	
 	private ArrayList<String> getTop(int levelNum,ArrayList<String> fullLeaderboard) throws Exception{
-		int displayNum = 6;
+		int displayNum = 3;
 		System.out.println("in method");
 		String fileName = "src/Files/Leaderboard" + levelNum + ".txt";
 		File ranks = new File(fileName);
