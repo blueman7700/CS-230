@@ -225,7 +225,7 @@ public class Manager {
 	public void processKeyEvent(KeyEvent event) {
 		switch (event.getCode()) {
 			
-		    case D:
+			case RIGHT:
 		    	for(Entity e : enemies) {
 	    			e.move(MoveType.AUTO);
 	    		}
@@ -237,7 +237,7 @@ public class Manager {
 	        	}
 	        	
 	        	break;
-		    case A:
+		    case LEFT:
 		    	for(Entity e : enemies) {
 					e.move(MoveType.AUTO);
 				}
@@ -249,7 +249,7 @@ public class Manager {
 	        	}
 		    	
 		    	break;
-		    case W:
+		    case UP:
 		    	for(Entity e : enemies) {
 					e.move(MoveType.AUTO);
 				}
@@ -261,7 +261,7 @@ public class Manager {
 	        	}
 		    	
 		    	break;
-		    case S:
+		    case DOWN:
 		    	for(Entity e : enemies) {
 					e.move(MoveType.AUTO);
 				}

@@ -17,7 +17,7 @@ public class FileReader {
 
 	/**
 	 * Constructor
-	 * @param Name of the file to be read
+	 * @param filename Name of the file to be read.
 	 */
 	public FileReader(String filename) {
 		this.filename = filename;
@@ -81,9 +81,10 @@ public class FileReader {
 	}
 	
 	/**
-	 * Reads the user in the users file
-	 * @param User to read
-	 * @return The user and highest level
+	 * Reads the user in the users file.
+	 *
+	 * @param userCheck User to read.
+	 * @return The user and highest level.
 	 */
 	public String readUser(String userCheck) {
 		
@@ -398,7 +399,7 @@ public class FileReader {
 
 	/**
 	 * Add new enemy found in file to enemy ArrayList
-	 * @param String of enemy details
+	 * @param enemy String of enemy details
 	 */
 	public void addEnemy(String enemy) {
 		enemies.add(enemy);
@@ -460,5 +461,4 @@ public class FileReader {
 	public void setStartY(int y) {
 		startY = y;
 	}
-
 }
