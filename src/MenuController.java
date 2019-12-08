@@ -152,6 +152,7 @@ public class MenuController {
 			root = (Parent)loader.load();
 			DrawController controller = (DrawController)loader.getController();
 			Scene scene = new Scene(root, 1000, 1000);
+			scene.getStylesheets().add("views/CanvasCSS.css");
 			controller.start(user);
 			stage.setScene(scene);
 			stage.show();
