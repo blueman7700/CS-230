@@ -26,6 +26,7 @@ import javafx.stage.Stage;
 
 /**
  *Controller for the leaderboard GUI
+ *@author George Liu
  */
 public class leaderboardController {
 	@FXML
