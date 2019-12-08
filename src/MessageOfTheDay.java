@@ -56,6 +56,7 @@ public class MessageOfTheDay {
 			puzzle.add(currBit);
 			currBit = in.read();
 		}
+		in.close();
 		return puzzle;
 	}
 
