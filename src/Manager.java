@@ -114,7 +114,14 @@ public class Manager {
 		//load ai
 		enemies = addAI();
 		// Load images
-		playerImg = new Image("sprites/player.png");
+		try {
+			playerImg = new Image("Files/"+user+".png");
+		} catch(Exception e) {
+			System.out.println("can't load custom sprite!");
+			playerImg = new Image("sprites/player.png");
+		}
+		
+		
 		dumbAIImg = new Image("sprites/dumbAI.png");
 		smartAIImg = new Image("sprites/smartAI.png");
 		lineAIImg = new Image("sprites/lineAI.png");
