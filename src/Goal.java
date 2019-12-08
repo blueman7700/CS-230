@@ -60,7 +60,6 @@ public class Goal extends Tile{
      *
      * @return goal as string.
      */
-
     @Override
     public String toString() {
         return String.format("Goal is at %d, %d.\n", getxPos(), getyPos());

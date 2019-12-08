@@ -10,7 +10,7 @@ public class Key extends Item {
 	private String filePath = "sprites/Key"+colour+".png";//cant be static due to colour
 	
 	/**
-	 * @param name of the item (Key)
+	 * Constructor
 	 * @param colour of the key
 	 */
 	public Key( String colour) {

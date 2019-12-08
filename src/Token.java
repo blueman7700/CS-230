@@ -8,7 +8,7 @@ public class Token extends Item {
 	private static String filepath = "sprites/Token.png";
 	
 	/**
-	 * @param name of the item (Token)
+	 * Constructor
 	 */
 	public Token() {
 	}

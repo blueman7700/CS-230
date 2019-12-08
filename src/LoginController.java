@@ -37,6 +37,9 @@ public class LoginController {
 	static String CURR_NAME = "";
 	static String FINAL_NAME ="";
 
+	/**
+	 * Constructor
+	 */
 	public LoginController() {};
 
 	/**

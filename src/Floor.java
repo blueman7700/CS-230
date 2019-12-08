@@ -1,13 +1,14 @@
 /**
  * The walkable floor tile, which can contain an item
- * @author Lewis
+ * @author Lewis Pettifer
  * @version 1.2
  */
 public class Floor extends Tile {
-
+	
+	// All the possible items to be stored
 	private Key key;
 	private Token token;
-	private Flippers flip;// All the possible items to be stored
+	private Flippers flip;
 	private FireBoots boot;
 	private Boolean contains = false;//false if nothing is contained, true if there is something
 	private static String filePath = "sprites/floor.png";
@@ -70,10 +71,8 @@ public class Floor extends Tile {
 
 	/**
 	 * set the content of the floor tile.
-	 *
 	 * @param i key that the floor will contain.
 	 */
-
 	public void setContent(Key i) {
 		key = i;
 		contains = true;
@@ -81,7 +80,6 @@ public class Floor extends Tile {
 
 	/**
 	 * set the content of the floor tile.
-	 *
 	 * @param i token that the floor will contain.
 	 */
 
@@ -92,7 +90,6 @@ public class Floor extends Tile {
 
 	/**
 	 * set the content of the floor tile.
-	 *
 	 * @param i flippers that the floor will contain.
 	 */
 
@@ -103,7 +100,6 @@ public class Floor extends Tile {
 
 	/**
 	 * set the content of the floor tile.
-	 *
 	 * @param i boots that the floor will contain.
 	 */
 
@@ -114,10 +110,8 @@ public class Floor extends Tile {
 
 	/**
 	 * check if the tile can be moved to by the AI.
-	 *
 	 * @return walkable.
 	 */
-
 	@Override
 	public boolean getWalkable() {
 

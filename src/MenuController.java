@@ -15,6 +15,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
+/**
+ * Controller to handle the main menu GUI.
+ * Allows to start game, load save, see leader boards, draw avatar, and logout.
+ * Also will display a message of the day.
+ * @author Lewis Pettifer
+ *
+ */
 public class MenuController {
 
 	//logged in user
@@ -22,7 +29,7 @@ public class MenuController {
 	private String message;
 	private Timer timer = new Timer();
 
-
+	//GUI Elements
 	@FXML
 	Button startBtn;
 	@FXML
@@ -36,12 +43,15 @@ public class MenuController {
 	@FXML
 	private Label motd;
 
+	/**
+	 * initalizes the controller
+	 */
 	@FXML
 	public void initialize() {
-
+		
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Menu.fxml"));
 		fxmlLoader.setController(this);
-
+		//loads message of the day on a timer
 		timer.schedule(new TimerTask() {
 			@Override
 			public void run() {
@@ -50,11 +60,20 @@ public class MenuController {
 		}, 0, 30000);
 
 	}
-
+	
+	/**
+	 * sets needed variables
+	 * @param user
+	 */
 	public void start(String user) {
 		this.user = user;
 	}
 
+	/**
+	 * Changes scene to main game
+	 * @param Action of clicking
+	 * @throws IOException can't change scene
+	 */
 	@FXML
 	public void startClick(ActionEvent e) throws IOException {
 		//loads new stage by swapping root
@@ -70,6 +89,10 @@ public class MenuController {
 		stage.show();
 	}
 
+	/**
+	 * Changes scene to main game but with a user level
+	 * @param Action of clicking
+	 */
 	@FXML
 	public void loadClick(ActionEvent e) {
 		
@@ -88,7 +111,6 @@ public class MenuController {
 			stage.setScene(scene);
 			stage.show();
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 			System.out.println("Cant load user level");
 		}
@@ -96,16 +118,29 @@ public class MenuController {
 		
 	}
 
+	/**
+	 * Changes scene to leader boards
+	 * @param action of clicking
+	 */
 	@FXML
 	public void leaderClick(ActionEvent e) {
 
 	}
 
+	/**
+	 * Changes scene to drawing
+	 * @param Action of clicking
+	 */
 	@FXML
 	public void drawClick(ActionEvent e) {
 
 	}
 
+	/**
+	 * Changes scene to log in menu, thus logs out
+	 * @param Acion of clicking
+	 * @throws IOException can't load scene.
+	 */
 	@FXML
 	public void logClick(ActionEvent e) throws IOException {
 		//loads new stage by swapping root
@@ -118,6 +153,9 @@ public class MenuController {
         stage.show();
 	}
 	
+	/**
+	 * Updates the message of the day.
+	 */
 	private void changeMessage() {
 
 		String msg;

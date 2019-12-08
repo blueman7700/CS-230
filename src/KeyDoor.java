@@ -33,7 +33,8 @@ public class KeyDoor extends Tile{
 	}
 	
 	/**
-	 * gets file path
+	 * Gets filePath.
+	 * @return the file path
 	 */
 	public String getFilePath() {
 		return filePath;

@@ -9,6 +9,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+    	//starts the GUI
         Parent root = FXMLLoader.load(getClass().getResource("views/TitleScreen.fxml"));
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 1000, 1000));

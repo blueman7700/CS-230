@@ -8,7 +8,7 @@ public class Flippers extends Item {
 	private static String filepath = "sprites/Flipper.png";
 	
 	/**
-	 * @param name of the item (FireBoots)
+	 * Constructor
 	 */
 	public Flippers() {
 		

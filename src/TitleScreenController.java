@@ -9,8 +9,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
+/**
+ * Controller to handle the Title screen GUI.
+ * @author Lewis Pettifer
+ *
+ */
 public class TitleScreenController {
 
+	//GUI elements
     @FXML
     Button startButton;
 
@@ -19,6 +25,11 @@ public class TitleScreenController {
 
     }
 
+    /**
+     * Changes scene to Log in.
+     * @param Action of clicking.
+     * @throws IOException can't change scene.
+     */
     @FXML
     public void startClick(ActionEvent event) throws IOException{
         //loads new stage by swapping root

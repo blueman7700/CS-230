@@ -32,27 +32,6 @@ public class Teleporter extends Tile {
         setPos(xPos, yPos);
     }
 
-
-    /*
-     * method that teleports the Player to the other teleporter
-     * @param currentPlayer we need this to check if the player is on teleporter's position
-     * @return the teleporter on which the player is now
-     */
-
-    /*
-    Do we really need this method?
-
-    public Teleporter teleport(Player currentPlayer){
-        if(this.getxPos() == currentPlayer.getxPos() &&
-                this.getyPos() == currentPlayer.getyPos()){
-
-            currentPlayer.setxPos(currentTeleporter.getPartner().getxPos());
-            currentPlayer.setyPos(currentTeleporter.getPartner().getyPos());
-        }
-        return this.getPartner();
-    }
-    */
-
     public int getxPos() {
         return xPos;
     }
@@ -67,7 +46,6 @@ public class Teleporter extends Tile {
      * @param xPos x coordinate.
      * @param yPos y coordinate.
      */
-
     private void setPos(int xPos, int yPos) {
         this.xPos = xPos;
         this.yPos = yPos;
@@ -90,7 +68,6 @@ public class Teleporter extends Tile {
      *
      * @return teleporter as string
      */
-
     @Override
     public String toString() {
         return String.format("Teleporter is at %d, %d.\n Teleporter pair location: %d %d\n", getxPos(), getyPos(), getPartner().getxPos(), getPartner().getyPos());

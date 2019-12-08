@@ -7,7 +7,7 @@ public class FireBoots extends Item {
 
 	private static String filepath = "sprites/FireBoots.png";
 	/**
-	 * @param name of the item (FireBoots)
+	 * Constructor
 	 */
 	public FireBoots() {
 		

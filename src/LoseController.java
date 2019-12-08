@@ -10,30 +10,46 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
+/**
+ * Controller to handle game Lose GUI. This can restart the failed level or go to main menu.
+ * @author Lewis Pettifer
+ *
+ */
 public class LoseController {
 	
-	private String level;
-	private String user;
-	private String seconds;
-	
+	//GUI elements
 	@FXML
 	Label scoreText;
 	@FXML
 	Button restartBtn;
 	@FXML
 	Button menuBtn;
+	
+	private String level;
+	private String user;
 
+	/**
+	 * Constructor
+	 */
 	public LoseController() {
 		
 	}
 	
+	/**
+	 * Sets the needed variables.
+	 * @param Current Level
+	 * @param Current user
+	 * @param seconds
+	 */
 	public void start(String level, String user, String seconds) {
 		this.level=level;
 		this.user=user;
-		this.seconds=seconds;
 		scoreText.setText("You lasted: "+seconds+" Seconds");
 	}
-	
+	/**
+	 * Loads the main game GUI from the beginning.
+	 * @param Action of clicking
+	 */
 	@FXML
 	public void restartClick(ActionEvent e) {
 		//gets the number of the current level
@@ -58,6 +74,11 @@ public class LoseController {
 		}
 	}
 	
+	/**
+	 * Changes scene to the main menu.
+	 * @param Action of clicking
+	 * @throws IOException failed to change scene
+	 */
 	@FXML
 	public void menuClick(ActionEvent e) throws IOException {
 		//loads new stage by swapping root

@@ -11,8 +11,14 @@ import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+/**
+ * Controller to handle the game Win GUI. This displays score, changes to next game, and changes to main menu.
+ * @author Lewis Pettifer
+ *
+ */
 public class WinController {
 	
+	//GUI elements
 	@FXML
 	Label scoreText;
 	@FXML
@@ -22,18 +28,29 @@ public class WinController {
 	
 	private String level;
 	private String user;
-	private String seconds;
 
+	/**
+	 * Constructor
+	 */
 	public WinController() {
 	}
 	
+	/**
+	 * Sets needed variables
+	 * @param level
+	 * @param user
+	 * @param seconds
+	 */
 	public void start(String level, String user, String seconds) {
 		this.level=level;
 		this.user=user;
-		this.seconds=seconds;
 		scoreText.setText("Your time was: "+seconds+" Seconds");
 	}
 	
+	/**
+	 * Changes scene to the next level.
+	 * @param action of clicking
+	 */
 	@FXML
 	public void nextClick(ActionEvent e) {
 		//gets the number of the current level and adds one to get the next level
@@ -62,6 +79,11 @@ public class WinController {
         
 	}
 	
+	/**
+	 * Changes scene to main menu.
+	 * @param Action of clicking
+	 * @throws IOException unable to load scene
+	 */
 	@FXML
 	public void menuClick(ActionEvent e) throws IOException {
 		//loads new stage by swapping root

@@ -15,10 +15,18 @@ public class FileReader {
 	private int startY;//player's starting Y cood
 	private ArrayList<String> enemies = new ArrayList<String>();
 
+	/**
+	 * Constructor
+	 * @param Name of the file to be read
+	 */
 	public FileReader(String filename) {
 		this.filename = filename;
 	}
 
+	/**
+	 * Takes a save level in a file and converts it to a 2-d array
+	 * @return the array of the map
+	 */
 	public Tile[][] fileToArray(){
 		int h = getHeight();
 		int w = getWidth();
@@ -72,6 +80,11 @@ public class FileReader {
 		return leaderboard;
 	}
 	
+	/**
+	 * Reads the user in the users file
+	 * @param User to read
+	 * @return The user and highest level
+	 */
 	public String readUser(String userCheck) {
 		
 		String user = "";
@@ -107,7 +120,7 @@ public class FileReader {
 	}
 
 	/**
-	 * Gets the saved inventory of the play
+	 * Gets the saved inventory of the player
 	 * @return the inventory
 	 */
 	public LinkedList<Item> readItems(){
@@ -134,6 +147,10 @@ public class FileReader {
 		return inv;
 	}
 	
+	/**
+	 * Gets the saved tokens of the player
+	 * @return the tokens
+	 */
 	public int readTokens() {
 		LinkedList<Item> inv = new LinkedList();		
 		Scanner in = readDataFile();
