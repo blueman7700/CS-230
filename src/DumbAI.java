@@ -84,24 +84,23 @@ public class DumbAI extends Entity{
 
             //if the AI is further away in the X axis it will move left/right or vice-versa.
             if (Math.abs(diffX) > Math.abs(diffY)) {
-
                 //if the AI can move along the x axis it will, otherwise it will try the y axis
                 if (gm.getMap().getTile(newX, yPos) instanceof Floor
-                        && gm.getMap().getTile(newX, yPos).getWalkable()) {
+                        && !gm.getMap().getTile(newX, yPos).contains()) {
 
                     setPosition(newX, yPos);
                 }else if (gm.getMap().getTile(xPos, newY) instanceof Floor
-                        && gm.getMap().getTile(xPos, newY).getWalkable() && Math.abs(newY) > 0) {
+                        && !gm.getMap().getTile(xPos, newY).contains() && Math.abs(newY) > 0) {
                     setPosition(xPos, newY);
                 }
             }else {
-
                 //if the AI can move along the y axis it will, otherwise it will try the x axis
                 if (gm.getMap().getTile(xPos, newY) instanceof Floor
-                        && gm.getMap().getTile(xPos, newY).getWalkable()) {
+                        && !gm.getMap().getTile(xPos, newY).contains()) {
                     setPosition(xPos, newY);
+
                 }else if (gm.getMap().getTile(newX, yPos) instanceof Floor
-                        && gm.getMap().getTile(newX, yPos).getWalkable() && Math.abs(newX) > 0) {
+                        && !gm.getMap().getTile(newX, yPos).contains() && Math.abs(newX) > 0) {
                     setPosition(newX, yPos);
                 }
             }

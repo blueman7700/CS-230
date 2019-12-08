@@ -86,28 +86,28 @@ public class SmartAI extends Entity {
         for (int i : possibleMove) {
             if (i == 0) {
                 if (gm.getMap().getTile(xPos, yPos - 1) instanceof Floor
-                        && gm.getMap().getTile(xPos, yPos - 1).getWalkable()) {
+                        && !gm.getMap().getTile(xPos, yPos - 1).contains()) {
                     newX = xPos;
                     newY = yPos - 1;
                     break;
                 }
             }else if (i == 1) {
                 if (gm.getMap().getTile(xPos, yPos + 1) instanceof Floor
-                        && gm.getMap().getTile(xPos, yPos + 1).getWalkable()) {
+                        && !gm.getMap().getTile(xPos, yPos + 1).contains()) {
                     newX = xPos;
                     newY = yPos + 1;
                     break;
                 }
             }else if (i == 2) {
                 if (gm.getMap().getTile(xPos - 1, yPos) instanceof Floor
-                        && gm.getMap().getTile(xPos - 1, yPos).getWalkable()) {
+                        && !gm.getMap().getTile(xPos - 1, yPos).contains()) {
                     newX = xPos - 1;
                     newY = yPos;
                     break;
                 }
             }else {
                 if (gm.getMap().getTile(xPos + 1, yPos) instanceof Floor
-                        && gm.getMap().getTile(xPos + 1, yPos).getWalkable()) {
+                        && !gm.getMap().getTile(xPos + 1, yPos).contains()) {
                     newX = xPos + 1;
                     newY = yPos;
                     break;
