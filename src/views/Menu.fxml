@@ -3,43 +3,79 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Text?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MenuController">
    <center>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: lightgrey;" BorderPane.alignment="CENTER">
          <children>
-            <Text scaleX="3.0" scaleY="3.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BlockBuild" translateY="-75.0">
+            <ImageView fitHeight="93.0" fitWidth="377.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@bbLogo.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="startBtn" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#startClick" prefHeight="50.0" prefWidth="100.0">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
-            </Text>
-            <Button fx:id="startBtn" mnemonicParsing="false" onAction="#startClick" text="Start">
-               <VBox.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </VBox.margin>
+               <graphic>
+                  <ImageView fitHeight="64.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@start.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Button>
-            <Button fx:id="loadBtn" mnemonicParsing="false" onAction="#loadClick" text="Load">
+            <Button fx:id="loadBtn" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#loadClick" prefHeight="48.0" prefWidth="99.0">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@load.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Button>
-            <Button fx:id="leaderBtn" mnemonicParsing="false" onAction="#leaderClick" text="Leaderboards">
+            <Button fx:id="leaderBtn" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#leaderClick" prefHeight="69.0" prefWidth="141.0">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
+               <graphic>
+                  <ImageView fitHeight="72.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@leaderboards.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Button>
-            <Button fx:id="drawBtn" mnemonicParsing="false" onAction="#drawClick" text="Drawing">
+            <Button fx:id="drawBtn" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#drawClick" prefHeight="50.0" prefWidth="100.0">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
+               <graphic>
+                  <ImageView fitHeight="49.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@drawing.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Button>
-            <Button fx:id="logBtn" mnemonicParsing="false" onAction="#logClick" text="Logout">
+            <Button fx:id="logBtn" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#logClick" prefHeight="50.0" prefWidth="100.0">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
+               <graphic>
+                  <ImageView fitHeight="49.0" fitWidth="111.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@logout.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Button>
             <Label fx:id="motd" text="Label" translateY="80.0" />
          </children>
