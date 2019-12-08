@@ -1,6 +1,7 @@
 
 
 import java.io.File;
+import java.io.IOException;
 import java.util.concurrent.ThreadLocalRandom;
 
 import javax.imageio.ImageIO;
@@ -13,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
@@ -23,7 +25,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 /**
  * This class handles the custom drawing functionality. This controller links with draw.fxml
@@ -78,13 +82,8 @@ public class DrawController {
 	 * elements that need to be assigned are done so
 	 */
 	public void initialize() {
-		
-		//userID = Main.currentUser;
-		
-		//Makes canvas a blank white
+
 		GraphicsContext graphic = canvas.getGraphicsContext2D();
-		graphic.setFill(colourPicker.getValue());
-		graphic.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
 		
 		sizeSlider.setMin(2.0);
 		
@@ -183,7 +182,7 @@ public class DrawController {
 			@Override
 			public void handle(ActionEvent e) {
     	        saveImage();
-    	        changeScene("/tawe/view/librarian.fxml", e);
+    	        changeScene(e);
 			}
 		});
 		
@@ -194,10 +193,18 @@ public class DrawController {
 			 */
 			@Override
 			public void handle(ActionEvent e) {
-				changeScene("/tawe/view/librarian.fxml", e);
+				changeScene(e);
 			}
 		});
 		
+	}
+	
+	/**
+	 * Sets the current user drawing
+	 * @param user
+	 */
+	public void start(String user) {
+		this.userID = user;
 	}
 	
 	/**
@@ -276,11 +283,12 @@ public class DrawController {
 	 * @param userID the currently logged in user
 	 */
 	private void saveImage() {
-		WritableImage picture = new WritableImage(250,250);
-        File outputFile = new File("src/tawe/avatars/avatar"+userID+".png");
-        canvas.snapshot(null, picture);
+		WritableImage picture = new WritableImage(50, 50);
+        File outputFile = new File("src/Files/"+userID+".png");
+        SnapshotParameters sp = new SnapshotParameters();
+        sp.setFill(Color.TRANSPARENT);
         try {
-        	ImageIO.write(SwingFXUtils.fromFXImage(picture, null), "png", outputFile);
+        	ImageIO.write(SwingFXUtils.fromFXImage(canvas.snapshot(sp, picture), null), "png", outputFile);
         }catch(Exception ex) {
         	System.out.println(ex.getMessage());
         }
@@ -291,16 +299,22 @@ public class DrawController {
 	 * @param sceneLocation The scene to be changed to
 	 * @param e The action event from the GUI that want to change scene
 	 */
-	private void changeScene(String sceneLocation, ActionEvent e) { 	        
-        try {    	        	
-        	//Changes the GUI buy changing the root of the current scene
-        	Parent root = FXMLLoader.load(getClass().getResource(sceneLocation));
-        	Node source = (Node)e.getSource();
-        	Scene scene = source.getScene();
-        	scene.setRoot(root);
-		} catch (Exception ex) {
-			System.out.println(ex.getMessage());
+	private void changeScene(ActionEvent e) { 	        
+		//loads new stage by swapping root
+		Parent root;
+		Stage stage = (Stage)((Node) e.getSource()).getScene().getWindow();
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("views/Menu.fxml"));
+		try {
+			root = (Parent)loader.load();
+			MenuController controller = (MenuController)loader.getController();
+			Scene scene = new Scene(root, 1000, 1000);
+			controller.start(userID);
+			stage.setScene(scene);
+			stage.show();
+		} catch (IOException e1) {
+			System.out.println("Cant change scene");
 		}
+		
 	}
 	
 	/**

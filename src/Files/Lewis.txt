@@ -4,21 +4,26 @@
 #__#t______#
 #_t#______t#
 ############
-#____f_#__t#
+#____f_#_t_#
 #____ff#___#
 #______#___#
 #______#___#
 #www___#___#
-#__w_______#
+#__w___d___#
 ############
-START, 7, 2
+START, 10, 9
 DOOR, TOKEN, 4, 3, 2
 TELE, 5, 3, 3, 4
 TELE, 3, 4, 5, 3
-TELE, 11, 4, 11, 6
-TELE, 11, 6, 11, 4
-INV, FLIP, BOOTS, 4
-AI, LINE, EAST, 11, 4
-AI, SMART, 10, 7
-AI, WALL, 6, 12
-LEVEL, 3
+TELE, 11, 4, 10, 6
+ITEM, FLIP, 2, 6
+TOKEN, 7, 6
+TELE, 10, 6, 11, 4
+TOKEN, 2, 11
+ITEM, BOOT, 3, 11
+DOOR, KEY, BLUE, 8, 11
+INV, KEY, BLUE, 2
+AI, LINE, WEST, 10, 4
+AI, SMART, 11, 9
+AI, WALL, 10, 11
+LEVEL, 1

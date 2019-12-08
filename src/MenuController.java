@@ -144,7 +144,21 @@ public class MenuController {
 	 */
 	@FXML
 	public void drawClick(ActionEvent e) {
-
+		//Changes to draw GUI
+		Parent root;
+		Stage stage = (Stage)((Node) e.getSource()).getScene().getWindow();
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("views/Draw.fxml"));
+		try {
+			root = (Parent)loader.load();
+			DrawController controller = (DrawController)loader.getController();
+			Scene scene = new Scene(root, 1000, 1000);
+			controller.start(user);
+			stage.setScene(scene);
+			stage.show();
+		} catch (IOException e1) {
+			System.out.println("Cant load!");
+			e1.printStackTrace();
+		}
 	}
 
 	/**
