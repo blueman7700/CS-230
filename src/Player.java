@@ -108,6 +108,8 @@ public class Player extends Entity {
                     setPosition(newX, newY);
                     //no need to continue the loop
                     break;
+                } else {
+                	gm.lose(); //if they dont have the boots, they die 
                 }
             }
         //check if the next tile is a water tile
@@ -118,6 +120,8 @@ public class Player extends Entity {
                     setPosition(newX, newY);
                     //no need to continue the loop
                     break;
+                } else {
+                	gm.lose();//if they don't have flippers they drown
                 }
             }
         //check if the next tile is a door
