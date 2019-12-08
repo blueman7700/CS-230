@@ -11,7 +11,12 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
     	//starts the GUI
         Parent root = FXMLLoader.load(getClass().getResource("views/TitleScreen.fxml"));
-        primaryStage.setTitle("Hello World");
+        primaryStage.setOnCloseRequest( e -> {
+        	e.consume();
+        	primaryStage.close();
+        	System.exit(0);
+        });
+        primaryStage.setTitle("Block Build");
         primaryStage.setScene(new Scene(root, 1000, 1000));
         primaryStage.show();
     }
