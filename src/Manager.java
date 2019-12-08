@@ -21,15 +21,15 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 /**
+ * Handles interactions between most classes. User inputs are listened for here. The main game is drawn and ran here.
+ * @author Lewis Pettifer
  *
  */
-
-//The manager class
 public class Manager {
 
 	// The size of each cell
 	private static int GRID_CELL_SIZE = 50;
-	// Load an image
+	// Load images
 	private Image tile;
 	private Image playerImg;
 	private Image dumbAIImg;
@@ -52,6 +52,7 @@ public class Manager {
 	//first start of timer
 	Instant first;
 	
+	//GUI elements
 	@FXML
 	private Canvas gameCanvas;
 	@FXML
@@ -59,6 +60,11 @@ public class Manager {
 	@FXML
 	private Button saveBtn;
 	
+	/**
+	 * Constructor
+	 * @param The level to be played
+	 * @param The user playing
+	 */
 	public Manager(String level, String user) {
 		this.level = level;
 		this.levelPath = "src/Files/"+level+".txt";
@@ -67,30 +73,32 @@ public class Manager {
 		first = Instant.now();
 	}
 	
+	/**
+	 * Sets listener for movements when user presses a key
+	 * @param The scene to have the listener
+	 */
 	public void start(Scene scene) {
 		scene.addEventFilter(KeyEvent.KEY_PRESSED, event -> processKeyEvent(event));
 	}
 		
 	/**
-	 * 
+	 * initalizes the controller
 	 */
 	@FXML
 	public void initialize() {
-		//Experiment ex = new Experiment();
 		
 		//load filereader
 		fr = new FileReader(levelPath);
 		//loads the map and sets the tiles
 		map = new Map(fr.getHeight(), fr.getWidth(), fr.fileToArray(), fr.getStartX(), fr.getStartY(), fr.getEnemies(), this);
 		//load the player
-
 		player = new Player(fr.getStartX(), fr.getStartY(), this);
+		//add any saved items/ tokens to the player
 		for(Item e : fr.readItems()) {
 			player.addItemToInv(e);
 		}
-		
 		player.setTokens(fr.readTokens());
-		
+		//load ai
 		enemies = addAI();
 		// Load images
 		playerImg = new Image("sprites/player.png");
@@ -117,13 +125,12 @@ public class Manager {
 		// Clear canvas
 		gc.fillRect(0, 0, gameCanvas.getWidth(), gameCanvas.getHeight());
 
-		// Draw row of dirt images
 		// We multiply by the cell width and height to turn a coordinate in our grid into a pixel coordinate.
-		// We draw the row at y value 2.
-		
+		// We draw the row at y value 2.		
 		for (int x = 0; x < map.getWidth(); x++) {
 			for (int y = 0; y < map.getHeight(); y++) {
 				
+				//draws each key door colour or draws the other types of tiles
 				if(map.getTile(x, y) instanceof KeyDoor) {
 					tile = new Image("sprites/Door"+((KeyDoor)map.getTile(x, y)).getColour()+".png");
 					gc.drawImage(tile, x * GRID_CELL_SIZE, y * GRID_CELL_SIZE);
@@ -153,6 +160,7 @@ public class Manager {
 		// Draw player at current location
 		gc.drawImage(playerImg, player.getxPos() * GRID_CELL_SIZE, player.getyPos() * GRID_CELL_SIZE);
 
+		//Draw all enemies
 		for (Entity e : enemies) {
 			if (e instanceof DumbAI) {
 				gc.drawImage(dumbAIImg, e.getxPos() * GRID_CELL_SIZE, e.getyPos() * GRID_CELL_SIZE);
@@ -239,7 +247,8 @@ public class Manager {
 	}
 
 	/**
-	 * adds the AI into the map
+	 * Loads the AI from the map
+	 * @return the AI's
 	 */
 	public ArrayList<Entity> addAI() {
 		int[] coods = new int[2];
@@ -283,6 +292,10 @@ public class Manager {
 		return ai;
 	}
 	
+	/**
+	 * Checks if player is at the some position as any enemy
+	 * @return where the player is colliding
+	 */
 	public Boolean collision() {
 		for(Entity i : enemies) {
 			
@@ -297,6 +310,9 @@ public class Manager {
 		return false;
 	}
 	
+	/**
+	 * Called when player wins the level
+	 */
 	public void win(){
 		//stops timer
 		Instant second = Instant.now();
@@ -313,6 +329,7 @@ public class Manager {
 		FileReader ufr = new FileReader("src/Files/Users.txt");
 		String userInfo = ufr.readUser(user);
 		
+		//sees if the user as reached a new high level
 		int userCurrent = Integer.parseInt(level.substring(level.length()-1));
 		int userMax = Integer.parseInt(userInfo.substring(userInfo.length()-1));
 		if(userCurrent > userMax) {
@@ -446,7 +463,6 @@ public class Manager {
 	
 	/**
 	 * get the game map.
-	 *
 	 * @return game map.
 	 */
 
@@ -456,10 +472,8 @@ public class Manager {
 
 	/**
 	 * get the player.
-	 *
 	 * @return player
 	 */
-
 	public Player getPlayer() {
 		return player;
 	}
