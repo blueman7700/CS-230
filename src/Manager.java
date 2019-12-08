@@ -411,7 +411,13 @@ public class Manager {
 		}
 	}
 	
-	
+	/**
+	 * Adds the users game to the leader board.
+	 * @param levelNum The level
+	 * @param name Username
+	 * @param time Time taken
+	 * @throws Exception unable to add user to file
+	 */
 	private static void addToLeaderboard(int levelNum, String name,Duration time) throws Exception {
 		System.out.println(levelNum);
 		String filePath ="src/Files/leaderboard"+levelNum+".txt";
@@ -487,6 +493,9 @@ public class Manager {
 		
 	}
 
+	/**
+	 * Ends the game due to player losing. Stops the timer and changes to the lose GUI.
+	 */
 	public void lose() {
 		//stops timer
 		Instant second = Instant.now();
@@ -546,7 +555,6 @@ public class Manager {
 	 * get the game map.
 	 * @return game map.
 	 */
-
 	public Map getMap() {
 		return map;
 	}
@@ -559,6 +567,11 @@ public class Manager {
 		return player;
 	}
 	
+	/**
+	 * Exits too the main menu
+	 * @param Action of clicking
+	 * @throws IOException cant change scene
+	 */
 	@FXML
 	public void exitClick(ActionEvent e) throws IOException {
 		//loads new stage by swapping root
@@ -573,6 +586,10 @@ public class Manager {
 		stage.show();
 	}
 	
+	/**
+	 * Saves the current game
+	 * @param eAction of clicking
+	 */
 	@FXML
 	public void saveClick(ActionEvent e) {
 		

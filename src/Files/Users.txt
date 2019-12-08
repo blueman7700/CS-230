@@ -3,5 +3,4 @@ James 5
 Grum 1
 Jeff 1
 Lewis 3
-Gamer 1
-Gamer 1
+Gamer 0

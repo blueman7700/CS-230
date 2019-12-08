@@ -25,7 +25,7 @@ import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
 /**
- *
+ *Controller for the leaderboard GUI
  */
 public class leaderboardController {
 	@FXML
