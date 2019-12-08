@@ -22,13 +22,10 @@ public class Teleporter extends Tile {
     /**
      * create an instance of Teleporter.
      *
-     * @param partner we need the partner in order to connect teleporters
      * @param xPos    x position of the teleporter
      * @param yPos    y position of the teleporter
      */
     public Teleporter(int xPos, int yPos){
-        //TODO: add superclass constructor
-        setPartner(partner);
         setPos(xPos, yPos);
     }
 

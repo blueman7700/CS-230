@@ -24,14 +24,23 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
+/**
+ *
+ */
 public class leaderboardController {
 	@FXML
 	Button backBtn;
 	@FXML
 	ListView<String> scores;
-	
+
+	/**
+	 * create a new instance of the leaderboard controller.
+	 */
 	public leaderboardController() {};
-	
+
+	/**
+	 * initialize the leaderboard.
+	 */
 	@FXML
 	public void initialize() {
 		ArrayList<String> fullBoard = new ArrayList<String>();
@@ -53,11 +62,14 @@ public class leaderboardController {
 		scores.setItems(items);
 		scores.setPrefWidth(500);
 		scores.setPrefHeight(700);
-		
-		
-
-	
 	}
+
+	/**
+	 * leave the leaderboard and return to the menu.
+	 *
+	 * @param e
+	 * @throws IOException
+	 */
 	@FXML
 	public void backClick(ActionEvent e) throws IOException {
 		//loads new stage by swapping root
@@ -70,7 +82,15 @@ public class leaderboardController {
 		stage.setScene(scene);
 		stage.show();
 	}
-	
+
+	/**
+	 * get the top players for a given level.
+	 *
+	 * @param levelNum 			level to get player stats from.
+	 * @param fullLeaderboard	leaderboard to populate.
+	 * @return					populated leaderboard.
+	 * @throws Exception
+	 */
 	private ArrayList<String> getTop(int levelNum,ArrayList<String> fullLeaderboard) throws Exception{
 		int displayNum = 3;
 		System.out.println("in method");

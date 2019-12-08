@@ -27,7 +27,7 @@ public class TitleScreenController {
 
     /**
      * Changes scene to Log in.
-     * @param Action of clicking.
+     * @param event Action of clicking.
      * @throws IOException can't change scene.
      */
     @FXML

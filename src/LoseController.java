@@ -37,8 +37,8 @@ public class LoseController {
 	
 	/**
 	 * Sets the needed variables.
-	 * @param Current Level
-	 * @param Current user
+	 * @param level Current Level
+	 * @param user Current user
 	 * @param seconds
 	 */
 	public void start(String level, String user, String seconds) {
@@ -48,7 +48,7 @@ public class LoseController {
 	}
 	/**
 	 * Loads the main game GUI from the beginning.
-	 * @param Action of clicking
+	 * @param e Action of clicking
 	 */
 	@FXML
 	public void restartClick(ActionEvent e) {
@@ -76,7 +76,7 @@ public class LoseController {
 	
 	/**
 	 * Changes scene to the main menu.
-	 * @param Action of clicking
+	 * @param e Action of clicking
 	 * @throws IOException failed to change scene
 	 */
 	@FXML
