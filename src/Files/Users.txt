@@ -1,7 +1,6 @@
 Matt 4
 James 5
-Jeb 0
-Grum 0
-Jeff 0
-Lewis 0
+Grum 1
+Jeff 1
+Lewis 1
 Gamer 0

@@ -71,6 +71,21 @@ public class FileReader {
 		return leaderboard;
 	}
 	
+	public String readUser(String userCheck) {
+		
+		String user = "";
+		Scanner in = readDataFile();
+		
+		while(in.hasNextLine() && in.hasNext()) {
+			user = in.nextLine();
+			if(user.contains(userCheck)) {
+				return user;
+			}
+		}
+		return "search failed!";
+		
+	}
+	
 	/**
 	 * Find the current level of the file
 	 * @return the file level

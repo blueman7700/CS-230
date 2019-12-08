@@ -1,7 +1,11 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -292,6 +296,15 @@ public class Manager {
 		Instant second = Instant.now();
 		Duration duration = Duration.between(first, second);
 		
+		FileReader lfr = new FileReader("src/Files/Users.txt");
+		String userInfo = lfr.readUser(user);
+		int userCurrent = Integer.parseInt(level.substring(level.length()-1));
+		int userMax = Integer.parseInt(userInfo.substring(userInfo.length()-1));
+		if(userCurrent > userMax) {
+			updateUser(user, userCurrent);
+		}
+		
+		System.out.println("user:" + lfr.readUser(user));	
 		//sess if it is a user save and if so added the current level to the filepath
 		if(level.equals(user)) {
 			int levelNum = fr.readLevel();
@@ -318,6 +331,58 @@ public class Manager {
 		}
 	}
 	
+	/**
+	 * Updates the highest level reached for the given user
+	 * @param user the user to be updated
+	 * @param userCurrent the new highest level
+	 */
+	private void updateUser(String user, int userCurrent) {
+		
+		//opens file
+		File file = new File("src/Files/Users.txt");
+		Scanner in = null;
+		try {
+			in = new Scanner(file);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			System.out.println("File not found.");
+		}
+		
+		String data = "";
+		String currentLine;
+		
+		//loops over each line to build the new data
+		while(in.hasNextLine() && in.hasNext()) {
+			currentLine = in.nextLine();
+			if(currentLine.contains(user)) {
+				data = data + user + " " + userCurrent + "\n";
+			} else {
+				data = data + currentLine + "\n";
+			}
+		}
+		
+		//remove extra end lines
+		data = data.trim();
+		
+		//writes to file
+		FileWriter fw = null;
+		try {
+			fw = new FileWriter(file);
+			fw.write(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.out.println("Cant write file!");
+		} finally {
+			try {
+				fw.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+				System.out.println("Cant close file!");
+			}
+		}
+		
+	}
+
 	public void lose() {
 		//stops timer
 		Instant second = Instant.now();
