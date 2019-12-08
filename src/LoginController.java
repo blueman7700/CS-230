@@ -196,6 +196,12 @@ public class LoginController {
 		removeFromLeaderboards(phrase);
 	}
 	
+	/**
+	 * delete a user from all the leaderboards.
+	 *
+	 * @param phrase user to delete
+	 * @throws Exception
+	 */
 	private static void removeFromLeaderboards(String name){
 		int levelNum = 1;
 		boolean fileExists = true;
