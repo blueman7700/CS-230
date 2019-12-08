@@ -28,7 +28,10 @@ import javafx.stage.Stage;
  *Controller for the leaderboard GUI
  *@author George Liu
  */
-public class leaderboardController {
+public class LeaderboardController {
+	
+	private String user;
+	
 	@FXML
 	Button backBtn;
 	@FXML
@@ -37,7 +40,15 @@ public class leaderboardController {
 	/**
 	 * create a new instance of the leaderboard controller.
 	 */
-	public leaderboardController() {};
+	public LeaderboardController() {};
+	
+	/**
+	 * Sets the users
+	 * @param s user
+	 */
+	public void start(String s) {
+		this.user = s;
+	}
 
 	/**
 	 * initialize the leaderboard.
@@ -80,6 +91,7 @@ public class leaderboardController {
 		root = (Parent)loader.load();
 		MenuController controller = (MenuController)loader.getController();
 		Scene scene = new Scene(root, 1000, 1000);
+		controller.start(user);
 		stage.setScene(scene);
 		stage.show();
 	}

@@ -129,12 +129,14 @@ public class MenuController {
 	 */
 	@FXML
 	public void leaderClick(ActionEvent e) throws IOException{
-
+		//loads new stage by swapping root
 		Parent root;
 		Stage stage = (Stage)((Node) e.getSource()).getScene().getWindow();
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("views/leaderboard.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("views/Leaderboard.fxml"));
 		root = (Parent)loader.load();
+		LeaderboardController controller = (LeaderboardController)loader.getController();
 		Scene scene = new Scene(root, 1000, 1000);
+		controller.start(user);
 		stage.setScene(scene);
 		stage.show();
 	}
