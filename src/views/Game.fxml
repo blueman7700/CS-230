@@ -3,12 +3,17 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <top>
-      <HBox prefHeight="39.0" prefWidth="590.0" spacing="5.0" BorderPane.alignment="CENTER">
+      <HBox spacing="5.0" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="saveBtn" mnemonicParsing="false" onAction="#saveClick" text="Save" />
             <Button fx:id="exitBtn" mnemonicParsing="false" onAction="#exitClick" text="Exit" />
@@ -25,10 +30,53 @@
       </HBox>
    </top>
    <center>
-      <Canvas fx:id="gameCanvas" height="1000.0" width="1890.0" BorderPane.alignment="TOP_LEFT">
+      <Canvas fx:id="gameCanvas" height="889.0" width="1249.0" BorderPane.alignment="TOP_LEFT">
          <BorderPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </BorderPane.margin>
       </Canvas>
    </center>
+   <bottom>
+      <Pane BorderPane.alignment="CENTER" />
+   </bottom>
+   <right>
+      <AnchorPane BorderPane.alignment="CENTER_LEFT">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="-23.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true" scaleX="0.5" scaleY="0.5">
+               <image>
+                  <Image url="@../sprites/Token.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="-23.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true" scaleX="0.5" scaleY="0.5">
+               <image>
+                  <Image url="@../sprites/KeyBLUE.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="-23.0" layoutY="235.0" pickOnBounds="true" preserveRatio="true" scaleX="0.5" scaleY="0.5">
+               <image>
+                  <Image url="@../sprites/KeyRED.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="bootImg" fitHeight="150.0" fitWidth="200.0" layoutX="-25.0" layoutY="-23.0" pickOnBounds="true" preserveRatio="true" scaleX="0.5" scaleY="0.5">
+               <image>
+                  <Image url="@../sprites/Boots.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="flipImg" fitHeight="150.0" fitWidth="200.0" layoutX="75.0" layoutY="-23.0" pickOnBounds="true" preserveRatio="true" scaleX="0.5" scaleY="0.5">
+               <image>
+                  <Image url="@../sprites/Flippers.png" />
+               </image>
+            </ImageView>
+            <Text layoutX="96.0" layoutY="164.0" scaleX="2.0" scaleY="2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="X" />
+            <Text layoutX="96.0" layoutY="239.0" scaleX="2.0" scaleY="2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="X" />
+            <Text layoutX="95.0" layoutY="314.0" scaleX="2.0" scaleY="2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="X" />
+            <Text fx:id="tokenLbl" layoutX="139.0" layoutY="163.0" scaleX="2.0" scaleY="2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NAN" />
+            <Text fx:id="blueLbl" layoutX="139.0" layoutY="238.0" scaleX="2.0" scaleY="2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NAN" />
+            <Text fx:id="redLbl" layoutX="139.0" layoutY="313.0" scaleX="2.0" scaleY="2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NAN" />
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </AnchorPane>
+   </right>
 </BorderPane>

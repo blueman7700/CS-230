@@ -206,7 +206,7 @@ public class Player extends Entity {
      * @param item item to remove from the list.
      * @throws NoSuchElementException thrown if the specified item does not exist.
      */
-    public Item removeFromInv(Item item) {
+    public void removeFromInv(Item item) {
 
         boolean found = false;
         int index = 0;
@@ -223,15 +223,9 @@ public class Player extends Entity {
         }
 
         //check if the item has been found in the list
-        if (!found) {
-
-            //if item has not been found throw exception
-            return null;
-        } else {
-
-            //remove item from inventory
+        if (found) {
+            //if item has been found, remove it from the inventory
             inventory.remove(index);
-            return item;
         }
     }
 

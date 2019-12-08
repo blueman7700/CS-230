@@ -16,8 +16,11 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
@@ -59,11 +62,21 @@ public class Manager {
 	private Button exitBtn;
 	@FXML
 	private Button saveBtn;
+	@FXML
+	private Text tokenLbl;
+	@FXML
+	private Text blueLbl;
+	@FXML
+	private Text redLbl;
+	@FXML
+	private ImageView flipImg;
+	@FXML
+	private ImageView bootImg;
 	
 	/**
 	 * Constructor
-	 * @param The level to be played
-	 * @param The user playing
+	 * @param level The level to be played
+	 * @param user The user playing
 	 */
 	public Manager(String level, String user) {
 		this.level = level;
@@ -75,7 +88,7 @@ public class Manager {
 	
 	/**
 	 * Sets listener for movements when user presses a key
-	 * @param The scene to have the listener
+	 * @param scene The scene to have the listener
 	 */
 	public void start(Scene scene) {
 		scene.addEventFilter(KeyEvent.KEY_PRESSED, event -> processKeyEvent(event));
@@ -109,6 +122,13 @@ public class Manager {
 		
 		gameCanvas.setWidth(map.getWidth() * GRID_CELL_SIZE);
 		gameCanvas.setHeight(map.getHeight() * GRID_CELL_SIZE);
+
+		//set screen display to default values
+		tokenLbl.setText("0");
+		blueLbl.setText("0");
+		redLbl.setText("0");
+		bootImg.setOpacity(0);
+		flipImg.setOpacity(0);
 		
 		drawGame();
 	}
@@ -121,6 +141,7 @@ public class Manager {
 	public void drawGame() {
 		// Get the Graphic Context of the canvas. This is what we draw on.
 		GraphicsContext gc = gameCanvas.getGraphicsContext2D();
+
 		
 		// Clear canvas
 		gc.fillRect(0, 0, gameCanvas.getWidth(), gameCanvas.getHeight());
@@ -156,7 +177,29 @@ public class Manager {
 				}					
 			}
 		}
-		
+
+		//display the number of tokens on screen
+		tokenLbl.setText(Integer.toString(player.getTokens()));
+		int totRKey = 0;
+		int totBKey = 0;
+
+		for (Item i : player.getInv()) {
+
+			if (i instanceof Key) {
+				if (((Key) i).getColour().equals("Red")) {
+					totRKey++;
+				}else {
+					totBKey++;
+				}
+			}else if (i instanceof FireBoots) {
+				bootImg.setOpacity(1);
+			}else if (i instanceof Flippers) {
+				flipImg.setOpacity(1);
+			}
+		}
+		redLbl.setText(Integer.toString(totRKey));
+		blueLbl.setText(Integer.toString(totBKey));
+
 		// Draw player at current location
 		gc.drawImage(playerImg, player.getxPos() * GRID_CELL_SIZE, player.getyPos() * GRID_CELL_SIZE);
 

@@ -62,6 +62,7 @@ public class Map {
 					if (kd.getColour().equals(k.getColour())) {
 						gm.getPlayer().removeFromInv(k);
 						level[coods[1]][coods[0]] = new Floor();
+						gm.getPlayer().removeFromInv(k);
 						break;
 					}
 				}
