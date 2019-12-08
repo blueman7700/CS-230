@@ -17,7 +17,7 @@
                   <Image url="@bbLogo.png" />
                </image>
             </ImageView>
-            <Button fx:id="btnStart" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" mnemonicParsing="false" onAction="#startClick" pickOnBounds="false" textAlignment="CENTER">
+            <Button fx:id="btnStart" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#startClick" pickOnBounds="false" prefHeight="159.0" prefWidth="327.0" textAlignment="CENTER">
                <font>
                   <Font name="Comic Sans MS" size="46.0" />
                </font>
